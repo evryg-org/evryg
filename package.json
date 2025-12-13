@@ -1,0 +1,11 @@
+{
+  "name": "evryg",
+  "version": "1.0.0",
+  "description": "Evryg public monorepo",
+  "private": true,
+  "scripts": {},
+  "keywords": [],
+  "author": "evryg",
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@10.24.0"
+}
