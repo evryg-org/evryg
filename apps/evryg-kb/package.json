@@ -1,5 +1,5 @@
 {
-  "name": "evryg-kb",
+  "name": "@evryg/kb",
   "version": "0.1.0",
   "private": true,
   "scripts": {
