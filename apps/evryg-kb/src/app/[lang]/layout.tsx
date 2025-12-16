@@ -46,7 +46,7 @@ export default async function LangLayout({
 
   const navbar = (
     <Navbar
-      logo={<b>Nextra</b>}
+      logo={<b>evryg</b>}
       // ... Your additional navbar options
     />
   )
