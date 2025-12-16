@@ -1,7 +1,17 @@
 import type { NextConfig } from "next";
+import nextra from 'nextra'
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  i18n: {
+    locales: ['en', 'fr'],
+    defaultLocale: 'en'
+  }
 };
 
-export default nextConfig;
+// Set up Nextra with its configuration
+const withNextra = nextra({
+  unstable_shouldAddLocaleToLinks: true
+})
+
+// Export the final Next.js config with Nextra included
+export default withNextra(nextConfig)
