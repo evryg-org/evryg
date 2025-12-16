@@ -25,7 +25,14 @@ export default async function LangLayout({
       // ... Your additional navbar options
     />
   )
-  const footer = <Footer>MIT {new Date().getFullYear()} © Nextra.</Footer>
+  const footer = (
+    <Footer>
+      <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">
+        CC BY-NC 4.0
+      </a>{' '}
+      {new Date().getFullYear()} © evryg sas
+    </Footer>
+  )
 
   return (
     <html
