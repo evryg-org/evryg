@@ -3,12 +3,15 @@ import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 
+const bannerTranslations = {
+  en: "Looking for experienced guidance on Lean software delivery? We'd be glad to explore how we can work together.",
+  fr: "Vous cherchez un accompagnement senior en Lean software delivery ? Discutons ensemble de notre collaboration future."
+}
+
 export const metadata = {
   // Define your metadata here
   // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
 }
-
-const banner = <Banner storageKey="some-key">Nextra 4.0 is released</Banner>
 
 export default async function LangLayout({
   children,
@@ -18,6 +21,18 @@ export default async function LangLayout({
   params: Promise<{ lang: string }>
 }) {
   const { lang } = await params
+
+  const banner = (
+    <Banner storageKey="evryg-lean-consulting" style={{ padding: '0.75rem 0' }}>
+      🇫🇷 🇪🇺 {bannerTranslations[lang as keyof typeof bannerTranslations] ?? bannerTranslations.en}{' '}
+      <a
+        href="https://www.evryg.com/contact"
+        style={{ fontWeight: 'bold', textDecoration: 'underline', marginLeft: '0.5rem' }}
+      >
+        Contact →
+      </a>
+    </Banner>
+  )
 
   const navbar = (
     <Navbar
