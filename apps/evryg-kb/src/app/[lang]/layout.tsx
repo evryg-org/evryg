@@ -8,6 +8,16 @@ const bannerTranslations = {
   fr: "Vous cherchez un accompagnement senior en Lean software delivery ? Discutons ensemble de notre collaboration future."
 }
 
+const feedbackTranslations = {
+  en: "Question about this page? Talk to evryg directly",
+  fr: "Une question sur cette page ? Parlez-en avec evryg directement"
+}
+
+const editLinkTranslations = {
+  en: "Edit this page",
+  fr: "Modifier cette page"
+}
+
 export const metadata = {
   // Define your metadata here
   // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
@@ -63,7 +73,9 @@ export default async function LangLayout({
           banner={banner}
           navbar={navbar}
           pageMap={await getPageMap(`/${lang}`)}
-          docsRepositoryBase="https://github.com/shuding/nextra/tree/main/docs"
+          docsRepositoryBase="https://github.com/evryg-org/evryg/tree/main/apps/evryg-kb"
+          feedback={{ content: feedbackTranslations[lang as keyof typeof feedbackTranslations] ?? feedbackTranslations.en }}
+          editLink={editLinkTranslations[lang as keyof typeof editLinkTranslations] ?? editLinkTranslations.en}
           footer={footer}
           i18n={[
             { locale: 'en', name: 'English' },
