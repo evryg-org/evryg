@@ -2,6 +2,7 @@ import { Footer, Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
+import 'katex/dist/katex.min.css'
 
 const bannerTranslations = {
   en: "Looking for experienced guidance on Lean software delivery? We'd be glad to explore how we can work together.",
