@@ -1,0 +1,54 @@
+# Machines à état et agrégats : une convergence naturelle
+
+Un agrégat en Domain-Driven Design est fondamentalement un gardien d'invariants : il encapsule un cluster d'entités et de value objects dont la cohérence doit être maintenue à chaque transaction.
+
+## L'agrégat comme machine à état implicite
+
+Dans de nombreux domaines métier, les invariants sont intrinsèquement liés à la notion d'état. Une commande passe de « brouillon » à « confirmée » à « expédiée » à « livrée », et chaque transition n'est autorisée que sous certaines conditions.
+
+L'agrégat ne se contente pas de stocker des données : il orchestre un cycle de vie, ce qui en fait une machine à état implicite. Rendre cette machine explicite clarifie considérablement le modèle.
+
+## Formaliser les transitions
+
+La machine à état formalise ce que l'agrégat peut faire et quand il peut le faire. Chaque état définit un ensemble de commandes acceptables et de transitions possibles :
+
+- Une commande « expédiée » ne peut pas être annulée
+- Un paiement « remboursé » ne peut pas être remboursé à nouveau
+
+Ces règles, souvent dispersées dans des conditions `if` à travers le code, deviennent un graphe explicite d'états et de transitions. Le domain expert peut alors valider visuellement le modèle : « oui, c'est bien ainsi que fonctionne notre processus ».
+
+On améliore ainsi le langage omniprésent (*ubiquitous language*) puisque les états et transitions portent des noms métier précis.
+
+## Typage fort des états
+
+Cette correspondance permet d'appliquer le principe [Make Illegal States Unrepresentable](/fr/make-illegal-states-unrepresentable) avec une granularité fine.
+
+Plutôt qu'un agrégat monolithique avec des champs optionnels dont la présence dépend de l'état courant, on peut modéliser chaque état comme une variante distincte d'un [sum type](/fr/algebre-des-types-produits-et-sommes), portant exactement les données pertinentes :
+
+```
+Order = DraftOrder | ConfirmedOrder | ShippedOrder | DeliveredOrder
+```
+
+Chacun avec sa structure propre. Les méthodes de transition retournent alors le type de l'état suivant, et le compilateur garantit qu'on ne peut pas appeler `ship()` sur un `DraftOrder` : l'opération n'existe tout simplement pas sur ce type.
+
+## Domain events et event sourcing
+
+Les domain events s'intègrent naturellement dans ce modèle. Chaque transition de la machine à état correspond à un événement métier :
+
+- `OrderConfirmed`
+- `OrderShipped`
+- `OrderDelivered`
+
+Ces événements capturent non seulement le fait qu'une transition a eu lieu, mais aussi le contexte de cette transition : qui l'a déclenchée, quand, avec quelles données.
+
+Dans une architecture event-sourcée, l'agrégat devient littéralement la projection de sa machine à état : on rejoue les événements pour reconstruire l'état courant, et chaque événement représente une transition validée. La machine à état et l'event sourcing se renforcent mutuellement.
+
+## Éviter la sur-modélisation
+
+Il faut néanmoins éviter l'écueil de la sur-modélisation.
+
+Tous les agrégats ne sont pas des machines à état complexes : certains sont de simples conteneurs de données avec des règles de validation. Forcer une modélisation par états sur un domaine qui n'en a pas besoin ajoute de la cérémonie sans valeur.
+
+De plus, les machines à état hiérarchiques ou parallèles (comme celles supportées par [XState](https://xstate.js.org/)) peuvent capturer des comportements sophistiqués, mais au prix d'une complexité accrue.
+
+Le discernement reste de mise : la machine à état est un outil puissant quand le domaine exhibe naturellement des phases distinctes avec des transitions contrôlées, mais elle ne doit pas devenir une fin en soi.
