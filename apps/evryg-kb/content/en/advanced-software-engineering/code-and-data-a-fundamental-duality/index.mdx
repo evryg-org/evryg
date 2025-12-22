@@ -6,9 +6,9 @@ canonical-slug: code-et-data-une-dualite-fondamentale
 
 The boundary between code and data is far more porous than commonly thought.
 
-A program source, after parsing, is merely an [abstract syntax tree](/en/algebraic-data-types-precision-and-expressiveness): a data structure like any other, with nodes, branches, and leaves.
+A program source, after parsing, is merely an [abstract syntax tree](/en/advanced-software-engineering/algebraic-data-types-precision-and-expressiveness): a data structure like any other, with nodes, branches, and leaves.
 
-Lisp made this equivalence explicit from its origins: code is a list, lists are data, and `eval` [transforms data into executable behavior](/en/description-and-interpretation-program-as-value). Macros, metaprograms, [compilers](/en/initial-and-final-encodings-two-embedding-philosophies): all manipulate code as data that can be inspected, transformed, and generated.
+Lisp made this equivalence explicit from its origins: code is a list, lists are data, and `eval` [transforms data into executable behavior](/en/advanced-software-engineering/description-and-interpretation-program-as-value). Macros, metaprograms, [compilers](/en/advanced-software-engineering/initial-and-final-encodings-two-embedding-philosophies): all manipulate code as data that can be inspected, transformed, and generated.
 
 Conversely, sufficiently expressive configuration data (business rules in JSON, workflows in YAML) becomes disguised code, interpreted by a runtime that gives it meaning.
 

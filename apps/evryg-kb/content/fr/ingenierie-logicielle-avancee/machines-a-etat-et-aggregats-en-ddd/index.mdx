@@ -21,9 +21,9 @@ On améliore ainsi le langage omniprésent (*ubiquitous language*) puisque les �
 
 ## Typage fort des états
 
-Cette correspondance permet d'appliquer le principe [Make Illegal States Unrepresentable](/fr/make-illegal-states-unrepresentable) avec une granularité fine.
+Cette correspondance permet d'appliquer le principe [Make Illegal States Unrepresentable](/fr/ingenierie-logicielle-avancee/make-illegal-states-unrepresentable) avec une granularité fine.
 
-Plutôt qu'un agrégat monolithique avec des champs optionnels dont la présence dépend de l'état courant, on peut modéliser chaque état comme une variante distincte d'un [sum type](/fr/algebre-des-types-produits-et-sommes), portant exactement les données pertinentes :
+Plutôt qu'un agrégat monolithique avec des champs optionnels dont la présence dépend de l'état courant, on peut modéliser chaque état comme une variante distincte d'un [sum type](/fr/ingenierie-logicielle-avancee/algebre-des-types-produits-et-sommes), portant exactement les données pertinentes :
 
 ```
 Order = DraftOrder | ConfirmedOrder | ShippedOrder | DeliveredOrder

@@ -28,7 +28,7 @@ The elementary correspondences between types on one hand and logical proposition
 
 This similarity of structure, clearly apparent in the table, is what constitutes the isomorphism[^2] itself.
 
-See also: [Type Algebra: Products and Sums](/en/type-algebra-products-and-sums)
+See also: [Type Algebra: Products and Sums](/en/advanced-software-engineering/type-algebra-products-and-sums)
 
 ## The `never` Type and Contradiction
 
@@ -147,7 +147,7 @@ showIt (MkShowable x) = show x
 
 Here it's the implementer who chooses A, and the caller doesn't know what it is: this is the foundation of abstract types and encapsulation.
 
-This correspondence extends to higher-order logics with [dependent types](/en/refinement-and-dependent-types-towards-types-that-prove): a type like $\forall n : \text{Nat}. \text{Vector}\langle n \rangle \to \text{Vector}\langle n \rangle$, read "for all natural numbers n, a function from a vector of size n to a vector of size n," expresses a proposition quantifying over values, not just types.
+This correspondence extends to higher-order logics with [dependent types](/en/advanced-software-engineering/refinement-and-dependent-types-towards-types-that-prove): a type like $\forall n : \text{Nat}. \text{Vector}\langle n \rangle \to \text{Vector}\langle n \rangle$, read "for all natural numbers n, a function from a vector of size n to a vector of size n," expresses a proposition quantifying over values, not just types.
 
 Proof assistants like [Coq](https://coq.inria.fr/), [Agda](https://agda.readthedocs.io/), or [Lean](https://lean-lang.org/) fully exploit this equivalence: programs written there are proofs of mathematical theorems.
 

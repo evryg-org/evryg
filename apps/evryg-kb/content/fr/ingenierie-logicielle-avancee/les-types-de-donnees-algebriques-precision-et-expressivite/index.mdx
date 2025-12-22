@@ -2,7 +2,7 @@
 
 Les types de données algébriques (ADT, pour *algebraic data types*) constituent le socle de la modélisation dans les langages fonctionnels typés, et leur influence s'étend désormais bien au-delà.
 
-Un ADT se construit par composition de [deux opérations fondamentales](/fr/algebre-des-types-produits-et-sommes) :
+Un ADT se construit par composition de [deux opérations fondamentales](/fr/ingenierie-logicielle-avancee/algebre-des-types-produits-et-sommes) :
 
 - Le **produit** (conjonction de champs, « A et B »)
 - La **somme** (disjonction de variantes, « A ou B »)
@@ -35,7 +35,7 @@ Le type devient une source de vérité qui propage automatiquement les changemen
 
 Les ADT permettent d'encoder les invariants métier directement dans la structure des données.
 
-Plutôt qu'un `Order` avec des champs optionnels dont la validité dépend d'un champ `status`, on modélise [une machine à état explicite](/fr/machines-a-etat-et-aggregats-en-ddd) :
+Plutôt qu'un `Order` avec des champs optionnels dont la validité dépend d'un champ `status`, on modélise [une machine à état explicite](/fr/ingenierie-logicielle-avancee/machines-a-etat-et-aggregats-en-ddd) :
 
 ```
 DraftOrder | ConfirmedOrder | ShippedOrder
@@ -43,7 +43,7 @@ DraftOrder | ConfirmedOrder | ShippedOrder
 
 chacun avec sa forme propre.
 
-L'état invalide « commande expédiée sans date d'expédition » devient inexprimable : non pas interdit par une validation runtime, mais structurellement impossible. C'est l'essence de [Make Illegal States Unrepresentable](/fr/make-illegal-states-unrepresentable) : les ADT fournissent le vocabulaire pour que le système de types capture les règles métier, pas seulement les types primitifs.
+L'état invalide « commande expédiée sans date d'expédition » devient inexprimable : non pas interdit par une validation runtime, mais structurellement impossible. C'est l'essence de [Make Illegal States Unrepresentable](/fr/ingenierie-logicielle-avancee/make-illegal-states-unrepresentable) : les ADT fournissent le vocabulaire pour que le système de types capture les règles métier, pas seulement les types primitifs.
 
 ## Adoption croissante
 

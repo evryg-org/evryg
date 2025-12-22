@@ -2,9 +2,9 @@
 
 La frontière entre code et données est bien plus poreuse qu'on ne le pense généralement.
 
-Un programme source n'est, après parsing, qu'un [arbre de syntaxe abstraite](/fr/les-types-de-donnees-algebriques-precision-et-expressivite) : une structure de données comme une autre, avec des nœuds, des branches, des feuilles.
+Un programme source n'est, après parsing, qu'un [arbre de syntaxe abstraite](/fr/ingenierie-logicielle-avancee/les-types-de-donnees-algebriques-precision-et-expressivite) : une structure de données comme une autre, avec des nœuds, des branches, des feuilles.
 
-Lisp a rendu cette équivalence explicite dès ses origines : le code est une liste, les listes sont des données, et `eval` [transforme une donnée en comportement exécutable](/fr/description-et-interpretation-le-programme-comme-valeur). Les macros, les métaprogrammes, les [compilateurs](/fr/encodages-initial-et-final-deux-philosophies-dembedding) : tous manipulent le code comme une donnée que l'on peut inspecter, transformer, générer.
+Lisp a rendu cette équivalence explicite dès ses origines : le code est une liste, les listes sont des données, et `eval` [transforme une donnée en comportement exécutable](/fr/ingenierie-logicielle-avancee/description-et-interpretation-le-programme-comme-valeur). Les macros, les métaprogrammes, les [compilateurs](/fr/ingenierie-logicielle-avancee/encodages-initial-et-final-deux-philosophies-dembedding) : tous manipulent le code comme une donnée que l'on peut inspecter, transformer, générer.
 
 Inversement, une donnée de configuration suffisamment expressive (règles métier en JSON, workflows en YAML) devient du code déguisé, interprété par un runtime qui lui donne sens.
 

@@ -32,7 +32,7 @@ Reconnaître explicitement ces limitations guide le design. Si notre type domain
 
 ## Lien avec "Parse, don't validate"
 
-L'approche [Parse, don't validate](/fr/parse-dont-validate) s'inscrit naturellement dans ce cadre.
+L'approche [Parse, don't validate](/fr/ingenierie-logicielle-avancee/parse-dont-validate) s'inscrit naturellement dans ce cadre.
 
 Le parsing à la frontière entrante tente de construire un isomorphisme partiel : depuis le type large et non fiable (`unknown`, `string`, JSON brut) vers le type domaine précis. Si la donnée entrante n'appartient pas à l'image attendue, le parsing échoue explicitement.
 
@@ -42,7 +42,7 @@ $$\text{decode}(\text{encode}(x)) = x$$
 
 et ce pour toute valeur $x$ du domaine.
 
-A noter qu'une telle propriété de round-trip est utile en [property-based testing](/fr/property-based-testing-puissance-et-limites).
+A noter qu'une telle propriété de round-trip est utile en [property-based testing](/fr/ingenierie-logicielle-avancee/property-based-testing-puissance-et-limites).
 
 ## Discipline architecturale
 

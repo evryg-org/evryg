@@ -24,7 +24,7 @@ Les correspondances élémentaires entre types d'une part et propositions logiqu
 
 Cette similitude de structure, qui apparait clairement dans le tableau, est ce qui constitue l'isomorphisme[^2] en lui-même.
 
-Voir aussi : [Algèbre des types : produits et sommes](/fr/algebre-des-types-produits-et-sommes)
+Voir aussi : [Algèbre des types : produits et sommes](/fr/ingenierie-logicielle-avancee/algebre-des-types-produits-et-sommes)
 
 ## Le type `never` et la contradiction
 
@@ -143,7 +143,7 @@ showIt (MkShowable x) = show x
 
 Ici c'est l'implémenteur qui choisit A, et l'appelant ne sait pas ce que c'est : c'est le fondement des types abstraits et de l'encapsulation.
 
-Cette correspondance s'étend aux logiques d'ordre supérieur avec les [dependent types](/fr/refinement-types-et-dependent-types-vers-des-types-qui-prouvent) : un type comme $\forall n : \text{Nat}. \text{Vector}\langle n \rangle \to \text{Vector}\langle n \rangle$, qui se lit « pour tout entier naturel n, une fonction d'un vecteur de taille n vers un vecteur de taille n », exprime une proposition quantifiant sur les valeurs, pas seulement sur les types.
+Cette correspondance s'étend aux logiques d'ordre supérieur avec les [dependent types](/fr/ingenierie-logicielle-avancee/refinement-types-et-dependent-types-vers-des-types-qui-prouvent) : un type comme $\forall n : \text{Nat}. \text{Vector}\langle n \rangle \to \text{Vector}\langle n \rangle$, qui se lit « pour tout entier naturel n, une fonction d'un vecteur de taille n vers un vecteur de taille n », exprime une proposition quantifiant sur les valeurs, pas seulement sur les types.
 
 Les assistants de preuve comme [Coq](https://coq.inria.fr/), [Agda](https://agda.readthedocs.io/) ou [Lean](https://lean-lang.org/) exploitent pleinement cette équivalence : on y écrit des programmes qui sont des preuves de théorèmes mathématiques.
 

@@ -25,9 +25,9 @@ This improves the *ubiquitous language* since states and transitions carry preci
 
 ## Strong Typing of States
 
-This correspondence allows applying the [Make Illegal States Unrepresentable](/en/make-illegal-states-unrepresentable) principle with fine granularity.
+This correspondence allows applying the [Make Illegal States Unrepresentable](/en/advanced-software-engineering/make-illegal-states-unrepresentable) principle with fine granularity.
 
-Rather than a monolithic aggregate with optional fields whose presence depends on the current state, we can model each state as a distinct variant of a [sum type](/en/type-algebra-products-and-sums), carrying exactly the relevant data:
+Rather than a monolithic aggregate with optional fields whose presence depends on the current state, we can model each state as a distinct variant of a [sum type](/en/advanced-software-engineering/type-algebra-products-and-sums), carrying exactly the relevant data:
 
 ```
 Order = DraftOrder | ConfirmedOrder | ShippedOrder | DeliveredOrder

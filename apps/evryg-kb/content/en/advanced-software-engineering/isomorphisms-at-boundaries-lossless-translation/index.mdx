@@ -36,7 +36,7 @@ Explicitly recognizing these limitations guides design. If our domain type conta
 
 ## Link to "Parse, Don't Validate"
 
-The [Parse, don't validate](/en/parse-dont-validate) approach naturally fits within this framework.
+The [Parse, don't validate](/en/advanced-software-engineering/parse-dont-validate) approach naturally fits within this framework.
 
 Parsing at the incoming boundary attempts to construct a partial isomorphism: from the broad, untrusted type (`unknown`, `string`, raw JSON) to the precise domain type. If the incoming data doesn't belong to the expected image, parsing fails explicitly.
 
@@ -46,7 +46,7 @@ $$\text{decode}(\text{encode}(x)) = x$$
 
 for any value $x$ in the domain.
 
-Note that such a round-trip property is useful in [property-based testing](/en/property-based-testing-power-and-limits).
+Note that such a round-trip property is useful in [property-based testing](/en/advanced-software-engineering/property-based-testing-power-and-limits).
 
 ## Architectural Discipline
 

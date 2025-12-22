@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "pnpm tsx scripts/CheckLinks.ts",
     "build": "next build",
     "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check-links": "pnpm tsx scripts/CheckLinks.ts"
   },
   "dependencies": {
     "katex": "^0.16.27",
@@ -15,7 +17,8 @@
     "nextra": "^4.6.1",
     "nextra-theme-docs": "^4.6.1",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-dom": "19.2.1",
+    "react-loading-skeleton": "^3.5.0"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -24,6 +27,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
     "pagefind": "^1.4.0",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

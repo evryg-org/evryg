@@ -1,9 +1,11 @@
-import { Footer, Layout, Navbar } from 'nextra-theme-docs'
+import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-docs'
 import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 import 'katex/dist/katex.min.css'
 import { LocaleSwitch } from '../../components/LocaleSwitch'
+import { DOCS_REPOSITORY_BASE } from '../../config'
+import { VerticalSeparator } from '../../design_system/VerticalSeparator'
 import { getSlugMappings } from '../../slug-mappings'
 
 const bannerTranslations = {
@@ -58,6 +60,8 @@ export default async function LangLayout({
       logoLink={false}
     >
       <LocaleSwitch i18n={i18n} slugMappings={slugMappings} />
+      <VerticalSeparator />
+      <ThemeSwitch />
     </Navbar>
   )
   const footer = (
@@ -83,7 +87,7 @@ export default async function LangLayout({
           banner={banner}
           navbar={navbar}
           pageMap={await getPageMap(`/${lang}`)}
-          docsRepositoryBase="https://github.com/evryg-org/evryg/tree/main/apps/evryg-kb"
+          docsRepositoryBase={DOCS_REPOSITORY_BASE}
           feedback={{ content: feedbackTranslations[lang as keyof typeof feedbackTranslations] ?? feedbackTranslations.en }}
           editLink={editLinkTranslations[lang as keyof typeof editLinkTranslations] ?? editLinkTranslations.en}
           footer={footer}

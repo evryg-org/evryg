@@ -25,7 +25,7 @@ L'interpréteur est le créateur de sens.
 
 ## Program as value
 
-En programmation fonctionnelle, cette idée prend une forme particulièrement explicite avec le pattern [program as value](/fr/description-et-interpretation-le-programme-comme-valeur).
+En programmation fonctionnelle, cette idée prend une forme particulièrement explicite avec le pattern [program as value](/fr/ingenierie-logicielle-avancee/description-et-interpretation-le-programme-comme-valeur).
 
 Un `Effect<A>` ou un `IO<A>` est une donnée : une description inerte de ce qu'un programme pourrait faire. Sans interpréteur, cette description reste lettre morte, une structure de données que l'on peut manipuler, combiner, transformer, mais qui ne fait rien.
 
@@ -37,7 +37,7 @@ La même description soumise à des interpréteurs différents produira des comp
 
 Les DSL incarnent cette dualité avec élégance.
 
-Un DSL produit des données : un AST dans l'[encodage initial](/fr/encodages-initial-et-final-deux-philosophies-dembedding), des fonctions polymorphes dans l'encodage final ; tout ceci ne représentant que des intentions, sans les exécuter.
+Un DSL produit des données : un AST dans l'[encodage initial](/fr/ingenierie-logicielle-avancee/encodages-initial-et-final-deux-philosophies-dembedding), des fonctions polymorphes dans l'encodage final ; tout ceci ne représentant que des intentions, sans les exécuter.
 
 L'interpréteur est ce qui transforme « ajouter 10 au compte X » en :
 

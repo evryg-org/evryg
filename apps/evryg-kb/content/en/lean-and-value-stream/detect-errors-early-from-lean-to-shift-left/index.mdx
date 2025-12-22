@@ -17,9 +17,9 @@ The concept of *poka-yoke* (error-proofing device) finds its purest expression i
 A strong type is a cognitive poka-yoke: it makes certain errors physically impossible to commit:
 
 - Pass a `UserId` where an `OrderId` is expected? The compiler refuses.
-- Forget to handle a case in [pattern matching](/en/algebraic-data-types-precision-and-expressiveness)? Compilation error.
+- Forget to handle a case in [pattern matching](/en/advanced-software-engineering/algebraic-data-types-precision-and-expressiveness)? Compilation error.
 
-These safeguards don't detect errors after the fact; they prevent them from being born. Like the jig that only allows a part to be inserted in the correct orientation, the type system constrains the space of possible programs to those that [respect certain invariants](/en/make-illegal-states-unrepresentable).
+These safeguards don't detect errors after the fact; they prevent them from being born. Like the jig that only allows a part to be inserted in the correct orientation, the type system constrains the space of possible programs to those that [respect certain invariants](/en/advanced-software-engineering/make-illegal-states-unrepresentable).
 
 The error avoided is infinitely less costly than the error detected.
 
@@ -54,6 +54,6 @@ This strategy has profound architectural implications:
 - For static analysis to be useful, types must be expressive and precise
 - For feedback to be immediate, tooling must be fast and integrated into the daily workflow
 
-Investing in early detection means investing in [testability](/en/no-test-without-testability-the-forgotten-prerequisite), modularity, typing quality: properties that improve design well beyond their usefulness for testing.
+Investing in early detection means investing in [testability](/en/advanced-software-engineering/no-test-without-testability-the-forgotten-prerequisite), modularity, typing quality: properties that improve design well beyond their usefulness for testing.
 
 Lean teaches us that quality is not a cost but an investment; in software development, this investment takes the form of a rigorous type system, fast tests, and tooling that refuses to let defects drift away from their source.
