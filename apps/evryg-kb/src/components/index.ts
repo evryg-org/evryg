@@ -1,5 +1,6 @@
 export { Hero } from './Hero'
 export { Stats } from './Stats'
+export { HomeStats } from './HomeStats'
 export { Features } from './Features'
 export { ModuleCards } from './ModuleCards'
 export { ModuleStats } from './ModuleStats'

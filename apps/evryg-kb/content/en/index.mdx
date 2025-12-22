@@ -1,4 +1,4 @@
-import { Hero, Stats, Features } from '../../src/components'
+import { Hero, HomeStats, Features } from '../../src/components'
 
 <Hero
   title="Excellence Through Fundamentals"
@@ -7,11 +7,10 @@ import { Hero, Stats, Features } from '../../src/components'
   ctaHref="/en/advanced-software-engineering"
 />
 
-<Stats items={[
-  { value: '28', label: 'Articles' },
-  { value: '2', label: 'Domains' },
-  { value: '∞', label: 'To Learn' }
-]} />
+<HomeStats
+  locale="en"
+  labels={{ articles: 'Articles', domains: 'Domains', toLearn: 'To Learn' }}
+/>
 
 <Features items={[
   {
