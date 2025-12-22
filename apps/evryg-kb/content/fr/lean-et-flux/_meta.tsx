@@ -1,8 +1,18 @@
-export default {
-  index: 'Introduction',
-  'detecter-les-erreurs-au-plus-tot-du-lean-au-shift-left': 'Shift Left',
-  'f-git-production-lequation-du-deploiement-continu': 'f(git) = production',
-  'kanban-du-signal-de-production-a-la-todo-list-devoyee': 'Kanban',
-  'pull-requests-une-barriere-nee-de-la-mefiance': 'Pull Requests',
-  'trois-axes-orthogonaux-deploiement-versioning-architecture': 'Trois axes orthogonaux'
+import { modules, articleTitles } from './modules'
+
+// Generate meta from modules config - single source of truth
+const meta: Record<string, string | { type: 'separator'; title: string }> = {
+  index: 'Introduction'
 }
+
+for (const mod of modules) {
+  // Add separator
+  meta[`-- ${mod.id}`] = { type: 'separator', title: mod.title }
+
+  // Add articles
+  for (const article of mod.articles) {
+    meta[article] = articleTitles[article] ?? article
+  }
+}
+
+export default meta

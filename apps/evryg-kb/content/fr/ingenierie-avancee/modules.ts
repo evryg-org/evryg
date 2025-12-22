@@ -1,13 +1,5 @@
 // Module definitions - single source of truth for both _meta.tsx and ModuleCards
-export type IconType = 'foundation' | 'types' | 'shield' | 'check' | 'interpret' | 'logic' | 'pattern' | 'code' | 'flow'
-
-export interface Module {
-  id: string
-  title: string
-  icon: IconType
-  description: string
-  articles: string[]
-}
+import type { Module } from '../../../src/components/ModuleCards'
 
 export const modules: Module[] = [
   {
@@ -83,10 +75,11 @@ export const modules: Module[] = [
     id: 'patterns-avances',
     title: '7. Patterns Avances',
     icon: 'pattern',
-    description: "Currying, injection implicite et interfaces deductives : les patterns d'architecture avances.",
+    description: "Currying, injection implicite, interfaces et decisions architecturales : les patterns avances.",
     articles: [
       'du-currying-au-dynamic-scope-fils-conducteurs-de-linjection-implicite',
-      'interfaces-deductives-et-inductives-du-geste-utilisateur-a-la-commande-metier'
+      'interfaces-deductives-et-inductives-du-geste-utilisateur-a-la-commande-metier',
+      'trois-axes-orthogonaux-deploiement-versioning-architecture'
     ]
   }
 ]
@@ -115,5 +108,6 @@ export const articleTitles: Record<string, string> = {
   'propositions-as-types-lunification-de-wadler': 'Propositions as Types',
   'refinement-types-et-dependent-types-vers-des-types-qui-prouvent': 'Refinement et Dependent Types',
   'du-currying-au-dynamic-scope-fils-conducteurs-de-linjection-implicite': 'Currying et injection implicite',
-  'interfaces-deductives-et-inductives-du-geste-utilisateur-a-la-commande-metier': 'Interfaces deductives et inductives'
+  'interfaces-deductives-et-inductives-du-geste-utilisateur-a-la-commande-metier': 'Interfaces deductives et inductives',
+  'trois-axes-orthogonaux-deploiement-versioning-architecture': 'Trois axes orthogonaux'
 }
