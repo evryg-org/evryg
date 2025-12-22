@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getCanonicalPath } from './slug-mappings'
 
 const locales = ['en', 'fr']
 const defaultLocale = 'en'
@@ -25,7 +26,15 @@ export function proxy(request: NextRequest) {
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
 
-  if (pathnameHasLocale) return
+  if (pathnameHasLocale) {
+    // Check if slugs need to be translated to match the locale
+    const canonicalPath = getCanonicalPath(pathname)
+    if (canonicalPath) {
+      request.nextUrl.pathname = canonicalPath
+      return NextResponse.redirect(request.nextUrl)
+    }
+    return
+  }
 
   // Redirect to locale-prefixed path
   const locale = getLocale(request)

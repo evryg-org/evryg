@@ -1,0 +1,34 @@
+# Make illegal states unrepresentable
+
+Cette phrase, popularisée par [Yaron Minsky](https://blog.janestreet.com/effective-ml-revisited/) dans le contexte d'OCaml capture l'essence même d'une approche défensive de la modélisation : plutôt que de vérifier a posteriori qu'un état est valide, on structure les types de telle sorte que les états invalides ne puissent tout simplement pas être construits. C'est un renversement de perspective fondamental : on passe d'une validation runtime à une garantie compile-time, déplaçant ainsi la détection des erreurs le plus tôt possible dans le cycle de développement.
+
+## En pratique: l'application en TypeScript
+
+En TypeScript par exemple, cette philosophie se traduit par l'utilisation judicieuse des union types discriminées, des types littéraux et des branded types.
+
+Prenons l'exemple classique d'une commande e-commerce :
+- plutôt que d'avoir un objet avec des champs `shippedAt` et `deliveredAt` potentiellement incohérents, telle qu'ne commande livrée mais jamais expédiée...
+- on modélise explicitement les états `Draft | Confirmed | Shipped | Delivered` comme des variantes distinctes, chacune ne portant que les données pertinentes à son état.
+
+Le compilateur devient alors un gardien qui refuse de compiler du code tentant de créer des combinaisons impossibles du point de vue métier.
+
+## Alignement avec le Domain-Driven Design
+
+Du point de vue du Domain-Driven Design, cette approche s'aligne parfaitement avec la notion d'invariants d'agrégat. Un agrégat bien conçu ne devrait jamais pouvoir être instancié dans un état qui viole ses règles métier. Les Value Objects incarnent particulièrement bien ce principe : un `EmailAddress` n'est pas une simple `string`, c'est un type qui, par construction, garantit la validité de son contenu.
+
+On élimine ainsi toute une classe de bugs liés à la propagation de données invalides à travers le système.
+
+## Réduction du gaspillage au sens Lean
+
+Cette technique constitue également un levier puissant pour réduire le muda (gaspillage) au sens Lean. Chaque validation manuelle qu'on n'a plus besoin d'écrire, chaque test de cas impossible qu'on n'a plus besoin de maintenir, chaque bug en production qu'on n'aura jamais à investiguer représente du temps et de l'énergie économisés.
+
+Le système de types devient une forme de documentation exécutable et vérifiée automatiquement, réduisant la charge cognitive des développeurs qui n'ont plus à garder en tête tous les états théoriquement possibles mais, en pratique, interdits par le métier.
+
+## Limites et compromis
+
+Il faut cependant reconnaître les limites de cette approche:
+
+1. Certains invariants sont intrinsèquement dynamiques : l'unicité d'un email dans une base de données, par exemple, ne peut pas être encodée dans le système de types seul.
+1. De plus, une modélisation trop fine peut engendrer une explosion combinatoire de types qui nuit à la lisibilité.
+
+L'art réside dans le discernement : identifier les invariants critiques qui méritent d'être encodés statiquement, tout en acceptant que certaines validations resteront nécessairement au runtime. C'est un compromis pragmatique entre sécurité et ergonomie.

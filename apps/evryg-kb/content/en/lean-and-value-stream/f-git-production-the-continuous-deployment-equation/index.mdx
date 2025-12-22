@@ -1,0 +1,63 @@
+---
+canonical-slug: f-git-production-lequation-du-deploiement-continu
+---
+
+# f(git) = production: The Continuous Deployment Equation
+
+This terse equation, $f(\text{git}) = \text{production}$, captures the essence of continuous deployment: the git repository is the source of truth, and a deterministic function transforms its state into what runs in production.
+
+No manual intervention, no hand-configured server, no "I deploy from my machine." A commit on the main branch triggers a pipeline that automatically builds, tests, and deploys.
+
+The state of the system in production is a pure function of the repository state. This one-to-one correspondence eliminates an entire class of problems:
+
+- "it worked on my machine"
+- "we forgot to deploy this fix"
+- "nobody knows which version is running"
+
+## The Functional Character
+
+The functional character of this equation deserves attention.
+
+A function, in the mathematical sense, is deterministic: the same inputs always produce the same outputs. If the deployment pipeline is truly a function of git state, then two executions from the same commit must produce identical artifacts.
+
+This requires:
+
+- Reproducible builds: versioned dependencies, no implicit downloading of "latest", neutralized timestamps
+- Configuration in git, not in environment variables manually configured on the server
+- Infrastructure as code, versioned configuration files, secrets managed by dedicated tools
+
+All this aims to bring the entirety of the system into the domain of this function.
+
+## Git as Audit Trail
+
+This approach transforms git into an exhaustive audit trail.
+
+Who changed what, when, why: every modification is traced, every deployment corresponds to an identifiable commit.
+
+- **Rollback** becomes trivial: we return to a previous commit, the function applies, production reflects that past state
+- **Debugging** in production gains clarity: we know exactly what code is running, we can checkout locally, reproduce the context
+- **Staging and review environments** become partial applications of the same function on different branches
+
+The equation generalizes: $f(\text{branch}) = \text{corresponding environment}$.
+
+## Organizational Corollaries
+
+The organizational corollaries are profound.
+
+If $f(\text{git}) = \text{production}$, then modifying production requires modifying git. No more ad hoc changes, no more hotfixes applied directly on the server and forgotten.
+
+Operations become code (migration scripts, Terraform configurations, Kubernetes manifests) reviewed and versioned like any application code.
+
+The distinction between developers and operators fades; all work on the same repository, subject to the same quality constraints. The pipeline becomes the mandatory passage point, the intentional bottleneck where automated verifications are applied.
+
+## An Asymptotic Ideal
+
+This equation is an asymptotic ideal more than a perfectly achieved reality:
+
+- Databases have state that persists between deployments; migrations must be managed with care
+- External dependencies (third-party APIs, cloud services) introduce non-determinism
+- Secrets cannot always live in git, even encrypted
+
+But striving toward $f(\text{git}) = \text{production}$, reducing the gap between this ideal and practice, means reducing uncertainty, increasing reproducibility, accelerating feedback.
+
+Every exception to this equation (every manual configuration, every deployment outside the pipeline) is a debt to repay, a potential source of divergence between what we think we deployed and what actually runs.

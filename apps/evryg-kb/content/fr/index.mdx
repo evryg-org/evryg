@@ -1,3 +1,34 @@
-# Accueil
+import { Hero, HomeStats, Features } from '../../src/components'
 
-Bienvenue dans la base de connaissances.
+<Hero
+  title="L'excellence par les fondamentaux"
+  subtitle="Nous partageons notre expertise en ingénierie logicielle avancée et Lean software delivery, pour permettre au plus grand nombre d'apprendre avec nous."
+  ctaText="Explorer les articles →"
+  ctaHref="/fr/ingenierie-logicielle-avancee"
+/>
+
+<HomeStats
+  locale="fr"
+  labels={{ articles: 'Articles', domains: 'Domaines', toLearn: 'À apprendre' }}
+/>
+
+<Features items={[
+  {
+    icon: 'code',
+    title: 'Ingénierie logicielle avancée',
+    description: 'Systèmes de types, Curry-Howard, TDD, property-based testing, et les abstractions mathématiques qui sous-tendent la programmation moderne.',
+    href: '/fr/ingenierie-logicielle-avancee'
+  },
+  {
+    icon: 'flow',
+    title: 'Lean et Flux',
+    description: 'Déploiement continu, Kanban, shift-left, et l\'optimisation du flux de valeur dans la livraison logicielle.',
+    href: '/fr/lean-et-flux-de-valeur'
+  }
+]} />
+
+## Notre approche
+
+Chez **evryg**, nous croyons que l'excellence technique repose sur des fondements théoriques solides. Cette base de connaissances rassemble nos réflexions sur les concepts avancés qui font la différence entre un code qui fonctionne et un code qui excelle.
+
+Chaque article vise à rendre accessibles des concepts avancés, avec des exemples concrets et des liens vers les sources originales.

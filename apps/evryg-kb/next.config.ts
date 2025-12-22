@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
 
 // Set up Nextra with its configuration
 const withNextra = nextra({
+  latex: true,
   unstable_shouldAddLocaleToLinks: true
 })
 

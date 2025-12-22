@@ -1,3 +1,34 @@
-# Home
+import { Hero, HomeStats, Features } from '../../src/components'
 
-Welcome to the knowledge base.
+<Hero
+  title="Excellence Through Fundamentals"
+  subtitle="We share our expertise in advanced software engineering and Lean software delivery, enabling everyone to learn with us."
+  ctaText="Explore articles →"
+  ctaHref="/en/advanced-software-engineering"
+/>
+
+<HomeStats
+  locale="en"
+  labels={{ articles: 'Articles', domains: 'Domains', toLearn: 'To Learn' }}
+/>
+
+<Features items={[
+  {
+    icon: 'code',
+    title: 'Advanced Software Engineering',
+    description: 'Type systems, Curry-Howard, TDD, property-based testing, and the mathematical abstractions underlying modern programming.',
+    href: '/en/advanced-software-engineering'
+  },
+  {
+    icon: 'flow',
+    title: 'Lean & Value Stream',
+    description: 'Continuous deployment, Kanban, shift-left, and value stream optimization in software delivery.',
+    href: '/en/lean-and-value-stream'
+  }
+]} />
+
+## Our Approach
+
+At **evryg**, we believe that technical excellence rests on solid theoretical foundations. This knowledge base gathers our thoughts on advanced concepts that make the difference between code that works and code that excels.
+
+Each article aims to make advanced concepts accessible, with concrete examples and links to original sources.

@@ -1,0 +1,56 @@
+# Pas de test sans testabilité : le prérequis oublié
+
+Une évidence trop souvent ignorée traverse les discussions sur les pratiques de test : on ne peut pas tester ce qui n'a pas été conçu pour l'être.
+
+La testabilité n'est pas une propriété accidentelle qui émerge spontanément du code : c'est une qualité architecturale délibérée, fruit de décisions de design spécifiques. Un code couplé à une base de données, enchevêtré dans des singletons, dépendant de l'horloge système ou du réseau, résiste au test non par malchance mais par construction.
+
+Déplorer l'absence de tests sur une codebase non testable, c'est exiger l'eau courante dans une maison sans plomberie.
+
+## La maîtrise des dépendances
+
+La testabilité exige avant tout la maîtrise des dépendances.
+
+Une [fonction pure](/fr/fonctions-totales-et-partielles-la-promesse-du-type), qui ne dépend que de ses arguments et ne produit que sa valeur de retour, est trivialement testable : on lui fournit des entrées, on vérifie les sorties.
+
+Dès qu'apparaissent des dépendances implicites (état global, appels réseau, système de fichiers, horloge) la testabilité s'érode. Pour la restaurer, il faut rendre ces dépendances explicites et injectables :
+
+- Passer l'horloge en paramètre
+- Abstraire l'accès aux données derrière une interface
+- Isoler les effets de bord à la périphérie
+
+Ces transformations ne sont pas des contorsions pour satisfaire les tests ; elles améliorent intrinsèquement la modularité du code.
+
+## L'architecture hexagonale
+
+L'architecture hexagonale illustre parfaitement cette symbiose entre testabilité et bon design.
+
+En plaçant le domaine au centre, protégé des détails d'infrastructure par des ports abstraits, on crée naturellement des points d'injection où des adaptateurs de test peuvent se substituer aux adaptateurs réels.
+
+Le domaine devient testable en isolation, sans base de données, sans framework web, sans file de messages. Les tests ne vérifient plus un système monolithique opaque mais des composants aux frontières claires.
+
+La testabilité n'est pas un ajout cosmétique : elle est le reflet d'une séparation des préoccupations réussie.
+
+## TDD : inverser la causalité
+
+[TDD](/fr/tdd-une-discipline-de-design-pas-de-test) inverse la causalité habituelle : plutôt que de concevoir puis de se demander comment tester, on part du test et on laisse la testabilité guider le design.
+
+Cette inversion explique pourquoi le code produit par TDD tend à être mieux découplé. Chaque test écrit avant l'implémentation impose ses contraintes :
+
+- Si je ne peux pas instancier facilement l'objet sous test (SUT - System Under Test), je dois simplifier ses dépendances
+- Si je ne peux pas vérifier son comportement, je dois rendre ses effets observables
+
+La difficulté à tester n'est plus un problème à résoudre après coup mais un feedback immédiat qui infléchit, dicte même, les choix de conception en temps réel.
+
+## La testabilité comme investissement
+
+Reconnaître que la testabilité est un prérequis transforme la conversation autour des tests.
+
+L'absence de tests n'est en général pas un manque de discipline ou de temps : c'est souvent le symptôme d'une dette architecturale qui rend les tests prohibitivement coûteux.
+
+Investir dans la testabilité, c'est investir dans :
+
+- La modularité
+- L'explicitation des dépendances
+- La séparation des effets purs et impurs
+
+Les tests deviennent alors non pas un fardeau supplémentaire mais une conséquence naturelle d'un design sain. Inversement, un code véritablement bien conçu invite au test : les points d'entrée sont évidents, les comportements sont observables, les [cas limites sont accessibles](/fr/property-based-testing-puissance-et-limites).
