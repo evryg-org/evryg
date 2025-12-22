@@ -6,7 +6,7 @@ canonical-slug: les-types-de-donnees-algebriques-precision-et-expressivite
 
 Algebraic data types (ADTs) form the foundation of modeling in typed functional languages, and their influence now extends far beyond.
 
-An ADT is constructed by composing [two fundamental operations](/en/type-algebra-products-and-sums):
+An ADT is constructed by composing [two fundamental operations](/en/advanced-software-engineering/type-algebra-products-and-sums):
 
 - The **product** (conjunction of fields, "A and B")
 - The **sum** (disjunction of variants, "A or B")
@@ -39,7 +39,7 @@ The type becomes a source of truth that automatically propagates changes through
 
 ADTs allow encoding business invariants directly into the data structure.
 
-Rather than an `Order` with optional fields whose validity depends on a `status` field, we model [an explicit state machine](/en/state-machines-and-aggregates-in-ddd):
+Rather than an `Order` with optional fields whose validity depends on a `status` field, we model [an explicit state machine](/en/advanced-software-engineering/state-machines-and-aggregates-in-ddd):
 
 ```
 DraftOrder | ConfirmedOrder | ShippedOrder
@@ -47,7 +47,7 @@ DraftOrder | ConfirmedOrder | ShippedOrder
 
 each with its own shape.
 
-The invalid state "shipped order without shipping date" becomes inexpressible: not forbidden by runtime validation, but structurally impossible. This is the essence of [Make Illegal States Unrepresentable](/en/make-illegal-states-unrepresentable): ADTs provide the vocabulary for the type system to capture business rules, not just primitive types.
+The invalid state "shipped order without shipping date" becomes inexpressible: not forbidden by runtime validation, but structurally impossible. This is the essence of [Make Illegal States Unrepresentable](/en/advanced-software-engineering/make-illegal-states-unrepresentable): ADTs provide the vocabulary for the type system to capture business rules, not just primitive types.
 
 ## Growing Adoption
 

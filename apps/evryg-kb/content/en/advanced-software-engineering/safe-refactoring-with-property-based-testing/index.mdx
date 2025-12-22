@@ -8,7 +8,7 @@ The scenario is classic: a legacy function $f$, tangled, difficult to maintain, 
 
 We want to rewrite it as a cleaner, more performant, better structured version $f'$. The risk is obvious: introducing a subtle regression, a forgotten edge case, a silent divergence.
 
-The traditional approach is to write unit tests covering known cases, but how do we ensure we haven't omitted a case? [Property-based testing](/en/property-based-testing-power-and-limits) offers a much stronger guarantee: verifying that $f(x) = f'(x)$ for thousands of randomly generated values.
+The traditional approach is to write unit tests covering known cases, but how do we ensure we haven't omitted a case? [Property-based testing](/en/advanced-software-engineering/property-based-testing-power-and-limits) offers a much stronger guarantee: verifying that $f(x) = f'(x)$ for thousands of randomly generated values.
 
 ## Legacy Code as Oracle
 

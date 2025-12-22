@@ -32,11 +32,11 @@ Rendre une fonction partielle totale consiste à faire correspondre son type à 
 
 Dans les deux cas, le type devient honnête : il promet exactement ce qu'il peut tenir.
 
-L'article [Parse, Don't Validate](/fr/parse-dont-validate) d'Alexis King privilégie la première approche ; les langages fonctionnels traditionnels emploient souvent la seconde via `Option` ou `Either`. Chez evryg, nous parlons plutôt de « contraindre en amont » (au niveau du type des arguments de la fonction - le domaine) ou « d'élargir en aval » (au niveau du type de retour - le codomaine).
+L'article [Parse, Don't Validate](/fr/ingenierie-logicielle-avancee/parse-dont-validate) d'Alexis King privilégie la première approche ; les langages fonctionnels traditionnels emploient souvent la seconde via `Option` ou `Either`. Chez evryg, nous parlons plutôt de « contraindre en amont » (au niveau du type des arguments de la fonction - le domaine) ou « d'élargir en aval » (au niveau du type de retour - le codomaine).
 
 ## La dimension logique : Curry-Howard
 
-Du point de vue de [Curry-Howard](/fr/la-correspondance-de-curry-howard-lien-entre-programmes-et-preuves), cette distinction entre fonction totale et fonction partielle prend une dimension logique.
+Du point de vue de [Curry-Howard](/fr/ingenierie-logicielle-avancee/la-correspondance-de-curry-howard-lien-entre-programmes-et-preuves), cette distinction entre fonction totale et fonction partielle prend une dimension logique.
 
 - Une fonction totale $A \to B$ constitue une preuve constructive que « $A$ implique $B$ » : pour toute preuve de $A$, on peut construire une preuve de $B$. Cette preuve se construit par l'existence même de la fonction, correctement implémentée.
 - Une fonction partielle ne prouve rien de tel : elle affirme seulement que *parfois*, de certains $A$, on peut obtenir un $B$. Le reste du temps, cette fonction ment.

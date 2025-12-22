@@ -33,7 +33,7 @@ Un clic sur « Approuver la commande » génère une commande (au sens CQRS) :
 ApproveOrder { orderId, approverId, comment }
 ```
 
-Cette commande traverse le système avec sa sémantique intacte. Le backend n'a plus rien à déduire : il reçoit directement un ordre clair qu'il peut [valider](/fr/parse-dont-validate), exécuter et journaliser.
+Cette commande traverse le système avec sa sémantique intacte. Le backend n'a plus rien à déduire : il reçoit directement un ordre clair qu'il peut [valider](/fr/ingenierie-logicielle-avancee/parse-dont-validate), exécuter et journaliser.
 
 Les use cases deviennent des verbes métier explicites plutôt que des opérations génériques de persistance. On retrouve ici l'essence du *task-based UI* : l'interface reflète les tâches que l'utilisateur accomplit, pas la structure des données qu'il manipule.
 
@@ -45,7 +45,7 @@ Cette approche établit un alignement remarquable de bout en bout :
 2. Le designer UX crée un bouton « Approuver »
 3. Le frontend émet une commande `ApproveOrder`
 4. Le backend expose un handler `ApproveOrderHandler`
-5. L'[agrégat](/fr/machines-a-etat-et-aggregats-en-ddd) implémente une méthode `approve()`
+5. L'[agrégat](/fr/ingenierie-logicielle-avancee/machines-a-etat-et-aggregats-en-ddd) implémente une méthode `approve()`
 6. L'événement `OrderApproved` est émis
 
 Le même vocabulaire, la même granularité d'intention, traverse toutes les couches. C'est l'*ubiquitous language* poussé à son terme logique : non seulement dans le code serveur, mais jusqu'à l'interface utilisateur.
@@ -57,7 +57,7 @@ Les use cases métier ne sont plus des idées documentées ici ou là sous forme
 Les conséquences sur le design sont considérables :
 
 - **Côté lecture** : on peut construire des projections optimisées pour chaque écran, libérées du carcan d'un modèle de données normalisé
-- **Côté écriture** : chaque commande peut porter [exactement les données nécessaires](/fr/make-illegal-states-unrepresentable) à sa validation, ni plus ni moins
+- **Côté écriture** : chaque commande peut porter [exactement les données nécessaires](/fr/ingenierie-logicielle-avancee/make-illegal-states-unrepresentable) à sa validation, ni plus ni moins
 
 L'évolution devient plus sûre : ajouter une nouvelle action métier, c'est ajouter une nouvelle commande, un nouveau handler, un nouveau bouton : sans toucher aux flux existants.
 

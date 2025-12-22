@@ -10,7 +10,7 @@ Déplorer l'absence de tests sur une codebase non testable, c'est exiger l'eau c
 
 La testabilité exige avant tout la maîtrise des dépendances.
 
-Une [fonction pure](/fr/fonctions-totales-et-partielles-la-promesse-du-type), qui ne dépend que de ses arguments et ne produit que sa valeur de retour, est trivialement testable : on lui fournit des entrées, on vérifie les sorties.
+Une [fonction pure](/fr/ingenierie-logicielle-avancee/fonctions-totales-et-partielles-la-promesse-du-type), qui ne dépend que de ses arguments et ne produit que sa valeur de retour, est trivialement testable : on lui fournit des entrées, on vérifie les sorties.
 
 Dès qu'apparaissent des dépendances implicites (état global, appels réseau, système de fichiers, horloge) la testabilité s'érode. Pour la restaurer, il faut rendre ces dépendances explicites et injectables :
 
@@ -32,7 +32,7 @@ La testabilité n'est pas un ajout cosmétique : elle est le reflet d'une sépar
 
 ## TDD : inverser la causalité
 
-[TDD](/fr/tdd-une-discipline-de-design-pas-de-test) inverse la causalité habituelle : plutôt que de concevoir puis de se demander comment tester, on part du test et on laisse la testabilité guider le design.
+[TDD](/fr/ingenierie-logicielle-avancee/tdd-une-discipline-de-design-pas-de-test) inverse la causalité habituelle : plutôt que de concevoir puis de se demander comment tester, on part du test et on laisse la testabilité guider le design.
 
 Cette inversion explique pourquoi le code produit par TDD tend à être mieux découplé. Chaque test écrit avant l'implémentation impose ses contraintes :
 
@@ -53,4 +53,4 @@ Investir dans la testabilité, c'est investir dans :
 - L'explicitation des dépendances
 - La séparation des effets purs et impurs
 
-Les tests deviennent alors non pas un fardeau supplémentaire mais une conséquence naturelle d'un design sain. Inversement, un code véritablement bien conçu invite au test : les points d'entrée sont évidents, les comportements sont observables, les [cas limites sont accessibles](/fr/property-based-testing-puissance-et-limites).
+Les tests deviennent alors non pas un fardeau supplémentaire mais une conséquence naturelle d'un design sain. Inversement, un code véritablement bien conçu invite au test : les points d'entrée sont évidents, les comportements sont observables, les [cas limites sont accessibles](/fr/ingenierie-logicielle-avancee/property-based-testing-puissance-et-limites).

@@ -13,9 +13,9 @@ Le concept de *poka-yoke* (dispositif anti-erreur) trouve son expression la plus
 Un type fort est un poka-yoke cognitif : il rend certaines erreurs physiquement impossibles à commettre :
 
 - Passer un `UserId` là où un `OrderId` est attendu ? Le compilateur refuse.
-- Oublier de gérer un cas dans un [pattern matching](/fr/les-types-de-donnees-algebriques-precision-et-expressivite) ? Erreur de compilation.
+- Oublier de gérer un cas dans un [pattern matching](/fr/ingenierie-logicielle-avancee/les-types-de-donnees-algebriques-precision-et-expressivite) ? Erreur de compilation.
 
-Ces garde-fous ne détectent pas les erreurs après coup ; ils les empêchent de naître. Comme le gabarit qui ne permet d'insérer une pièce que dans la bonne orientation, le système de types contraint l'espace des programmes possibles à ceux qui [respectent certains invariants](/fr/make-illegal-states-unrepresentable).
+Ces garde-fous ne détectent pas les erreurs après coup ; ils les empêchent de naître. Comme le gabarit qui ne permet d'insérer une pièce que dans la bonne orientation, le système de types contraint l'espace des programmes possibles à ceux qui [respectent certains invariants](/fr/ingenierie-logicielle-avancee/make-illegal-states-unrepresentable).
 
 L'erreur évitée est infiniment moins coûteuse que l'erreur détectée.
 
@@ -50,6 +50,6 @@ Cette stratégie a des implications architecturales profondes :
 - Pour que l'analyse statique soit utile, les types doivent être expressifs et précis
 - Pour que le feedback soit immédiat, l'outillage doit être rapide et intégré au workflow quotidien
 
-Investir dans la détection précoce, c'est investir dans la [testabilité](/fr/pas-de-test-sans-testabilite-le-prerequis-oublie), la modularité, la qualité du typage : des propriétés qui améliorent le design bien au-delà de leur utilité pour les tests.
+Investir dans la détection précoce, c'est investir dans la [testabilité](/fr/ingenierie-logicielle-avancee/pas-de-test-sans-testabilite-le-prerequis-oublie), la modularité, la qualité du typage : des propriétés qui améliorent le design bien au-delà de leur utilité pour les tests.
 
 Le Lean nous enseigne que la qualité n'est pas un coût mais un investissement ; en développement logiciel, cet investissement prend la forme d'un système de types rigoureux, de tests rapides, et d'un outillage qui refuse de laisser les défauts s'éloigner de leur source.

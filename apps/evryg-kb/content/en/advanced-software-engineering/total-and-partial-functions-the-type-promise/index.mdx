@@ -36,11 +36,11 @@ Making a partial function total consists of aligning its type with its actual be
 
 In both cases, the type becomes honest: it promises exactly what it can deliver.
 
-Alexis King's article [Parse, Don't Validate](/en/parse-dont-validate) favors the first approach; traditional functional languages often employ the second via `Option` or `Either`. At evryg, we speak of "constraining upstream" (at the level of the function's argument types - the domain) or "expanding downstream" (at the level of the return type - the codomain).
+Alexis King's article [Parse, Don't Validate](/en/advanced-software-engineering/parse-dont-validate) favors the first approach; traditional functional languages often employ the second via `Option` or `Either`. At evryg, we speak of "constraining upstream" (at the level of the function's argument types - the domain) or "expanding downstream" (at the level of the return type - the codomain).
 
 ## The Logical Dimension: Curry-Howard
 
-From the perspective of [Curry-Howard](/en/curry-howard-correspondence-linking-programs-and-proofs), this distinction between total and partial functions takes on a logical dimension.
+From the perspective of [Curry-Howard](/en/advanced-software-engineering/curry-howard-correspondence-linking-programs-and-proofs), this distinction between total and partial functions takes on a logical dimension.
 
 - A total function $A \to B$ constitutes a constructive proof that "$A$ implies $B$": for any proof of $A$, we can construct a proof of $B$. This proof is constructed by the very existence of the function, correctly implemented.
 - A partial function proves no such thing: it only asserts that *sometimes*, from certain $A$s, we can obtain a $B$. The rest of the time, this function lies.

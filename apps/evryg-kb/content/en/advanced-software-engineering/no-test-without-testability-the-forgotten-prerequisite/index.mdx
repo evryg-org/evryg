@@ -14,7 +14,7 @@ Lamenting the absence of tests on an untestable codebase is like demanding runni
 
 Testability first requires mastering dependencies.
 
-A [pure function](/en/total-and-partial-functions-the-type-promise), which depends only on its arguments and produces only its return value, is trivially testable: you provide inputs, you verify outputs.
+A [pure function](/en/advanced-software-engineering/total-and-partial-functions-the-type-promise), which depends only on its arguments and produces only its return value, is trivially testable: you provide inputs, you verify outputs.
 
 As soon as implicit dependencies appear (global state, network calls, file system, clock), testability erodes. To restore it, these dependencies must be made explicit and injectable:
 
@@ -36,7 +36,7 @@ Testability is not a cosmetic addition: it reflects successful separation of con
 
 ## TDD: Inverting Causality
 
-[TDD](/en/tdd-a-design-discipline-not-a-testing-one) inverts the usual causality: rather than designing then wondering how to test, we start from the test and let testability guide the design.
+[TDD](/en/advanced-software-engineering/tdd-a-design-discipline-not-a-testing-one) inverts the usual causality: rather than designing then wondering how to test, we start from the test and let testability guide the design.
 
 This inversion explains why code produced by TDD tends to be better decoupled. Each test written before implementation imposes its constraints:
 
@@ -57,4 +57,4 @@ Investing in testability means investing in:
 - Making dependencies explicit
 - Separating pure and impure effects
 
-Tests then become not an additional burden but a natural consequence of sound design. Conversely, truly well-designed code invites testing: entry points are obvious, behaviors are observable, [edge cases are accessible](/en/property-based-testing-power-and-limits).
+Tests then become not an additional burden but a natural consequence of sound design. Conversely, truly well-designed code invites testing: entry points are obvious, behaviors are observable, [edge cases are accessible](/en/advanced-software-engineering/property-based-testing-power-and-limits).
