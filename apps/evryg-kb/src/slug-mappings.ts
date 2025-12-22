@@ -87,6 +87,12 @@ const locales = ['en', 'fr'] as const
 type Locale = typeof locales[number]
 
 export function getSlugMappings(): Record<string, SlugMapping> {
+  // Ensure scan is done before returning mappings
+  if (!fullScanDone) {
+    const enDir = path.join(CONTENT_DIR, 'en')
+    scanDirectory(enDir)
+    fullScanDone = true
+  }
   return cache
 }
 
