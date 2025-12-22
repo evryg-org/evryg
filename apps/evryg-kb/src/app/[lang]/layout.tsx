@@ -3,6 +3,8 @@ import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 import 'katex/dist/katex.min.css'
+import { LocaleSwitch } from '../../components/LocaleSwitch'
+import { getSlugMappings } from '../../slug-mappings'
 
 const bannerTranslations = {
   en: "Looking for experienced guidance on Lean software delivery? We'd be glad to explore how we can work together.",
@@ -32,6 +34,11 @@ export default async function LangLayout({
   params: Promise<{ lang: string }>
 }) {
   const { lang } = await params
+  const slugMappings = getSlugMappings()
+  const i18n = [
+    { locale: 'en', name: 'English' },
+    { locale: 'fr', name: 'Français' }
+  ]
 
   const banner = (
     <Banner storageKey="evryg-lean-consulting" style={{ padding: '0.75rem 0' }}>
@@ -49,7 +56,9 @@ export default async function LangLayout({
     <Navbar
       logo={<a href={`/${lang}`} style={{ fontWeight: 'bold', color: 'inherit', textDecoration: 'none' }}>evryg</a>}
       logoLink={false}
-    />
+    >
+      <LocaleSwitch i18n={i18n} slugMappings={slugMappings} />
+    </Navbar>
   )
   const footer = (
     <Footer>
@@ -78,10 +87,7 @@ export default async function LangLayout({
           feedback={{ content: feedbackTranslations[lang as keyof typeof feedbackTranslations] ?? feedbackTranslations.en }}
           editLink={editLinkTranslations[lang as keyof typeof editLinkTranslations] ?? editLinkTranslations.en}
           footer={footer}
-          i18n={[
-            { locale: 'en', name: 'English' },
-            { locale: 'fr', name: 'Français' }
-          ]}
+          i18n={[]}
         >
           {children}
         </Layout>
