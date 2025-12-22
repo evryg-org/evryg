@@ -1,4 +1,4 @@
-import type { Labels } from './constants'
+import type { Labels } from '../../main/core/domain/OGImageData'
 
 interface OGContentProps {
   title: string

@@ -1,26 +1,35 @@
 import { colors } from '../../design_system/theme'
-import type { Labels } from './constants'
+import type { Labels } from '../../main/core/domain/OGImageData'
 import { OGHeader } from './OGHeader'
 import { OGContent } from './OGContent'
 import { OGFooter } from './OGFooter'
 
 export interface OGImageProps {
   title: string
-  titleStyle: { fontSize: number; lineHeight: number }
   category: string | null
   readingTime: number | null
   isHomePage: boolean
   labels: Labels
 }
 
+function getTitleStyle(title: string): { fontSize: number; lineHeight: number } {
+  const length = title.length
+  if (length <= 30) return { fontSize: 64, lineHeight: 1.1 }
+  if (length <= 50) return { fontSize: 56, lineHeight: 1.15 }
+  if (length <= 80) return { fontSize: 48, lineHeight: 1.2 }
+  if (length <= 120) return { fontSize: 40, lineHeight: 1.25 }
+  return { fontSize: 34, lineHeight: 1.3 }
+}
+
 export function OGImage({
   title,
-  titleStyle,
   category,
   readingTime,
   isHomePage,
   labels,
 }: OGImageProps) {
+  const titleStyle = getTitleStyle(title)
+
   return (
     <div
       style={{
@@ -34,7 +43,6 @@ export function OGImage({
     >
       <OGHeader knowledgeBaseLabel={labels.knowledgeBase} />
 
-      {/* Green content area */}
       <div
         style={{
           display: 'flex',

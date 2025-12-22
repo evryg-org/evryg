@@ -1,5 +1,3 @@
-import { TAGLINE, URL } from './constants'
-
 export function OGFooter() {
   return (
     <div
@@ -20,7 +18,7 @@ export function OGFooter() {
           letterSpacing: '0.01em',
         }}
       >
-        {TAGLINE}
+        evryg · Paris · Lean Software Delivery
       </div>
 
       {/* URL */}
@@ -31,7 +29,7 @@ export function OGFooter() {
           color: 'rgba(255, 255, 255, 0.7)',
         }}
       >
-        {URL}
+        www.evryg.com
       </div>
     </div>
   )
