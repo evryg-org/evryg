@@ -2,6 +2,8 @@
 
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import type { Suggestion } from '../main/core/domain/Suggestions'
 import { findSuggestions } from '../main/core/use_cases/FindSuggestions'
@@ -40,7 +42,20 @@ export function SuggestedPages() {
   }, [pathname])
 
   if (loading) {
-    return <div className={styles.loading}>Searching for similar pages...</div>
+    return (
+      <div className={styles.suggestions}>
+        <p className={styles.suggestionsTitle}>Perhaps you were looking for:</p>
+        <ul className={styles.resultsList}>
+          {[1, 2, 3].map((i) => (
+            <li key={i} className={styles.resultCard}>
+              <Skeleton width="60%" height={18} />
+              <Skeleton width="40%" height={14} style={{ marginTop: 6 }} />
+              <Skeleton count={2} height={14} style={{ marginTop: 6 }} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
   }
 
   if (error || suggestions.length === 0) {

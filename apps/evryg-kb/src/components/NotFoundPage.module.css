@@ -103,12 +103,8 @@
   color: #d1d5db;
 }
 
-.loading {
-  color: #6b7280;
-  font-size: 1rem;
-  margin-top: 2rem;
-}
-
-:global(.dark) .loading {
-  color: #9ca3af;
+/* Skeleton dark mode overrides */
+:global(.dark) .resultCard :global(.react-loading-skeleton) {
+  --base-color: #374151;
+  --highlight-color: #4b5563;
 }
