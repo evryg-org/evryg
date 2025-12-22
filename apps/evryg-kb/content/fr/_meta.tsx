@@ -4,8 +4,8 @@ export default {
     type: 'page',
     display: 'hidden'
   },
-  'ingenierie-avancee': {
-    title: 'Ingénierie Avancée',
+  'ingenierie-logicielle-avancee': {
+    title: 'Ingénierie logicielle avancée',
     type: 'page'
   },
   'lean-et-flux': {

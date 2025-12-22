@@ -4,8 +4,8 @@ export default {
     type: 'page',
     display: 'hidden'
   },
-  'ingenierie-avancee': {
-    title: 'Advanced Engineering',
+  'advanced-software-engineering': {
+    title: 'Advanced Software Engineering',
     type: 'page'
   },
   'lean-et-flux': {
