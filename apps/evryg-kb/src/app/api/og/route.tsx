@@ -23,6 +23,22 @@ const HOME_TITLES: Record<string, string> = {
   fr: 'Base de connaissances evryg',
 }
 
+// Localized labels
+const LABELS = {
+  en: {
+    knowledgeBase: 'Knowledge Base',
+    articlePrefix: 'Our article on',
+    categorySeparator: '', // English uses "on" as connector
+    minRead: (min: number) => `${min} min read`,
+  },
+  fr: {
+    knowledgeBase: 'Base de connaissances',
+    articlePrefix: 'Notre article',
+    categorySeparator: '·', // French uses middle dot to avoid preposition issues
+    minRead: (min: number) => `Temps de lecture : ${min} min`,
+  },
+}
+
 const TAGLINE = 'evryg · Paris · Lean Software Delivery'
 const URL = 'www.evryg.com'
 
@@ -93,6 +109,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl
   const lang = searchParams.get('lang') || 'en'
   const path = searchParams.get('path') || ''
+  const labels = LABELS[lang as keyof typeof LABELS] || LABELS.en
 
   const mdxPath = path ? path.split('/').filter(Boolean) : []
   const isHomePage = mdxPath.length === 0
@@ -181,7 +198,7 @@ export async function GET(request: NextRequest) {
                 letterSpacing: '0.01em',
               }}
             >
-              Knowledge Base
+              {labels.knowledgeBase}
             </div>
           </div>
 
@@ -214,7 +231,7 @@ export async function GET(request: NextRequest) {
               justifyContent: 'center',
             }}
           >
-            {/* "Our article on" prefix + Category (for articles only) */}
+            {/* Article prefix + Category (for articles only) */}
             {!isHomePage && (
               <div
                 style={{
@@ -228,7 +245,10 @@ export async function GET(request: NextRequest) {
                   gap: 6,
                 }}
               >
-                <span style={{ display: 'flex' }}>Our article on</span>
+                <span style={{ display: 'flex' }}>{labels.articlePrefix}</span>
+                {category && labels.categorySeparator && (
+                  <span style={{ display: 'flex' }}>{labels.categorySeparator}</span>
+                )}
                 {category && (
                   <span style={{ display: 'flex', fontWeight: 600, color: 'rgba(255, 255, 255, 0.95)' }}>
                     {category}
@@ -263,7 +283,7 @@ export async function GET(request: NextRequest) {
                   letterSpacing: '0.01em',
                 }}
               >
-                {readingTime} min read
+                {labels.minRead(readingTime)}
               </div>
             )}
           </div>
