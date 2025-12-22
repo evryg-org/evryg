@@ -47,8 +47,8 @@ export default async function LangLayout({
 
   const navbar = (
     <Navbar
-      logo={<b>evryg</b>}
-      // ... Your additional navbar options
+      logo={<a href={`/${lang}`} style={{ fontWeight: 'bold', color: 'inherit', textDecoration: 'none' }}>evryg</a>}
+      logoLink={false}
     />
   )
   const footer = (
