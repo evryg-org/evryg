@@ -1,27 +1,35 @@
-import { Cards } from 'nextra/components'
+import { Hero, Stats, Features } from '../../src/components'
 
-# evryg Knowledge Base
+<Hero
+  title="Excellence Through Fundamentals"
+  subtitle="We share our expertise in advanced software engineering and Lean software delivery, enabling everyone to learn with us."
+  ctaText="Explore articles →"
+  ctaHref="/en/ingenierie-avancee"
+/>
 
-We share our expertise in advanced software engineering and Lean software delivery.
+<Stats items={[
+  { value: '28', label: 'Articles' },
+  { value: '2', label: 'Domains' },
+  { value: '∞', label: 'To Learn' }
+]} />
 
-<Cards>
-  <Cards.Card
-    title="Advanced Engineering"
-    href="/en/ingenierie-avancee"
-  />
-  <Cards.Card
-    title="Lean & Flow"
-    href="/en/lean-et-flux"
-  />
-</Cards>
+<Features items={[
+  {
+    icon: 'code',
+    title: 'Advanced Engineering',
+    description: 'Type systems, Curry-Howard, TDD, property-based testing, and the mathematical abstractions underlying modern programming.',
+    href: '/en/ingenierie-avancee'
+  },
+  {
+    icon: 'flow',
+    title: 'Lean & Flow',
+    description: 'Continuous deployment, Kanban, shift-left, and value stream optimization in software delivery.',
+    href: '/en/lean-et-flux'
+  }
+]} />
 
 ## Our Approach
 
-At evryg, we believe that technical excellence rests on solid theoretical foundations. This knowledge base gathers our thoughts on:
-
-- **Type systems** and their ability to prevent errors before runtime
-- **Lean software delivery** and value stream optimization
-- **Software quality** as an architectural discipline
-- **Mathematical abstractions** underlying modern programming
+At **evryg**, we believe that technical excellence rests on solid theoretical foundations. This knowledge base gathers our thoughts on advanced concepts that make the difference between code that works and code that excels.
 
 Each article aims to make advanced concepts accessible, with concrete examples and links to original sources.

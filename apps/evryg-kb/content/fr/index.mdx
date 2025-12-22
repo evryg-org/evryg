@@ -1,27 +1,35 @@
-import { Cards } from 'nextra/components'
+import { Hero, Stats, Features } from '../../src/components'
 
-# evryg : notre base de connaissance
+<Hero
+  title="L'excellence par les fondamentaux"
+  subtitle="Nous partageons notre expertise en ingénierie logicielle avancée et Lean software delivery, pour permettre au plus grand nombre d'apprendre avec nous."
+  ctaText="Explorer les articles →"
+  ctaHref="/fr/ingenierie-avancee"
+/>
 
-Nous partageons notre expertise en ingénierie logicielle avancée et Lean software delivery, pour permettre au plus grand nombre d'apprendre avec nous.
+<Stats items={[
+  { value: '28', label: 'Articles' },
+  { value: '2', label: 'Domaines' },
+  { value: '∞', label: 'À apprendre' }
+]} />
 
-<Cards>
-  <Cards.Card
-    title="Ingénierie Avancée"
-    href="/fr/ingenierie-avancee"
-  />
-  <Cards.Card
-    title="Lean et Flux"
-    href="/fr/lean-et-flux"
-  />
-</Cards>
+<Features items={[
+  {
+    icon: 'code',
+    title: 'Ingénierie Avancée',
+    description: 'Systèmes de types, Curry-Howard, TDD, property-based testing, et les abstractions mathématiques qui sous-tendent la programmation moderne.',
+    href: '/fr/ingenierie-avancee'
+  },
+  {
+    icon: 'flow',
+    title: 'Lean et Flux',
+    description: 'Déploiement continu, Kanban, shift-left, et l\'optimisation du flux de valeur dans la livraison logicielle.',
+    href: '/fr/lean-et-flux'
+  }
+]} />
 
 ## Notre approche
 
-Chez evryg, nous croyons que l'excellence technique repose sur des fondements théoriques solides. Cette base de connaissances rassemble nos réflexions sur :
-
-- **Les systèmes de types** et leur capacité à prévenir les erreurs avant même l'exécution
-- **Le Lean software delivery** et l'optimisation du flux de valeur
-- **La qualité logicielle** comme discipline architecturale
-- **Les abstractions mathématiques** qui sous-tendent la programmation moderne
+Chez **evryg**, nous croyons que l'excellence technique repose sur des fondements théoriques solides. Cette base de connaissances rassemble nos réflexions sur les concepts avancés qui font la différence entre un code qui fonctionne et un code qui excelle.
 
 Chaque article vise à rendre accessibles des concepts avancés, avec des exemples concrets et des liens vers les sources originales.

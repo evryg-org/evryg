@@ -1,0 +1,31 @@
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding: 2rem 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+}
+
+.number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1a8f5c 0%, #32b26e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.label {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+:global(.dark) .label {
+  color: #9ca3af;
+}
