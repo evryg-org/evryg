@@ -8,7 +8,29 @@ export async function generateMetadata(props: {
 }) {
   const params = await props.params
   const { metadata } = await importPage(params.mdxPath, params.lang)
-  return metadata
+
+  // Build OG image URL
+  const path = params.mdxPath?.join('/') || ''
+  const ogImageUrl = `/api/og?lang=${params.lang}&path=${encodeURIComponent(path)}`
+
+  return {
+    ...metadata,
+    openGraph: {
+      ...metadata?.openGraph,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: metadata?.title || 'evryg',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      images: [ogImageUrl],
+    },
+  }
 }
 
 const Wrapper = useMDXComponents().wrapper
