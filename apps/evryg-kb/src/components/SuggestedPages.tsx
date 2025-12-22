@@ -10,6 +10,11 @@ import { findSuggestions } from '../main/core/use_cases/FindSuggestions'
 import { createPagefindAdapter } from '../main/secondary/PagefindAdapter'
 import styles from './NotFoundPage.module.css'
 
+const translations = {
+  en: { suggestionsTitle: 'Perhaps you were looking for:' },
+  fr: { suggestionsTitle: 'Peut-être cherchiez-vous :' }
+}
+
 function stripHtmlTags(html: string): string {
   return html.replace(/<[^>]*>/g, '')
 }
@@ -20,6 +25,8 @@ function cleanUrl(url: string): string {
 
 export function SuggestedPages() {
   const pathname = usePathname()
+  const [, lang] = pathname.split('/')
+  const t = translations[lang as keyof typeof translations] ?? translations.en
   const [suggestions, setSuggestions] = useState<Suggestion[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -44,7 +51,7 @@ export function SuggestedPages() {
   if (loading) {
     return (
       <div className={styles.suggestions}>
-        <p className={styles.suggestionsTitle}>Perhaps you were looking for:</p>
+        <p className={styles.suggestionsTitle}>{t.suggestionsTitle}</p>
         <ul className={styles.resultsList}>
           {[1, 2, 3].map((i) => (
             <li key={i} className={styles.resultCard}>
@@ -64,7 +71,7 @@ export function SuggestedPages() {
 
   return (
     <div className={styles.suggestions}>
-      <p className={styles.suggestionsTitle}>Perhaps you were looking for:</p>
+      <p className={styles.suggestionsTitle}>{t.suggestionsTitle}</p>
       <ul className={styles.resultsList}>
         {suggestions.map((suggestion) => {
           const url = cleanUrl(suggestion.url)
