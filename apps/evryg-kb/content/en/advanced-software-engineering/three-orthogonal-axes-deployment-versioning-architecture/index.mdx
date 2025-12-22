@@ -1,0 +1,71 @@
+---
+canonical-slug: trois-axes-orthogonaux-deploiement-versioning-architecture
+---
+
+# Three Orthogonal Axes: Deployment, Versioning, Architecture
+
+A persistent confusion in the industry consists of mixing three fundamentally independent dimensions:
+
+- **Deployment strategy** (monolith vs microservices)
+- **Versioning strategy** (monorepo vs multirepo)
+- **Software architecture** (big ball of mud vs modularization)
+
+These three axes are orthogonal: every combination is theoretically possible and sometimes desirable.
+
+| Deployment | Architecture | Versioning | Viable | Comment |
+|------------|--------------|------------|:------:|---------|
+| Monolith | Modular | Monorepo | ✅ | Also called "Modular Monolith" |
+| Monolith | Modular | Multirepo | ⚠️ | Rare and impractical |
+| Monolith | Big ball of mud | Monorepo | ❌ | Legacy monolith |
+| Monolith | Big ball of mud | Multirepo | ❌ | Rare and painful |
+| Microservices | Modular | Monorepo | ✅ | Google, Uber, Airbnb |
+| Microservices | Modular | Multirepo | ✅ | Netflix, Amazon |
+| Microservices | Big ball of mud | Monorepo | ❌ | Distributed monolith: worst of all worlds |
+| Microservices | Big ball of mud | Multirepo | ❌ | Distributed monolith: worst of all worlds |
+
+Confusing these dimensions leads to solutions that address the wrong problem.
+
+## Three Distinct Concerns
+
+**Deployment strategy** concerns the granularity of deployable units. A monolith deploys as a single unit; microservices deploy independently of each other. This dimension impacts infrastructure, scaling, fault isolation, network latency.
+
+**Versioning strategy** concerns the organization of source code: a single repository for all code, or several distinct repositories. This dimension impacts Git workflows, code visibility, build tools, dependency management.
+
+**Software architecture** concerns the internal structure of code: modules with clear boundaries and explicit dependencies, or a tangle where everything depends on everything.
+
+These three concerns operate at different levels and answer different questions.
+
+## The Classic Mistake: Microservices as Architectural Solution
+
+The classic mistake consists of looking in one axis for the solution to a problem situated in another.
+
+A team suffers from a *big ball of mud* monolith: the code is incomprehensible, modifications have unpredictable side effects, tests are slow and fragile. The hasty conclusion: "let's switch to microservices, it will force us to decouple."
+
+But distributing a poorly designed system doesn't make it better designed; it transforms an unmanageable monolith into an unmanageable distributed system, with the added bonus of network complexity, eventual consistency, and distributed debugging.
+
+The problem was architectural; the proposed solution was infrastructural. We changed axes without addressing the root cause.
+
+## Multirepo Decouples Nothing
+
+The same logic applies to versioning.
+
+Splitting a monorepo into multirepo because the code is too coupled decouples nothing: it simply makes the coupling less visible and more painful to manage. Circular dependencies that were imports become versions to synchronize laboriously.
+
+The real work (establishing clear module boundaries, defining stable interfaces, inverting problematic dependencies) remains to be done, but now in an environment where cross-module refactorings have become multi-team coordinations.
+
+Multirepo can be a valid choice for other reasons (code confidentiality with git, sometimes team autonomy and build isolation), but it doesn't solve architecture problems.
+
+## The Healthy Trajectory: Modularize First
+
+The healthy trajectory when facing a *big ball of mud* monolith is to modularize first:
+
+- Identify bounded contexts
+- Draw boundaries
+- Make dependencies explicit
+- Invert those pointing in the wrong direction
+
+A modular monolith preserves the simplicity of deployment and debugging of a monolith while gaining the structural clarity wrongly attributed to microservices.
+
+Then, if real needs demand it, such as differentiated scaling, autonomous teams, heterogeneous technologies, then we can extract certain modules into independent services.
+
+Modularity is the prerequisite; splitting into microservices is an option. Confusing the axes is like redoing all the plumbing to solve an electrical problem: lots of effort, but on the wrong system.

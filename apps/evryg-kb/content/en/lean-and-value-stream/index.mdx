@@ -2,12 +2,13 @@
 canonical-slug: lean-et-flux-de-valeur
 ---
 
+import { ModuleCards, ModuleStats } from '../../../src/components'
+import { modules } from './modules'
+
 # Lean & Value Stream
 
 Lean software delivery applies Toyota Production System principles to software development. This section explores how to optimize the value stream.
 
-## Topics
+<ModuleStats modules={modules} />
 
-- **Shift Left**: detect errors as early as possible
-- **Continuous Deployment**: f(git) = production
-- **Organization**: Kanban, pull requests, architecture and deployment
+<ModuleCards lang="en" basePath="lean-and-value-stream" modules={modules} />

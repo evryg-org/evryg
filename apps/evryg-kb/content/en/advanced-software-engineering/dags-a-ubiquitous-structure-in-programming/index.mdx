@@ -1,0 +1,59 @@
+---
+canonical-slug: les-dags-une-structure-omnipresente-en-programmation
+---
+
+# DAGs: A Ubiquitous Structure in Programming
+
+The directed acyclic graph (DAG) is such a fundamental structure that it appears in almost every domain of programming, often without being explicitly named.
+
+A DAG combines two properties:
+
+- **Directed edges** that establish a relationship of precedence or dependency
+- **Absence of cycles** that guarantees you cannot return to a node by following edges
+
+This combination captures a universal intuition: certain things must come before others, and this relationship of anteriority cannot be circular. Wherever a "before" and an "after" exist without temporal loops, a DAG lurks.
+
+## Git: A DAG of Commits
+
+Git perhaps embodies the most familiar use of DAGs for developers.
+
+Each commit points to its parents and forms a directed graph of the project's history. The absence of cycles is structural: a commit cannot be its own ancestor.
+
+- Branches are merely pointers to nodes in this graph
+- Merges create nodes with multiple parents
+- Rebases rewrite portions of the graph
+
+Understanding Git means understanding operations on this DAG: finding the common ancestor, traversing history, determining the reachability of one commit from another. Git's power and sometimes complexity stem directly from this underlying structure.
+
+## Build Systems and Dependencies
+
+Build systems and dependency managers rely entirely on DAGs.
+
+A module depends on other modules, which themselves depend on other modules: a directed graph of dependencies. Acyclicity is crucial: a circular dependency would make compilation impossible, as you would need to compile A before B and B before A simultaneously.
+
+Topological sorting of the DAG produces a valid compilation order. Make, Bazel, Gradle, npm, Cargo: all build this graph and traverse it to determine what to recalculate when a source changes.
+
+Invalidation propagation follows the DAG's edges: modifying a node invalidates all its descendants.
+
+## Orchestration Pipelines
+
+Orchestration pipelines (CI/CD, data workflows, ETL) are explicit DAGs of tasks.
+
+Each node represents a step (compilation, test, deployment, transformation), each edge an execution dependency. Airflow, GitHub Actions, GitLab CI, Temporal: all model their workflows as DAGs.
+
+This structure enables:
+
+- **Automatic parallelization**: two tasks without a dependency relationship can execute simultaneously
+- **Failure recovery**: if a task fails, we know exactly which downstream tasks are affected and which have already succeeded
+
+The DAG makes the execution flow reasonable and visualizable.
+
+## Spreadsheets: A Hidden DAG
+
+Spreadsheets (Excel, Google Sheets, etc.) reveal a hidden DAG in their formulas.
+
+Each cell containing a formula depends on the cells it references. When you modify a value, the spreadsheet must recalculate all cells that depend on it, directly or transitively: a propagation along the DAG's edges.
+
+Circular references are forbidden precisely because they would violate acyclicity, making the recalculation order indeterminate. This structure enables efficient incremental recalculation: only the descendant nodes of the modified node need to be reevaluated.
+
+From spreadsheets to build systems, from version control to data pipelines, the DAG establishes itself as the canonical structure for modeling dependencies and causality in programming.

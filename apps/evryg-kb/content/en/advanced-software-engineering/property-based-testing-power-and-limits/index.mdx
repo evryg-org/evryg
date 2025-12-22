@@ -1,0 +1,79 @@
+---
+canonical-slug: property-based-testing-puissance-et-limites
+---
+
+# Property-Based Testing: Power and Limits
+
+Property-based testing (PBT), popularized by [QuickCheck](https://hackage.haskell.org/package/QuickCheck) in Haskell in the late 1990s, reverses the traditional approach to unit testing.
+
+## The Random Testing Revolution
+
+Rather than writing specific examples with expected inputs and outputs, PBT invites us to express universal properties that the code must satisfy for any valid input. Then, we let the PBT library generate hundreds or thousands of random cases.
+
+This approach often discovers bugs in edge cases a developer would never have thought of:
+
+- Extreme values
+- Empty strings
+- Negative numbers
+- Unusual combinations
+
+The generator explores the input space far more exhaustively than our imagination.
+
+## Shrinking: The Key to Debuggability
+
+The true power of PBT lies in *shrinking*: when a failing case is discovered, the framework automatically attempts to reduce it to the smallest reproducible example.
+
+A 500-element array that fails a sort might become a 3-element array with a precise configuration. This minimization transforms an obscure failure into a readable, debuggable test case.
+
+It's also a formidable specification tool: formulating a property forces thinking about the code's fundamental invariants. "Sorting a list preserves its length", "encoding then decoding returns the original", "the operation is commutative": these assertions reveal the essence of expected behavior better than a collection of disparate examples.
+
+## The Challenge of Properties
+
+Identifying good properties is often the main challenge. For a sorting function, the classic properties are well known:
+
+- Idempotence: $\text{sort}(\text{sort}(xs)) = \text{sort}(xs)$
+- Preservation of elements
+- Ascending order of result
+
+But for complex business logic, what properties should we express? We sometimes fall into the trap of rewriting the implementation in the test, which verifies nothing at all.
+
+The most useful properties are often:
+
+- *Round-trips*: encode/decode, serialize/deserialize
+- Structural invariants: "the tree remains balanced"
+- Comparisons with an oracle: "my optimized version produces the same result as the naive version"
+
+But not all functions lend themselves naturally to this style.
+
+## Generator Quality
+
+Generator quality constitutes another significant limitation.
+
+A uniform generator over integers will spend most of its time on "uninteresting" values and might miss the precise case where $n = 0$ or $n = -1$ triggers a bug. Good frameworks allow biasing generation toward edge cases, but this requires expertise and configuration effort.
+
+Moreover, for complex data structures with internal invariants (e.g., a valid binary search tree, a connected graph), writing a generator that produces only valid instances can prove as difficult as writing the tested code itself.
+
+## Complementarity with Example-Based Tests
+
+PBT doesn't replace example-based tests; it complements them.
+
+*Example-based tests* remain valuable for:
+
+- Documenting expected behavior in specific business scenarios
+- Serving as a safety net during refactorings
+- Cases where the property would be too complex to express
+
+The pragmatic approach is to use PBT where it excels (pure functions, data transformations, algorithms with clear invariants) and keep classical tests for business logic with fuzzy boundaries.
+
+Together, these two approaches offer far superior coverage than either could achieve in isolation.
+
+## Learn More: Reference Libraries
+
+- [QuickCheck](https://hackage.haskell.org/package/QuickCheck) - Haskell, the pioneer
+- [fast-check](https://fast-check.dev/) - TypeScript/JavaScript
+- [Hypothesis](https://hypothesis.readthedocs.io/) - Python
+- [jqwik](https://jqwik.net/) - Java
+- [ScalaCheck](https://scalacheck.org/) - Scala
+- [FsCheck](https://fscheck.github.io/FsCheck/) - .NET (F#/C#)
+- [proptest](https://docs.rs/proptest/) - Rust
+- [rapid](https://github.com/flyingmutant/rapid) - Go

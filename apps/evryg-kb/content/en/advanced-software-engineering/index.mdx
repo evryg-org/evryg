@@ -2,12 +2,13 @@
 canonical-slug: ingenierie-logicielle-avancee
 ---
 
+import { ModuleCards, ModuleStats } from '../../../src/components'
+import { modules } from './modules'
+
 # Advanced Software Engineering
 
 Advanced software engineering rests on solid theoretical foundations. This section explores concepts that enable building reliable, expressive, and maintainable systems.
 
-## Topics
+<ModuleStats modules={modules} />
 
-- **Type Systems**: type algebra, algebraic types, Curry-Howard correspondence
-- **Modeling**: state machines, DDD, isomorphisms at boundaries
-- **Design**: Parse Don't Validate, Make Illegal States Unrepresentable
+<ModuleCards lang="en" basePath="advanced-software-engineering" modules={modules} />
