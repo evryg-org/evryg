@@ -67,7 +67,8 @@ export function createPagefindAdapter(): SearchPort {
         const data = await result.data()
         results.push({
           url: data.url,
-          title: data.meta.title
+          title: data.meta.title,
+          excerpt: data.excerpt
         })
       }
 

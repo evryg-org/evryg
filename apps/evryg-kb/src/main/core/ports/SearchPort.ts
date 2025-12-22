@@ -5,6 +5,7 @@
 export interface SearchResult {
   url: string
   title: string
+  excerpt: string
 }
 
 export interface SearchPort {

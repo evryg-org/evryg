@@ -6,6 +6,15 @@ import { useEffect, useState } from 'react'
 import type { Suggestion } from '../main/core/domain/Suggestions'
 import { findSuggestions } from '../main/core/use_cases/FindSuggestions'
 import { createPagefindAdapter } from '../main/secondary/PagefindAdapter'
+import styles from './NotFoundPage.module.css'
+
+function stripHtmlTags(html: string): string {
+  return html.replace(/<[^>]*>/g, '')
+}
+
+function cleanUrl(url: string): string {
+  return url.replace(/\.html$/, '').replace(/\/index$/, '')
+}
 
 export function SuggestedPages() {
   const pathname = usePathname()
@@ -31,11 +40,7 @@ export function SuggestedPages() {
   }, [pathname])
 
   if (loading) {
-    return (
-      <div style={{ marginTop: '1.5rem', color: 'var(--nextra-text-color-secondary, #666)' }}>
-        Searching for similar pages...
-      </div>
-    )
+    return <div className={styles.loading}>Searching for similar pages...</div>
   }
 
   if (error || suggestions.length === 0) {
@@ -43,24 +48,23 @@ export function SuggestedPages() {
   }
 
   return (
-    <div style={{ marginTop: '1.5rem' }}>
-      <p style={{ marginBottom: '0.75rem', color: 'var(--nextra-text-color-secondary, #666)' }}>
-        Perhaps you were looking for:
-      </p>
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-        {suggestions.map((suggestion) => (
-          <li key={suggestion.url} style={{ marginBottom: '0.5rem' }}>
-            <a
-              href={suggestion.url}
-              style={{
-                color: 'var(--nextra-primary-hue, #0070f3)',
-                textDecoration: 'underline'
-              }}
-            >
-              {suggestion.title}
-            </a>
-          </li>
-        ))}
+    <div className={styles.suggestions}>
+      <p className={styles.suggestionsTitle}>Perhaps you were looking for:</p>
+      <ul className={styles.resultsList}>
+        {suggestions.map((suggestion) => {
+          const url = cleanUrl(suggestion.url)
+          return (
+            <li key={suggestion.url} className={styles.resultCard}>
+              <a href={url} className={styles.resultTitle}>
+                {suggestion.title}
+              </a>
+              <div className={styles.resultUrl}>{url}</div>
+              <p className={styles.resultExcerpt}>
+                {stripHtmlTags(suggestion.excerpt)}
+              </p>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )

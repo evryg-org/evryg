@@ -5,6 +5,7 @@
 export interface Suggestion {
   url: string
   title: string
+  excerpt: string
 }
 
 export interface ExtractedKeywords {
