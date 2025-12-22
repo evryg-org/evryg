@@ -1,9 +1,10 @@
-import { Footer, Layout, Navbar } from 'nextra-theme-docs'
+import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-docs'
 import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 import 'katex/dist/katex.min.css'
 import { LocaleSwitch } from '../../components/LocaleSwitch'
+import { VerticalSeparator } from '../../design_system/VerticalSeparator'
 import { getSlugMappings } from '../../slug-mappings'
 
 const bannerTranslations = {
@@ -58,6 +59,8 @@ export default async function LangLayout({
       logoLink={false}
     >
       <LocaleSwitch i18n={i18n} slugMappings={slugMappings} />
+      <VerticalSeparator />
+      <ThemeSwitch />
     </Navbar>
   )
   const footer = (
