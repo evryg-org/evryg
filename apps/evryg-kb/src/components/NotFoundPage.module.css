@@ -33,6 +33,27 @@
   color: #e5e7eb;
 }
 
+.reportLink {
+  display: inline-block;
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+
+.reportLink:hover {
+  color: #374151;
+  text-decoration: underline;
+}
+
+:global(.dark) .reportLink {
+  color: #9ca3af;
+}
+
+:global(.dark) .reportLink:hover {
+  color: #d1d5db;
+}
+
 .suggestions {
   text-align: left;
   margin-top: 2.5rem;
