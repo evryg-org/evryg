@@ -10,6 +10,7 @@ export interface OGImageProps {
   readingTime: number | null
   isHomePage: boolean
   labels: Labels
+  lang: string
 }
 
 function getTitleStyle(title: string): { fontSize: number; lineHeight: number } {
@@ -27,6 +28,7 @@ export function OGImage({
   readingTime,
   isHomePage,
   labels,
+  lang,
 }: OGImageProps) {
   const titleStyle = getTitleStyle(title)
 
@@ -60,7 +62,7 @@ export function OGImage({
           isHomePage={isHomePage}
           labels={labels}
         />
-        <OGFooter />
+        <OGFooter lang={lang} />
       </div>
     </div>
   )

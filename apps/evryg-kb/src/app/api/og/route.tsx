@@ -51,6 +51,7 @@ export async function GET(request: NextRequest) {
       readingTime={ogData.readingTime}
       isHomePage={ogData.isHomePage}
       labels={ogData.labels}
+      lang={lang}
     />,
     {
       ...size,
