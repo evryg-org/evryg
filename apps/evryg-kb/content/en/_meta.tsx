@@ -8,8 +8,8 @@ export default {
     title: 'Advanced Software Engineering',
     type: 'page'
   },
-  'lean-et-flux': {
-    title: 'Lean & Flow',
+  'lean-and-value-stream': {
+    title: 'Lean & Value Stream',
     type: 'page'
   },
   evryg: {

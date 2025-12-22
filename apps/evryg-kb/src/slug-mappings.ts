@@ -41,50 +41,46 @@ function parseFrontmatter(content: string): Record<string, string> {
   return frontmatter
 }
 
+// Recursively scan a directory for index.mdx files with canonical-slug
+function scanDirectory(dir: string): void {
+  if (!fs.existsSync(dir)) return
+
+  const entries = fs.readdirSync(dir, { withFileTypes: true })
+  for (const entry of entries) {
+    if (entry.isDirectory()) {
+      const indexPath = path.join(dir, entry.name, 'index.mdx')
+      if (fs.existsSync(indexPath)) {
+        const content = fs.readFileSync(indexPath, 'utf-8')
+        const frontmatter = parseFrontmatter(content)
+        const canonicalSlug = frontmatter['canonical-slug']
+        if (canonicalSlug) {
+          const mapping = { fr: canonicalSlug, en: entry.name }
+          cache[entry.name] = mapping
+          cache[canonicalSlug] = mapping
+        }
+      }
+      // Recursively scan subdirectories
+      scanDirectory(path.join(dir, entry.name))
+    }
+  }
+}
+
+// Track if we've done a full scan
+let fullScanDone = false
+
 // Lazily find mapping for a single slug
 function findMappingForSlug(slug: string): SlugMapping | null {
   // Already cached?
   if (cache[slug]) return cache[slug]
 
-  const enDir = path.join(CONTENT_DIR, 'en')
-
-  // Check if slug is an EN folder name
-  const enPath = path.join(enDir, slug, 'index.mdx')
-  if (fs.existsSync(enPath)) {
-    const content = fs.readFileSync(enPath, 'utf-8')
-    const frontmatter = parseFrontmatter(content)
-    const canonicalSlug = frontmatter['canonical-slug']
-    if (canonicalSlug) {
-      const mapping = { fr: canonicalSlug, en: slug }
-      cache[slug] = mapping
-      cache[canonicalSlug] = mapping
-      return mapping
-    }
+  // If not in cache and we haven't scanned yet, do a full recursive scan
+  if (!fullScanDone) {
+    const enDir = path.join(CONTENT_DIR, 'en')
+    scanDirectory(enDir)
+    fullScanDone = true
   }
 
-  // Check if slug is a FR canonical-slug by scanning EN files
-  // Only scan top-level directories for performance
-  if (fs.existsSync(enDir)) {
-    const entries = fs.readdirSync(enDir, { withFileTypes: true })
-    for (const entry of entries) {
-      if (entry.isDirectory()) {
-        const indexPath = path.join(enDir, entry.name, 'index.mdx')
-        if (fs.existsSync(indexPath)) {
-          const content = fs.readFileSync(indexPath, 'utf-8')
-          const frontmatter = parseFrontmatter(content)
-          const canonicalSlug = frontmatter['canonical-slug']
-          if (canonicalSlug === slug) {
-            const mapping = { fr: slug, en: entry.name }
-            cache[slug] = mapping
-            cache[entry.name] = mapping
-            return mapping
-          }
-        }
-      }
-    }
-  }
-
-  return null
+  return cache[slug] ?? null
 }
 
 const locales = ['en', 'fr'] as const

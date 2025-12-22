@@ -8,8 +8,8 @@ export default {
     title: 'Ingénierie logicielle avancée',
     type: 'page'
   },
-  'lean-et-flux': {
-    title: 'Lean et Flux',
+  'lean-et-flux-de-valeur': {
+    title: 'Lean et Flux de valeur',
     type: 'page'
   },
   evryg: {
