@@ -13,10 +13,13 @@ export async function generateMetadata(props: {
   const path = params.mdxPath?.join('/') || ''
   const ogImageUrl = `/api/og?lang=${params.lang}&path=${encodeURIComponent(path)}`
 
+  const description = metadata?.description || ''
+
   return {
     ...metadata,
     openGraph: {
       ...metadata?.openGraph,
+      description,
       images: [
         {
           url: ogImageUrl,
@@ -28,6 +31,7 @@ export async function generateMetadata(props: {
     },
     twitter: {
       card: 'summary_large_image',
+      description,
       images: [ogImageUrl],
     },
   }

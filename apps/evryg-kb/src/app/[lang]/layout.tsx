@@ -23,10 +23,21 @@ const editLinkTranslations = {
   fr: "Modifier cette page"
 }
 
+function getMetadataBaseUrl(): string {
+  // Production: use configured URL
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL
+  }
+  // Vercel preview: use deployment URL
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`
+  }
+  // Fallback
+  return 'https://kb.evryg.com'
+}
+
 export const metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://kb.evryg.com'
-  ),
+  metadataBase: new URL(getMetadataBaseUrl()),
 }
 
 export default async function LangLayout({
