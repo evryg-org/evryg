@@ -1,0 +1,59 @@
+---
+pageType: article
+---
+
+# Détecter les erreurs au plus tôt : du Lean au Shift Left
+
+Le principe fondamental du Lean selon lequel un défaut coûte exponentiellement plus cher à mesure qu'il progresse dans la chaîne de valeur s'applique avec une acuité particulière au développement logiciel.
+
+Un bug détecté dans l'IDE, au moment même où le développeur écrit le code, se corrige en quelques secondes : le contexte est frais, la correction immédiate. Le même bug découvert en production, des semaines plus tard, exige une investigation, une reproduction, une compréhension du contexte perdu, un cycle de correction et de déploiement.
+
+Le lead time entre l'introduction du défaut et sa résolution s'allonge dramatiquement, et avec lui le coût humain et organisationnel. Raccourcir ce délai n'est pas une optimisation marginale ; c'est une transformation qualitative du processus.
+
+## Poka-yoke : le système de types comme garde-fou
+
+Le concept de *poka-yoke* (dispositif anti-erreur) trouve son expression la plus pure dans le système de types.
+
+Un type fort est un poka-yoke cognitif : il rend certaines erreurs physiquement impossibles à commettre :
+
+- Passer un `UserId` là où un `OrderId` est attendu ? Le compilateur refuse.
+- Oublier de gérer un cas dans un [pattern matching](/fr/ingenierie-logicielle-avancee/structures-de-types/les-types-de-donnees-algebriques-precision-et-expressivite) ? Erreur de compilation.
+
+Ces garde-fous ne détectent pas les erreurs après coup ; ils les empêchent de naître. Comme le gabarit qui ne permet d'insérer une pièce que dans la bonne orientation, le système de types contraint l'espace des programmes possibles à ceux qui [respectent certains invariants](/fr/ingenierie-logicielle-avancee/design-par-les-types/make-illegal-states-unrepresentable).
+
+L'erreur évitée est infiniment moins coûteuse que l'erreur détectée.
+
+## Jidoka : l'arrêt au défaut
+
+L'arrêt au défaut (*jidoka*, en japonais) se traduit par l'échec immédiat et bruyant plutôt que la propagation silencieuse.
+
+- Un test unitaire qui échoue localement stoppe le développeur dans son élan, l'obligeant à corriger avant de poursuivre
+- Un linter qui signale une violation dans l'IDE interrompt le flux d'écriture au moment précis où la correction est triviale
+- Le pipeline CI qui bloque sur un test rouge applique le même principe à l'échelle de l'équipe
+
+Cette interruption, apparemment coûteuse, évite l'accumulation de défauts qui se révéleraient bien plus tard dans un enchevêtrement difficile à démêler. On ne construit pas sur des fondations défectueuses, on s'arrête et on corrige.
+
+## Le mouvement Shift Left
+
+Le mouvement « shift left » formalise cette intuition en poussant systématiquement les activités de vérification vers l'amont du cycle de développement.
+
+Traditionnellement, les tests survenaient tard : après le développement, parfois après l'intégration. Shift left inverse cette chronologie :
+
+- Tests unitaires écrits avant ou pendant le code
+- Analyse statique dans l'IDE
+- Revues de code avant merge
+- Tests d'intégration en environnement local
+
+Chaque vérification déplacée vers la gauche du timeline réduit le feedback loop, accélère la détection, diminue le coût de correction. L'idéal asymptotique est la détection instantanée : l'erreur signalée au moment même où elle est tapée.
+
+## Implications architecturales
+
+Cette stratégie a des implications architecturales profondes :
+
+- Pour que les tests unitaires soient exécutables localement en quelques secondes, le code doit être découplé, ses dépendances injectables, ses effets isolés
+- Pour que l'analyse statique soit utile, les types doivent être expressifs et précis
+- Pour que le feedback soit immédiat, l'outillage doit être rapide et intégré au workflow quotidien
+
+Investir dans la détection précoce, c'est investir dans la [testabilité](/fr/ingenierie-logicielle-avancee/qualite-et-tests/pas-de-test-sans-testabilite-le-prerequis-oublie), la modularité, la qualité du typage : des propriétés qui améliorent le design bien au-delà de leur utilité pour les tests.
+
+Le Lean nous enseigne que la qualité n'est pas un coût mais un investissement ; en développement logiciel, cet investissement prend la forme d'un système de types rigoureux, de tests rapides, et d'un outillage qui refuse de laisser les défauts s'éloigner de leur source.

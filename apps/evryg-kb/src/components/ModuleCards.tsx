@@ -4,6 +4,7 @@ export type IconType = 'foundation' | 'types' | 'shield' | 'check' | 'interpret'
 
 export interface Module {
   id: string
+  slug: string
   title: string
   icon: IconType
   description: string
@@ -22,7 +23,7 @@ export function ModuleCards({ lang, basePath, modules }: ModuleCardsProps) {
     title: mod.title,
     icon: mod.icon,
     description: mod.description,
-    href: `/${lang}/${basePath}/${mod.articles[0]}`
+    href: `/${lang}/${basePath}/${mod.slug}/${mod.articles[0]}`
   }))
 
   return <Features items={items} />

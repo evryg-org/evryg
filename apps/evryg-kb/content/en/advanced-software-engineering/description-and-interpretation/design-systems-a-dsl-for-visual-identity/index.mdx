@@ -1,0 +1,57 @@
+---
+canonical-slug: design-systems-un-dsl-pour-lidentite-visuelle
+pageType: article
+---
+
+# Design Systems: A DSL for Visual Identity
+
+A design system, in its essence, is much more than a library of reusable components: it's a domain-specific language (DSL) for expressing a graphic identity.
+
+Like any DSL, a design system defines:
+
+- A constrained **vocabulary** (colors, typography, spacing, components)
+- A **grammar** of composition (how these elements combine)
+- **Semantic rules** (when and why to use a given element)
+
+The business domain here is not order management or accounting, but the set of rules that make an interface visually belong to a brand. These rules, often tacit in designers' minds, find in the design system an explicit and executable codification.
+
+## The Vocabulary: Design Tokens
+
+The DSL's vocabulary manifests in design tokens: named variables that capture the fundamental decisions of the identity.
+
+`color.primary.500`, `spacing.lg`, `font.heading.xl` are not mere values: they are terms of a shared lexicon between designers and developers.
+
+Like value objects in DDD, they encapsulate business meaning: `color.error` is not just red, it's the red that means error in this system. Using `#FF0000` directly in code would be like using a raw string instead of an `EmailAddress` type: technically functional, but semantically impoverished and fragile in the face of changes.
+
+## The Grammar: Composition Rules
+
+The DSL's grammar emerges from composition rules:
+
+- A primary button on a light background uses such combination of tokens; on a dark background, another
+- Spacing between elements follows a harmonic scale, not arbitrary values
+- Components nest according to established patterns: a `Card` contains a `CardHeader`, a `CardBody`, a `CardFooter`, in that order
+
+These constraints are not limitations but [affordances](https://en.wikipedia.org/wiki/Affordance): they guide toward coherent compositions while forbidding, or at least making difficult, combinations that would violate the graphic identity.
+
+The system makes invalid visual states hard to represent, see our article on [Make Illegal States Unrepresentable](/en/advanced-software-engineering/type-design/make-illegal-states-unrepresentable).
+
+## The Ubiquitous Language of Design
+
+The analogy with business DSLs extends to the notion of *ubiquitous language*.
+
+When designers and developers share the design system vocabulary, conversations become precise and unambiguous. "Use a secondary button with spacing-md" is an executable sentence, directly translatable to code, visually verifiable.
+
+Design reviews and code reviews converge toward the same reference. Inconsistencies (a developer improvising a color, a designer proposing off-grid spacing) become immediately visible as violations of the common language.
+
+The design system, like any good DSL, creates a communication space where ambiguity is reduced.
+
+## Governance and Evolution
+
+This perspective of considering a design system as a DSL has implications for system governance.
+
+Evolving a design system is evolving a language: adding terms, deprecating others, modifying grammatical rules. These changes must be managed with the same rigor as a public API: versioning, migration, documentation of breaking changes.
+
+- Tokens become contracts
+- Components become stable abstractions whose implementation can change without affecting consumers
+
+And as with any successful DSL, the value lies less in individual elements than in the systemic coherence they produce together; a coherence that, ultimately, constitutes the visual identity itself.

@@ -1,0 +1,58 @@
+---
+canonical-slug: description-et-interpretation-le-programme-comme-valeur
+pageType: article
+---
+
+# Description and Interpretation: Program as Value
+
+The distinction between describing a program and executing it constitutes a fundamental shift in perspective in functional programming.
+
+In the traditional imperative approach, writing code means giving immediate orders: `console.log("hello")` performs the display, `fs.readFile(path)` reads the file now. Code is a sequence of instructions that the runtime executes as it encounters them.
+
+The "program as value" approach inverts this relationship: we build a **description** of what the program should do, an inert data structure representing intentions, then we entrust this description to an **interpreter** that decides how and when to execute it.
+
+## The Program as First-Class Value
+
+This separation transforms programs into first-class values: we can store them in variables, pass them as arguments, return them from functions, combine them with other programs.
+
+An `Effect<A>` or `IO<A>` is not a result but the recipe for obtaining a result. We can manipulate this recipe before cooking it:
+
+- Transform it with `map`
+- Sequence it with `flatMap`
+- Combine it in parallel
+- Retry it on failure
+
+All without any effect occurring. Execution remains suspended, potential, until the explicit moment when we invoke the interpreter. The program becomes data like any other.
+
+## Advantages of Separation
+
+The advantages of this approach are multiple:
+
+- **[Testability](/en/advanced-software-engineering/quality-and-testing/no-test-without-testability-the-forgotten-prerequisite)**: we can inspect the description without executing it, or provide a test interpreter that simulates effects
+- **Composition**: two descriptions combine into a third description, without intermediate side effects
+- **Equational reasoning**: substituting an expression with its definition doesn't change behavior, since no effect occurs before final interpretation
+
+We recover referential transparency even in the presence of effectful operations, because effects are described rather than executed.
+
+## Reinterpretation
+
+This architecture also enables reinterpretation. The same description can be interpreted differently depending on context:
+
+- In production, we actually execute the effects
+- In testing, we simulate them
+- In dry-run, we log them without performing them
+
+Business DSLs leverage this property: we describe workflows, rules, transformations, then choose an appropriate interpreter.
+
+The *Free Monad* pattern takes this idea to its conclusion: we define an algebra of operations as a data type, build programs as trees of these operations, then provide an interpreter that gives meaning to each operation.
+
+## Boundary Between Pure and Impure
+
+This distinction also illuminates the boundary between pure and impure code:
+
+- The **functional core** of the program builds descriptions: this is pure, testable, composable code
+- The **periphery** of the program interprets these descriptions and produces real effects: this is the impure layer, reduced to a minimum
+
+Hexagonal architecture finds a natural resonance here: the domain manipulates descriptions of intentions, adapters interpret them in terms of concrete infrastructure.
+
+Program as value is not just a theoretical curiosity; it's an architectural pattern that moves effect complexity toward explicit and isolated control points.

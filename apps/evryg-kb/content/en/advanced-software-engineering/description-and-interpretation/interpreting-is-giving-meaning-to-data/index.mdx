@@ -1,0 +1,66 @@
+---
+canonical-slug: interpreter-cest-donner-du-sens-aux-donnees
+pageType: article
+---
+
+# Interpreting Is Giving Meaning to Data
+
+Raw data has no intrinsic meaning: it's merely a sequence of 1s and 0s, an inert structure, an arrangement of symbols. It's interpretation that confers meaning.
+
+The sequence `01000001` can be:
+
+- The letter 'A' in ASCII
+- The number 65 as an unsigned integer
+- A shade of red in a color channel
+- A machine instruction
+
+depending on the context in which it's read.
+
+The data itself doesn't say what it is; it's the interpreter, whether program, machine, or human mind, that projects a reading grid and extracts meaning. Without interpretation, there's only noise, raw data.
+
+## Formats and Protocols
+
+This observation illuminates the notion of format and protocol.
+
+A JSON file is just a string of characters; it's the JSON parser that gives it a tree structure. A network packet is just a sequence of bytes; it's the TCP/IP stack that extracts addresses, ports, and payloads.
+
+Each layer of interpretation transforms opaque data into meaningful data for the next layer. The same binary stream passing through different interpreters, such as a hex editor, an audio player, or a decompressor, will produce entirely different "realities."
+
+The interpreter is the creator of meaning.
+
+## Program as Value
+
+In functional programming, this idea takes a particularly explicit form with the [program as value](/en/advanced-software-engineering/description-and-interpretation/description-and-interpretation-program-as-value) pattern.
+
+An `Effect<A>` or `IO<A>` is data: an inert description of what a program could do. Without an interpreter, this description remains a dead letter, a data structure that can be manipulated, combined, transformed, but does nothing.
+
+The interpreter (`unsafeRunSync`, `runPromise`, or a test runtime) traverses this structure and brings it to life, translating the description into real effects.
+
+The same description submitted to different interpreters will produce different behaviors: real execution, simulation, logging, dry-run, etc.
+
+## DSLs as Description/Interpretation Duality
+
+DSLs embody this duality with elegance.
+
+A DSL produces data: an AST in [initial encoding](/en/advanced-software-engineering/description-and-interpretation/initial-and-final-encodings-two-embedding-philosophies), polymorphic functions in final encoding; all of this representing only intentions, without executing them.
+
+The interpreter is what transforms "add 10 to account X" into:
+
+- A real banking transaction
+- A log line
+- A test update
+
+The value of the DSL lies precisely in this separation: we can reason about descriptions, validate them, optimize them, before choosing how to give them meaning. Interpretation becomes an extension point where we decide what each language operation "means."
+
+## The Developer as Interpreter Designer
+
+This perspective has profound implications for software design.
+
+If interpreting is giving meaning, then designing a system is deciding what interpretations will be possible:
+
+- A well-designed type constrains valid interpretations; too broad a type allows false ones
+- A module boundary defines where interpretation changes, where domain data becomes infrastructure data, where business intentions become technical effects
+
+The developer, ultimately, is a designer of interpreters: they define how data (user inputs, events, commands, configurations, etc.) will be read, understood, and transformed into behavior by the software.
+
+The code they write is nothing other than the formalization of this reading grid.

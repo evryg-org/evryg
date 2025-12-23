@@ -1,0 +1,45 @@
+---
+pageType: article
+---
+
+# Propositions as types : l'unification de Wadler
+
+Philip Wadler, dans sa [conférence](https://www.youtube.com/watch?v=IOiZatlZtGU) et son [article](https://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf) « Propositions as Types », offre une méditation historique et philosophique sur [la correspondance de Curry-Howard](/fr/ingenierie-logicielle-avancee/types-et-logique/la-correspondance-de-curry-howard-lien-entre-programmes-et-preuves).
+
+## Une correspondance découverte, non inventée
+
+Le propos de Wadler dépasse la simple exposition technique : il s'émerveille devant le fait que cette correspondance n'a pas été inventée mais découverte. Des logiciens, puis des décennies plus tard des informaticiens, travaillant indépendamment sur des problèmes distincts, ont convergé vers des structures identiques.
+
+Dans les années 1930, le mathématicien et logicien [Gerhard Gentzen](https://en.wikipedia.org/wiki/Gerhard_Gentzen) développait la déduction naturelle pour formaliser le raisonnement mathématique ; pendant la même période, [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church) inventait le lambda-calcul pour explorer les fondements des mathématiques. Ces deux formalismes se sont révélés être les deux faces d'une même pièce, suggérant une vérité profonde sur la nature du calcul et de la logique.
+
+## Le caractère naturel de la correspondance
+
+Wadler insiste sur le caractère naturel de cette correspondance, par opposition aux constructions artificielles. Les langages de programmation inventés (COBOL, BASIC, même des aspects de C++) portent les marques de leurs créateurs, leurs idiosyncrasies, leurs compromis historiques.
+
+Le lambda-calcul typé, lui, semble exister indépendamment de ses découvreurs, comme les nombres premiers ou le théorème de Pythagore. Chaque fois qu'on tente de formaliser rigoureusement la notion de calcul ou de preuve, on retombe sur les mêmes structures. Cette universalité suggère que la correspondance n'est pas un accident heureux mais une propriété fondamentale de ce que signifie raisonner et calculer.
+
+## Les fils historiques
+
+L'article retrace les fils historiques qui ont mené à cette unification.
+
+La logique intuitionniste de [Brouwer](https://en.wikipedia.org/wiki/L._E._J._Brouwer), qui rejette le [tiers exclu](https://fr.wikipedia.org/wiki/Tiers_exclu) (le principe selon lequel toute proposition est soit vraie, soit fausse, sans troisième option) et exige des preuves constructives, trouve son expression parfaite dans les programmes : on ne peut pas prouver l'existence d'un objet sans proposer une méthode pour le construire.
+
+Les travaux de Curry sur la logique combinatoire, ceux de Howard sur la correspondance avec la déduction naturelle, puis l'extension de [Martin-Löf](https://en.wikipedia.org/wiki/Per_Martin-L%C3%B6f) aux [types dépendants](/fr/ingenierie-logicielle-avancee/types-et-logique/refinement-types-et-dependent-types-vers-des-types-qui-prouvent) forment une lignée cohérente. Chaque génération a approfondi la même intuition : les preuves sont des programmes, les propositions sont des types, et cette identité n'est pas métaphorique.
+
+## Extensions au-delà de la logique propositionnelle
+
+Wadler explore également les extensions de cette correspondance au-delà de la logique propositionnelle simple :
+
+- La logique classique, avec son tiers exclu, correspond au contrôle de flot non local : les exceptions (`try`/`catch`/`throw`) incarnent le raisonnement par l'absurde.
+- La logique linéaire de Girard, où chaque hypothèse doit être utilisée exactement une fois, correspond aux systèmes de types qui traquent la consommation de ressources : le système d'ownership de Rust en est l'exemple le plus connu. Rust utilise en réalité des *types affines* (chaque valeur utilisée *au plus* une fois : 0 ou 1) plutôt que linéaires stricts (exactement une fois : 1), mais la filiation est directe.
+- Les monades de [Moggi](https://en.wikipedia.org/wiki/Eugenio_Moggi) capturent les effets computationnels (I/O, état, exceptions) tout en préservant la pureté logique. C'est le fondement théorique de la monade `IO` en Haskell, popularisé par Wadler lui-même, ou des monades `State` ou `Either` respectivement.
+
+Chaque avancée en logique trouve son reflet en théorie des types, et vice versa : les deux disciplines progressent main dans la main.
+
+## La portée philosophique
+
+La portée philosophique de « Propositions as Types » transcende l'informatique.
+
+Si le calcul et la déduction sont fondamentalement identiques, alors **programmer c'est raisonner, et raisonner c'est programmer** et ce peu importe le langage de programmation. Les assistants de preuve modernes exploitent cette identité : prouver un théorème mathématique, c'est écrire un programme dans un langage à types dépendants. Inversement, écrire un programme bien typé, c'est démontrer un théorème sur son comportement.
+
+Wadler nous laisse avec une question ouverte : pourquoi cette correspondance existe-t-elle ? Est-ce un fait contingent de notre univers, ou une nécessité logique ? Cette question, à la frontière des mathématiques et de la métaphysique, reste sans réponse définitive ; pour autant, sa formulation même témoigne de la profondeur de l'isomorphisme de Curry-Howard.

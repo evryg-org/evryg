@@ -1,0 +1,61 @@
+---
+canonical-slug: pas-de-test-sans-testabilite-le-prerequis-oublie
+pageType: article
+---
+
+# No Test Without Testability: The Forgotten Prerequisite
+
+An all-too-often ignored truth runs through discussions about testing practices: you cannot test what hasn't been designed to be tested.
+
+Testability is not an accidental property that emerges spontaneously from code: it's a deliberate architectural quality, the fruit of specific design decisions. Code coupled to a database, entangled in singletons, dependent on the system clock or network, resists testing not by bad luck but by construction.
+
+Lamenting the absence of tests on an untestable codebase is like demanding running water in a house without plumbing.
+
+## Mastering Dependencies
+
+Testability first requires mastering dependencies.
+
+A [pure function](/en/advanced-software-engineering/type-structures/total-and-partial-functions-the-type-promise), which depends only on its arguments and produces only its return value, is trivially testable: you provide inputs, you verify outputs.
+
+As soon as implicit dependencies appear (global state, network calls, file system, clock), testability erodes. To restore it, these dependencies must be made explicit and injectable:
+
+- Pass the clock as a parameter
+- Abstract data access behind an interface
+- Isolate side effects at the periphery
+
+These transformations are not contortions to satisfy tests; they intrinsically improve code modularity.
+
+## Hexagonal Architecture
+
+Hexagonal architecture perfectly illustrates this symbiosis between testability and good design.
+
+By placing the domain at the center, protected from infrastructure details by abstract ports, we naturally create injection points where test adapters can substitute for real adapters.
+
+The domain becomes testable in isolation, without database, without web framework, without message queue. Tests no longer verify an opaque monolithic system but components with clear boundaries.
+
+Testability is not a cosmetic addition: it reflects successful separation of concerns.
+
+## TDD: Inverting Causality
+
+[TDD](/en/advanced-software-engineering/quality-and-testing/tdd-a-design-discipline-not-a-testing-one) inverts the usual causality: rather than designing then wondering how to test, we start from the test and let testability guide the design.
+
+This inversion explains why code produced by TDD tends to be better decoupled. Each test written before implementation imposes its constraints:
+
+- If I can't easily instantiate the object under test (SUT - System Under Test), I must simplify its dependencies
+- If I can't verify its behavior, I must make its effects observable
+
+The difficulty of testing is no longer a problem to solve after the fact but immediate feedback that influences, even dictates, design choices in real time.
+
+## Testability as Investment
+
+Recognizing that testability is a prerequisite transforms the conversation around tests.
+
+The absence of tests is generally not a lack of discipline or time: it's often the symptom of architectural debt that makes tests prohibitively expensive.
+
+Investing in testability means investing in:
+
+- Modularity
+- Making dependencies explicit
+- Separating pure and impure effects
+
+Tests then become not an additional burden but a natural consequence of sound design. Conversely, truly well-designed code invites testing: entry points are obvious, behaviors are observable, [edge cases are accessible](/en/advanced-software-engineering/quality-and-testing/property-based-testing-power-and-limits).

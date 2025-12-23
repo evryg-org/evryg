@@ -1,0 +1,60 @@
+---
+canonical-slug: kanban-du-signal-de-production-a-la-todo-list-devoyee
+pageType: article
+---
+
+# Kanban: From Production Signal to Corrupted Todo List
+
+*Kanban*, born at Toyota in the 1950s under the impetus of Taiichi Ohno, was not a visualization tool but a signal: literally a card or label that authorized production.
+
+## The Essence of Pull Flow
+
+In the Toyota Production System, a downstream station that consumes a part sends the *kanban* back to the upstream station, signaling "I need one more unit." Without this signal, no production starts.
+
+This is the essence of pull flow: the real customer demand, propagated step by step, triggers production, as opposed to push flow where one produces according to forecasts then attempts to move the inventory.
+
+The *kanban* materializes this fundamental inversion of the production trigger.
+
+## Pull Flow vs One-Piece Flow
+
+Pull flow is distinct from *one-piece flow*, although the two concepts are complementary:
+
+- *One-piece flow* refers to processing parts one by one, without batches, reducing work in progress (inventory) and accelerating throughput time
+- Pull flow concerns the triggering of this work: who gives the signal to start
+
+You can have a pull flow with batches (container *kanban*), or a *one-piece flow* triggered by push flow (which quickly creates bottlenecks).
+
+The Toyota ideal combines both: single parts whose production is pulled by downstream consumption. The *kanban* is the synchronization mechanism that makes this combination viable at scale.
+
+## Making Problems Visible
+
+An often neglected virtue of physical *kanban* is its ability to make problems visible:
+
+- When cards accumulate at a station, the bottleneck becomes literally tangible: you see the *kanbans* piling up
+- When a station lacks cards, the supply disruption is immediately apparent
+
+This visualization is not decorative; it triggers action. The [*jidoka*](/en/lean-and-value-stream/lean-foundations/detect-errors-early-from-lean-to-shift-left) principle (stop at defect) relies on this visibility: a hidden problem is a problem that worsens.
+
+The *kanban* board, in its authentic form, is a distributed alert system where every anomaly manifests as a visible disturbance in the card flow.
+
+## The Transposition to IT
+
+The transposition of *kanban* to IT, popularized by David Anderson in the mid-2000s, retained the visualization but often lost the signal.
+
+A board with columns "To Do", "In Progress", "Done" superficially resembles a *kanban*, but without strictly respected work-in-progress limits, without a signal pulled from downstream, it's simply a spatialized todo list.
+
+We push tasks into the "To Do" column according to backlog priorities, we push them toward "In Progress" when a developer becomes available. The flow remains pushed; the visualization is there, but the regulation mechanism has disappeared.
+
+## True Kanban in IT
+
+True *kanban* in IT would require that a new task only enters the system when a slot opens up: when a task exits "In Progress", a signal goes back to pull the next one.
+
+WIP (*work in progress*) limits embody this constraint: if the "In Progress" column is full, nobody adds a task to it, forcing either help with unblocking, or waiting.
+
+This deliberate friction:
+
+- Reveals bottlenecks
+- Exposes dependencies
+- Makes overload impossible to ignore
+
+Without these respected limits, without this pulled signal, "kanban" is nothing but a glorified Post-it board: useful for seeing where things stand, but devoid of the regulatory power that was the strength of the original system.
