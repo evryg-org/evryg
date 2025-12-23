@@ -14,12 +14,18 @@ export async function generateMetadata(props: {
   const ogImageUrl = `/api/og?lang=${params.lang}&path=${encodeURIComponent(path)}`
 
   const description = metadata?.description || ''
+  const publishedTime = metadata?.timestamp
+    ? new Date(metadata.timestamp).toISOString()
+    : undefined
 
   return {
     ...metadata,
     openGraph: {
       ...metadata?.openGraph,
+      type: 'article',
       description,
+      authors: ['evryg'],
+      publishedTime,
       images: [
         {
           url: ogImageUrl,
