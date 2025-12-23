@@ -12,11 +12,11 @@ export interface OGImageProps {
 
 function getTitleStyle(title: string): { fontSize: number; lineHeight: number } {
   const length = title.length
-  if (length <= 30) return { fontSize: 64, lineHeight: 1.1 }
-  if (length <= 50) return { fontSize: 56, lineHeight: 1.15 }
-  if (length <= 80) return { fontSize: 48, lineHeight: 1.2 }
-  if (length <= 120) return { fontSize: 40, lineHeight: 1.25 }
-  return { fontSize: 34, lineHeight: 1.3 }
+  if (length <= 30) return { fontSize: 72, lineHeight: 1.1 }
+  if (length <= 50) return { fontSize: 64, lineHeight: 1.15 }
+  if (length <= 80) return { fontSize: 56, lineHeight: 1.2 }
+  if (length <= 120) return { fontSize: 48, lineHeight: 1.25 }
+  return { fontSize: 40, lineHeight: 1.3 }
 }
 
 export function OGImage({ data, lang }: OGImageProps) {

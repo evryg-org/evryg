@@ -32,7 +32,7 @@ export function OGHeader({ knowledgeBaseLabel }: OGHeaderProps) {
         {/* Knowledge Base label */}
         <div
           style={{
-            fontSize: 24,
+            fontSize: 28,
             fontWeight: 600,
             color: 'rgba(255, 255, 255, 0.9)',
             letterSpacing: '0.01em',

@@ -21,7 +21,7 @@ export function OGArticleContent({
       {/* Article prefix + Category */}
       <div
         style={{
-          fontSize: 22,
+          fontSize: 26,
           fontWeight: 400,
           color: 'rgba(255, 255, 255, 0.75)',
           marginBottom: 16,
@@ -61,7 +61,7 @@ export function OGArticleContent({
         <div
           style={{
             display: 'flex',
-            fontSize: 20,
+            fontSize: 24,
             fontWeight: 400,
             color: 'rgba(255, 255, 255, 0.7)',
             marginTop: 16,

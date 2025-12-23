@@ -5,10 +5,12 @@ interface OGFooterProps {
 const FOOTER_TEXT = {
   en: {
     tagline: 'evryg · Paris · Senior Consulting on Lean Software Delivery',
+    offerings: 'Training · Audit · Staff Augmentation',
     services: 'AI · Cloud · DevOps · Backend · Frontend · Change Management · Organisation Consulting',
   },
   fr: {
     tagline: 'evryg · Paris · Conseil Senior en Lean Software Delivery',
+    offerings: 'Formation · Audit · Régie',
     services: 'IA · Cloud · DevOps · Backend · Frontend · Conduite du Changement · Conseil en organisation',
   },
 }
@@ -29,7 +31,7 @@ export function OGFooter({ lang }: OGFooterProps) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         <div
           style={{
-            fontSize: 20,
+            fontSize: 24,
             fontWeight: 400,
             color: 'rgba(255, 255, 255, 0.9)',
             letterSpacing: '0.01em',
@@ -39,7 +41,41 @@ export function OGFooter({ lang }: OGFooterProps) {
         </div>
         <div
           style={{
-            fontSize: 16,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
+            marginTop: 4,
+          }}
+        >
+          <div
+            style={{
+              width: 3,
+              height: 18,
+              backgroundColor: 'white',
+            }}
+          />
+          <div
+            style={{
+              fontSize: 20,
+              fontWeight: 600,
+              color: 'white',
+              letterSpacing: '0.03em',
+              textTransform: 'uppercase',
+            }}
+          >
+            {text.offerings}
+          </div>
+          <div
+            style={{
+              width: 3,
+              height: 18,
+              backgroundColor: 'white',
+            }}
+          />
+        </div>
+        <div
+          style={{
+            fontSize: 18,
             fontWeight: 400,
             color: 'rgba(255, 255, 255, 0.6)',
             letterSpacing: '0.02em',
@@ -51,7 +87,7 @@ export function OGFooter({ lang }: OGFooterProps) {
 
       <div
         style={{
-          fontSize: 18,
+          fontSize: 22,
           fontWeight: 400,
           color: 'rgba(255, 255, 255, 0.7)',
         }}
