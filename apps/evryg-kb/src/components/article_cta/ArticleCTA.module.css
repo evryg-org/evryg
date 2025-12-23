@@ -1,0 +1,85 @@
+.container {
+  margin: 4rem 0 2rem;
+  padding: 2.5rem;
+  background-color: #32b26e;
+  text-align: center;
+}
+
+.headline {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 1rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937 !important;
+  background-color: white;
+  text-decoration: none !important;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.primaryCta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.discordCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white !important;
+  background-color: transparent;
+  border: 2px solid white;
+  text-decoration: none !important;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.discordCta:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.arrow {
+  font-size: 1.2rem;
+}
+
+.secondaryCta {
+  margin: 1.5rem 0 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.secondaryCta a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.secondaryCta a:hover {
+  text-decoration: underline;
+}
