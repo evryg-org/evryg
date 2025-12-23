@@ -1,3 +1,7 @@
+---
+pageType: article
+---
+
 # Make illegal states unrepresentable
 
 Cette phrase, popularisée par [Yaron Minsky](https://blog.janestreet.com/effective-ml-revisited/) dans le contexte d'OCaml capture l'essence même d'une approche défensive de la modélisation : plutôt que de vérifier a posteriori qu'un état est valide, on structure les types de telle sorte que les états invalides ne puissent tout simplement pas être construits. C'est un renversement de perspective fondamental : on passe d'une validation runtime à une garantie compile-time, déplaçant ainsi la détection des erreurs le plus tôt possible dans le cycle de développement.
