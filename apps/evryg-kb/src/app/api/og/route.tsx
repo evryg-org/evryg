@@ -45,14 +45,7 @@ export async function GET(request: NextRequest) {
   ])
 
   return new ImageResponse(
-    <OGImage
-      title={ogData.title}
-      category={ogData.category}
-      readingTime={ogData.readingTime}
-      isHomePage={ogData.isHomePage}
-      labels={ogData.labels}
-      lang={lang}
-    />,
+    <OGImage data={ogData} lang={lang} />,
     {
       ...size,
       fonts: [

@@ -44,31 +44,23 @@ export async function generateOGImageData(
   const labels = LABELS[lang as keyof typeof LABELS] || LABELS.en
 
   const mdxPath = path ? path.split('/').filter(Boolean) : []
-  const isHomePage = mdxPath.length === 0
 
-  let title: string
-  let category: string | null = null
-  let readingTime: number | null = null
-
-  if (isHomePage) {
-    title = HOME_TITLES[lang] || HOME_TITLES.en
-  } else {
-    const metadata = await ports.pageMetadata.getPageMetadata(mdxPath, lang)
-    title = metadata?.title || 'evryg'
-
-    if (metadata?.sourceCode) {
-      readingTime = calculateReadingTime(metadata.sourceCode)
+  if (mdxPath.length === 0) {
+    return {
+      pageType: 'home' as const,
+      title: HOME_TITLES[lang] || HOME_TITLES.en,
+      labels,
     }
-
-    const categorySlug = mdxPath[0]
-    category = ports.categoryTitles.getCategoryTitle(categorySlug, lang)
   }
 
+  const metadata = await ports.pageMetadata.getPageMetadata(mdxPath, lang)
+  const categorySlug = mdxPath[0]
+
   return {
-    title,
-    category,
-    readingTime,
-    isHomePage,
+    pageType: 'article' as const,
+    title: metadata?.title || 'evryg',
+    category: ports.categoryTitles.getCategoryTitle(categorySlug, lang),
+    readingTime: metadata?.sourceCode ? calculateReadingTime(metadata.sourceCode) : null,
     labels,
   }
 }

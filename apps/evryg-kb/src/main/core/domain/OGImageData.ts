@@ -14,13 +14,21 @@ export interface Labels {
   minRead: (min: number) => string
 }
 
-export interface OGImageData {
+interface HomePageData {
+  pageType: 'home'
+  title: string
+  labels: Labels
+}
+
+interface ArticlePageData {
+  pageType: 'article'
   title: string
   category: string | null
   readingTime: number | null
-  isHomePage: boolean
   labels: Labels
 }
+
+export type OGImageData = HomePageData | ArticlePageData
 
 export function calculateReadingTime(content: string): number {
   const text = content

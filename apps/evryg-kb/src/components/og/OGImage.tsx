@@ -1,15 +1,12 @@
 import { colors } from '../../design_system/theme'
-import type { Labels } from '../../main/core/domain/OGImageData'
-import { OGHeader } from './OGHeader'
-import { OGContent } from './OGContent'
+import type { OGImageData } from '../../main/core/domain/OGImageData'
+import { OGArticleContent } from './content/OGArticleContent'
+import { OGHomeContent } from './content/OGHomeContent'
 import { OGFooter } from './OGFooter'
+import { OGHeader } from './OGHeader'
 
 export interface OGImageProps {
-  title: string
-  category: string | null
-  readingTime: number | null
-  isHomePage: boolean
-  labels: Labels
+  data: OGImageData
   lang: string
 }
 
@@ -22,15 +19,8 @@ function getTitleStyle(title: string): { fontSize: number; lineHeight: number } 
   return { fontSize: 34, lineHeight: 1.3 }
 }
 
-export function OGImage({
-  title,
-  category,
-  readingTime,
-  isHomePage,
-  labels,
-  lang,
-}: OGImageProps) {
-  const titleStyle = getTitleStyle(title)
+export function OGImage({ data, lang }: OGImageProps) {
+  const titleStyle = getTitleStyle(data.title)
 
   return (
     <div
@@ -43,7 +33,7 @@ export function OGImage({
         backgroundColor: colors.accent,
       }}
     >
-      <OGHeader knowledgeBaseLabel={labels.knowledgeBase} />
+      <OGHeader knowledgeBaseLabel={data.labels.knowledgeBase} />
 
       <div
         style={{
@@ -54,14 +44,17 @@ export function OGImage({
           justifyContent: 'space-between',
         }}
       >
-        <OGContent
-          title={title}
-          titleStyle={titleStyle}
-          category={category}
-          readingTime={readingTime}
-          isHomePage={isHomePage}
-          labels={labels}
-        />
+        {data.pageType === 'home' ? (
+          <OGHomeContent title={data.title} titleStyle={titleStyle} />
+        ) : (
+          <OGArticleContent
+            title={data.title}
+            titleStyle={titleStyle}
+            category={data.category}
+            readingTime={data.readingTime}
+            labels={data.labels}
+          />
+        )}
         <OGFooter lang={lang} />
       </div>
     </div>
