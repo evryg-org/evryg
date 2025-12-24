@@ -10,7 +10,7 @@ export const modules: Module[] = [
     indexTitle: 'Introduction',
     icon: 'foundation',
     description: 'Principes fondamentaux du Lean appliques au logiciel : detection precoce des erreurs et gestion du flux.',
-    articles: [
+    items: [
       { slug: 'detecter-les-erreurs-au-plus-tot-du-lean-au-shift-left', title: 'Shift Left' },
       { slug: 'kanban-du-signal-de-production-a-la-todo-list-devoyee', title: 'Kanban' }
     ]
@@ -22,7 +22,7 @@ export const modules: Module[] = [
     indexTitle: 'Introduction',
     icon: 'flow',
     description: 'Pratiques de deploiement continu et patterns de collaboration pour un flux de livraison fluide.',
-    articles: [
+    items: [
       { slug: 'f-git-production-lequation-du-deploiement-continu', title: 'f(git) = production' },
       { slug: 'pull-requests-une-barriere-nee-de-la-mefiance', title: 'Pull Requests' }
     ]

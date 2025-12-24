@@ -1,10 +1,10 @@
-import type { ModulesRegistry } from './libs/nextra-contrib/lookupTitleFromModules'
+import type { ContentRegistry } from './libs/nextra-contrib/createTitleLookup'
 
 /**
  * Registry mapping language and category slugs to their _meta.ts loaders.
  * This is the content-specific configuration for title lookups.
  */
-export const modulesRegistry: ModulesRegistry = {
+export const contentRegistry: ContentRegistry = {
   en: {
     'advanced-software-engineering': () =>
       import('../content/en/advanced-software-engineering/_meta'),

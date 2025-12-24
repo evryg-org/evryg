@@ -10,7 +10,7 @@ export const modules: Module[] = [
     indexTitle: 'Introduction',
     icon: 'foundation',
     description: 'Fundamental Lean principles applied to software: early error detection and flow management.',
-    articles: [
+    items: [
       { slug: 'detect-errors-early-from-lean-to-shift-left', title: 'Shift Left' },
       { slug: 'kanban-from-production-signal-to-corrupted-todo-list', title: 'Kanban' }
     ]
@@ -22,7 +22,7 @@ export const modules: Module[] = [
     indexTitle: 'Introduction',
     icon: 'flow',
     description: 'Continuous deployment practices and collaboration patterns for a smooth delivery flow.',
-    articles: [
+    items: [
       { slug: 'f-git-production-the-continuous-deployment-equation', title: 'f(git) = production' },
       { slug: 'pull-requests-a-barrier-born-from-distrust', title: 'Pull Requests' }
     ]

@@ -5,17 +5,17 @@
 import { importPage } from 'nextra/pages'
 import type { PageMetadataPort } from '../core/ports/PageMetadataPort'
 import type { PageMetadata } from '../core/domain/OGImageData'
-import { createTitleLookup } from '../../libs/nextra-contrib/lookupTitleFromModules'
-import { modulesRegistry } from '../../content-registry'
+import { createTitleLookup } from '../../libs/nextra-contrib/createTitleLookup'
+import { contentRegistry } from '../../content-registry'
 
-const lookupTitleFromModules = createTitleLookup(modulesRegistry)
+const lookupTitle = createTitleLookup(contentRegistry)
 
 export function createNextraPageMetadataAdapter(): PageMetadataPort {
   return {
     async getPageMetadata(mdxPath: string[], lang: string): Promise<PageMetadata | null> {
       try {
         const result = await importPage(mdxPath, lang)
-        const title = await lookupTitleFromModules(mdxPath, lang)
+        const title = await lookupTitle(mdxPath, lang)
         return {
           title: title || 'evryg',
           sourceCode: result.sourceCode,
