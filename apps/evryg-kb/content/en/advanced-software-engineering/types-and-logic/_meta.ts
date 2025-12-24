@@ -1,6 +1,4 @@
-export default {
-  index: 'Introduction',
-  'curry-howard-correspondence-linking-programs-and-proofs': 'Curry-Howard',
-  'propositions-as-types-wadlers-unification': 'Propositions as Types',
-  'refinement-and-dependent-types-towards-types-that-prove': 'Refinement and Dependent Types'
-}
+import { buildModuleMeta } from '../../../../src/libs/nextra-contrib/buildModuleMeta'
+import { articleTitles, modules } from '../modules'
+
+export default buildModuleMeta(modules, articleTitles, 'types-and-logic')

@@ -6,6 +6,7 @@ export interface Module {
   id: string
   slug: string
   title: string
+  indexTitle: string
   icon: IconType
   description: string
   articles: string[]

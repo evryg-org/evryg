@@ -6,6 +6,7 @@ export const modules: Module[] = [
     id: 'fondations-lean',
     slug: 'fondations-lean',
     title: '1. Fondations Lean',
+    indexTitle: 'Introduction',
     icon: 'foundation',
     description: 'Principes fondamentaux du Lean appliques au logiciel : detection precoce des erreurs et gestion du flux.',
     articles: [
@@ -17,6 +18,7 @@ export const modules: Module[] = [
     id: 'livraison-continue',
     slug: 'livraison-continue',
     title: '2. Livraison Continue',
+    indexTitle: 'Introduction',
     icon: 'flow',
     description: 'Pratiques de deploiement continu et patterns de collaboration pour un flux de livraison fluide.',
     articles: [

@@ -1,5 +1,4 @@
-export default {
-  index: 'Introduction',
-  'f-git-production-the-continuous-deployment-equation': 'f(git) = production',
-  'pull-requests-a-barrier-born-from-distrust': 'Pull Requests'
-}
+import { buildModuleMeta } from '../../../../src/libs/nextra-contrib/buildModuleMeta'
+import { articleTitles, modules } from '../modules'
+
+export default buildModuleMeta(modules, articleTitles, 'continuous-delivery')

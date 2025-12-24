@@ -1,6 +1,4 @@
-export default {
-  index: 'Introduction',
-  'type-algebra-products-and-sums': 'Type Algebra',
-  'algebraic-data-types-precision-and-expressiveness': 'Algebraic Data Types',
-  'total-and-partial-functions-the-type-promise': 'Total and Partial Functions'
-}
+import { buildModuleMeta } from '../../../../src/libs/nextra-contrib/buildModuleMeta'
+import { articleTitles, modules } from '../modules'
+
+export default buildModuleMeta(modules, articleTitles, 'type-structures')

@@ -1,6 +1,4 @@
-export default {
-  index: 'Introduction',
-  'algebre-des-types-produits-et-sommes': "L'algebre des types",
-  'les-types-de-donnees-algebriques-precision-et-expressivite': 'Les types algebriques',
-  'fonctions-totales-et-partielles-la-promesse-du-type': 'Fonctions totales et partielles'
-}
+import { buildModuleMeta } from '../../../../src/libs/nextra-contrib/buildModuleMeta'
+import { articleTitles, modules } from '../modules'
+
+export default buildModuleMeta(modules, articleTitles, 'structures-de-types')

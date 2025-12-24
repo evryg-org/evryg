@@ -6,6 +6,7 @@ export const modules: Module[] = [
     id: 'foundations',
     slug: 'foundations',
     title: '1. Foundations',
+    indexTitle: 'Introduction',
     icon: 'foundation',
     description: 'Monoids, DAGs and code/data duality: the universal structures underlying programming.',
     articles: [
@@ -18,6 +19,7 @@ export const modules: Module[] = [
     id: 'type-basics',
     slug: 'type-structures',
     title: '2. Type Structures',
+    indexTitle: 'Introduction',
     icon: 'types',
     description: 'Type algebra, ADTs and total functions: the foundations of an expressive type system.',
     articles: [
@@ -30,6 +32,7 @@ export const modules: Module[] = [
     id: 'type-design',
     slug: 'type-design',
     title: '3. Design by Types',
+    indexTitle: 'Introduction',
     icon: 'shield',
     description: "Make Illegal States Unrepresentable, Parse Don't Validate: using types as guardrails.",
     articles: [
@@ -43,6 +46,7 @@ export const modules: Module[] = [
     id: 'quality',
     slug: 'quality-and-testing',
     title: '4. Quality & Testing',
+    indexTitle: 'Introduction',
     icon: 'check',
     description: 'Testability, TDD and Property-Based Testing: building confidence in code.',
     articles: [
@@ -56,6 +60,7 @@ export const modules: Module[] = [
     id: 'interpretation',
     slug: 'description-and-interpretation',
     title: '5. Description & Interpretation',
+    indexTitle: 'Introduction',
     icon: 'interpret',
     description: 'Program as value, DSLs and encodings: separating description from execution.',
     articles: [
@@ -69,6 +74,7 @@ export const modules: Module[] = [
     id: 'types-logic',
     slug: 'types-and-logic',
     title: '6. Types & Logic',
+    indexTitle: 'Introduction',
     icon: 'logic',
     description: 'Curry-Howard, Propositions as Types, Refinement Types: when types become proofs.',
     articles: [
@@ -81,6 +87,7 @@ export const modules: Module[] = [
     id: 'advanced-patterns',
     slug: 'advanced-patterns',
     title: '7. Advanced Patterns',
+    indexTitle: 'Introduction',
     icon: 'pattern',
     description: 'Currying, implicit injection, interfaces and architectural decisions: advanced patterns.',
     articles: [

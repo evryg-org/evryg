@@ -1,5 +1,4 @@
-export default {
-  index: 'Introduction',
-  'detect-errors-early-from-lean-to-shift-left': 'Shift Left',
-  'kanban-from-production-signal-to-corrupted-todo-list': 'Kanban'
-}
+import { buildModuleMeta } from '../../../../src/libs/nextra-contrib/buildModuleMeta'
+import { articleTitles, modules } from '../modules'
+
+export default buildModuleMeta(modules, articleTitles, 'lean-foundations')

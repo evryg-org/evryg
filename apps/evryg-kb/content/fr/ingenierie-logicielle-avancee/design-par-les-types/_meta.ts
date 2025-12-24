@@ -1,7 +1,4 @@
-export default {
-  index: 'Introduction',
-  'make-illegal-states-unrepresentable': 'Make Illegal States Unrepresentable',
-  'parse-dont-validate': "Parse, Don't Validate",
-  'machines-a-etat-et-aggregats-en-ddd': 'Machines a etat et DDD',
-  'isomorphismes-aux-frontieres-traduction-sans-perte-d-information': 'Isomorphismes aux frontieres'
-}
+import { buildModuleMeta } from '../../../../src/libs/nextra-contrib/buildModuleMeta'
+import { articleTitles, modules } from '../modules'
+
+export default buildModuleMeta(modules, articleTitles, 'design-par-les-types')

@@ -1,6 +1,4 @@
-export default {
-  index: 'Introduction',
-  'monoids-a-ubiquitous-abstraction': 'Monoids',
-  'dags-a-ubiquitous-structure-in-programming': 'DAGs',
-  'code-and-data-a-fundamental-duality': 'Code and Data'
-}
+import { buildModuleMeta } from '../../../../src/libs/nextra-contrib/buildModuleMeta'
+import { articleTitles, modules } from '../modules'
+
+export default buildModuleMeta(modules, articleTitles, 'foundations')
