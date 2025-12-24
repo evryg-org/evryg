@@ -1,5 +1,6 @@
-// Module definitions - single source of truth for both _meta.tsx and ModuleCards
+// Module definitions - single source of truth for both Nextra navigation and ModuleCards
 import type { Module } from '../../../src/components/ModuleCards'
+import { buildCategoryMeta } from '../../../src/libs/nextra-contrib/buildCategoryMeta'
 
 export const modules: Module[] = [
   {
@@ -35,3 +36,5 @@ export const articleTitles: Record<string, string> = {
   'f-git-production-lequation-du-deploiement-continu': 'f(git) = production',
   'pull-requests-une-barriere-nee-de-la-mefiance': 'Pull Requests'
 }
+
+export default buildCategoryMeta(modules)

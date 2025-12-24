@@ -1,5 +1,6 @@
-// Module definitions - single source of truth for both _meta.tsx and ModuleCards
+// Module definitions - single source of truth for both Nextra navigation and ModuleCards
 import type { Module } from '../../../src/components/ModuleCards'
+import { buildCategoryMeta } from '../../../src/libs/nextra-contrib/buildCategoryMeta'
 
 export const modules: Module[] = [
   {
@@ -125,3 +126,5 @@ export const articleTitles: Record<string, string> = {
   'interfaces-deductives-et-inductives-du-geste-utilisateur-a-la-commande-metier': 'Interfaces deductives et inductives',
   'trois-axes-orthogonaux-deploiement-versioning-architecture': 'Trois axes orthogonaux'
 }
+
+export default buildCategoryMeta(modules)
