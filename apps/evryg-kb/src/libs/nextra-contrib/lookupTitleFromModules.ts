@@ -2,7 +2,6 @@ import type { Module } from '../../components/ModuleCards'
 
 export interface ModulesData {
   modules: Module[]
-  articleTitles: Record<string, string>
 }
 
 export type ModulesLoader = () => Promise<ModulesData>
@@ -33,9 +32,9 @@ async function loadModulesData(
  * Path format: [categorySlug, moduleSlug?, articleSlug?]
  *
  * Returns:
- * - For category index (length 1): null (not handled by modules.ts)
+ * - For category index (length 1): null (not handled by modules)
  * - For module index (length 2): module.title
- * - For article (length 3): articleTitles[slug]
+ * - For article (length 3): article.title from module.articles
  */
 export function createTitleLookup(registry: ModulesRegistry) {
   return async function lookupTitleFromModules(
@@ -49,21 +48,24 @@ export function createTitleLookup(registry: ModulesRegistry) {
     if (!data) return null
 
     if (mdxPath.length === 1) {
-      // Category index - not handled by modules.ts
+      // Category index - not handled by modules
       return null
     }
 
+    const moduleSlug = mdxPath[1]
+    const mod = data.modules.find(m => m.slug === moduleSlug)
+    if (!mod) return null
+
     if (mdxPath.length === 2) {
       // Module index - return module title
-      const moduleSlug = mdxPath[1]
-      const mod = data.modules.find(m => m.slug === moduleSlug)
-      return mod?.title || null
+      return mod.title
     }
 
     if (mdxPath.length >= 3) {
-      // Article - return from articleTitles
+      // Article - find in module.articles
       const articleSlug = mdxPath[2]
-      return data.articleTitles[articleSlug] || null
+      const article = mod.articles.find(a => a.slug === articleSlug)
+      return article?.title || null
     }
 
     return null

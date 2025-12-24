@@ -1,6 +1,6 @@
 // Module definitions - single source of truth for both Nextra navigation and ModuleCards
 import type { Module } from '../../../src/components/ModuleCards'
-import { buildCategoryMeta } from '../../../src/libs/nextra-contrib/buildCategoryMeta'
+import { buildMeta } from '../../../src/libs/nextra-contrib/buildMeta'
 
 export const modules: Module[] = [
   {
@@ -11,8 +11,8 @@ export const modules: Module[] = [
     icon: 'foundation',
     description: 'Fundamental Lean principles applied to software: early error detection and flow management.',
     articles: [
-      'detect-errors-early-from-lean-to-shift-left',
-      'kanban-from-production-signal-to-corrupted-todo-list'
+      { slug: 'detect-errors-early-from-lean-to-shift-left', title: 'Shift Left' },
+      { slug: 'kanban-from-production-signal-to-corrupted-todo-list', title: 'Kanban' }
     ]
   },
   {
@@ -23,18 +23,10 @@ export const modules: Module[] = [
     icon: 'flow',
     description: 'Continuous deployment practices and collaboration patterns for a smooth delivery flow.',
     articles: [
-      'f-git-production-the-continuous-deployment-equation',
-      'pull-requests-a-barrier-born-from-distrust'
+      { slug: 'f-git-production-the-continuous-deployment-equation', title: 'f(git) = production' },
+      { slug: 'pull-requests-a-barrier-born-from-distrust', title: 'Pull Requests' }
     ]
   }
 ]
 
-// Article titles mapping
-export const articleTitles: Record<string, string> = {
-  'detect-errors-early-from-lean-to-shift-left': 'Shift Left',
-  'kanban-from-production-signal-to-corrupted-todo-list': 'Kanban',
-  'f-git-production-the-continuous-deployment-equation': 'f(git) = production',
-  'pull-requests-a-barrier-born-from-distrust': 'Pull Requests'
-}
-
-export default buildCategoryMeta(modules)
+export default buildMeta(modules)

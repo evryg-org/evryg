@@ -1,4 +1,5 @@
-import { buildModuleMeta } from '../../../../src/libs/nextra-contrib/buildModuleMeta'
-import { articleTitles, modules } from '../_meta'
+import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
+import { modules } from '../_meta'
 
-export default buildModuleMeta(modules, articleTitles, 'quality-and-testing')
+const mod = modules.find(m => m.slug === 'quality-and-testing')!
+export default buildMeta(mod.articles, mod.indexTitle)

@@ -2,6 +2,11 @@ import { Features } from './Features'
 
 export type IconType = 'foundation' | 'types' | 'shield' | 'check' | 'interpret' | 'logic' | 'pattern' | 'code' | 'flow'
 
+export interface Article {
+  slug: string
+  title: string
+}
+
 export interface Module {
   id: string
   slug: string
@@ -9,7 +14,7 @@ export interface Module {
   indexTitle: string
   icon: IconType
   description: string
-  articles: string[]
+  articles: Article[]
 }
 
 interface ModuleCardsProps {
@@ -24,7 +29,7 @@ export function ModuleCards({ lang, basePath, modules }: ModuleCardsProps) {
     title: mod.title,
     icon: mod.icon,
     description: mod.description,
-    href: `/${lang}/${basePath}/${mod.slug}/${mod.articles[0]}`
+    href: `/${lang}/${basePath}/${mod.slug}/${mod.articles[0].slug}`
   }))
 
   return <Features items={items} />

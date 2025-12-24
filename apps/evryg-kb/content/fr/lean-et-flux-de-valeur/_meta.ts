@@ -1,6 +1,6 @@
 // Module definitions - single source of truth for both Nextra navigation and ModuleCards
 import type { Module } from '../../../src/components/ModuleCards'
-import { buildCategoryMeta } from '../../../src/libs/nextra-contrib/buildCategoryMeta'
+import { buildMeta } from '../../../src/libs/nextra-contrib/buildMeta'
 
 export const modules: Module[] = [
   {
@@ -11,8 +11,8 @@ export const modules: Module[] = [
     icon: 'foundation',
     description: 'Principes fondamentaux du Lean appliques au logiciel : detection precoce des erreurs et gestion du flux.',
     articles: [
-      'detecter-les-erreurs-au-plus-tot-du-lean-au-shift-left',
-      'kanban-du-signal-de-production-a-la-todo-list-devoyee'
+      { slug: 'detecter-les-erreurs-au-plus-tot-du-lean-au-shift-left', title: 'Shift Left' },
+      { slug: 'kanban-du-signal-de-production-a-la-todo-list-devoyee', title: 'Kanban' }
     ]
   },
   {
@@ -23,18 +23,10 @@ export const modules: Module[] = [
     icon: 'flow',
     description: 'Pratiques de deploiement continu et patterns de collaboration pour un flux de livraison fluide.',
     articles: [
-      'f-git-production-lequation-du-deploiement-continu',
-      'pull-requests-une-barriere-nee-de-la-mefiance'
+      { slug: 'f-git-production-lequation-du-deploiement-continu', title: 'f(git) = production' },
+      { slug: 'pull-requests-une-barriere-nee-de-la-mefiance', title: 'Pull Requests' }
     ]
   }
 ]
 
-// Article titles mapping
-export const articleTitles: Record<string, string> = {
-  'detecter-les-erreurs-au-plus-tot-du-lean-au-shift-left': 'Shift Left',
-  'kanban-du-signal-de-production-a-la-todo-list-devoyee': 'Kanban',
-  'f-git-production-lequation-du-deploiement-continu': 'f(git) = production',
-  'pull-requests-une-barriere-nee-de-la-mefiance': 'Pull Requests'
-}
-
-export default buildCategoryMeta(modules)
+export default buildMeta(modules)

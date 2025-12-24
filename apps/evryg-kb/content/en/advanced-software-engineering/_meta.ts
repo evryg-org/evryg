@@ -1,6 +1,6 @@
 // Module definitions - single source of truth for both Nextra navigation and ModuleCards
 import type { Module } from '../../../src/components/ModuleCards'
-import { buildCategoryMeta } from '../../../src/libs/nextra-contrib/buildCategoryMeta'
+import { buildMeta } from '../../../src/libs/nextra-contrib/buildMeta'
 
 export const modules: Module[] = [
   {
@@ -11,9 +11,9 @@ export const modules: Module[] = [
     icon: 'foundation',
     description: 'Monoids, DAGs and code/data duality: the universal structures underlying programming.',
     articles: [
-      'monoids-a-ubiquitous-abstraction',
-      'dags-a-ubiquitous-structure-in-programming',
-      'code-and-data-a-fundamental-duality'
+      { slug: 'monoids-a-ubiquitous-abstraction', title: 'Monoids' },
+      { slug: 'dags-a-ubiquitous-structure-in-programming', title: 'DAGs' },
+      { slug: 'code-and-data-a-fundamental-duality', title: 'Code and Data' }
     ]
   },
   {
@@ -24,9 +24,9 @@ export const modules: Module[] = [
     icon: 'types',
     description: 'Type algebra, ADTs and total functions: the foundations of an expressive type system.',
     articles: [
-      'type-algebra-products-and-sums',
-      'algebraic-data-types-precision-and-expressiveness',
-      'total-and-partial-functions-the-type-promise'
+      { slug: 'type-algebra-products-and-sums', title: 'Type Algebra' },
+      { slug: 'algebraic-data-types-precision-and-expressiveness', title: 'Algebraic Data Types' },
+      { slug: 'total-and-partial-functions-the-type-promise', title: 'Total and Partial Functions' }
     ]
   },
   {
@@ -37,10 +37,10 @@ export const modules: Module[] = [
     icon: 'shield',
     description: "Make Illegal States Unrepresentable, Parse Don't Validate: using types as guardrails.",
     articles: [
-      'make-illegal-states-unrepresentable',
-      'parse-dont-validate',
-      'state-machines-and-aggregates-in-ddd',
-      'isomorphisms-at-boundaries-lossless-translation'
+      { slug: 'make-illegal-states-unrepresentable', title: 'Make Illegal States Unrepresentable' },
+      { slug: 'parse-dont-validate', title: "Parse, Don't Validate" },
+      { slug: 'state-machines-and-aggregates-in-ddd', title: 'State Machines and DDD' },
+      { slug: 'isomorphisms-at-boundaries-lossless-translation', title: 'Isomorphisms at Boundaries' }
     ]
   },
   {
@@ -51,10 +51,10 @@ export const modules: Module[] = [
     icon: 'check',
     description: 'Testability, TDD and Property-Based Testing: building confidence in code.',
     articles: [
-      'no-test-without-testability-the-forgotten-prerequisite',
-      'tdd-a-design-discipline-not-a-testing-one',
-      'property-based-testing-power-and-limits',
-      'safe-refactoring-with-property-based-testing'
+      { slug: 'no-test-without-testability-the-forgotten-prerequisite', title: 'Testability' },
+      { slug: 'tdd-a-design-discipline-not-a-testing-one', title: 'TDD and Emergent Design' },
+      { slug: 'property-based-testing-power-and-limits', title: 'Property-Based Testing' },
+      { slug: 'safe-refactoring-with-property-based-testing', title: 'Safe Refactoring with PBT' }
     ]
   },
   {
@@ -65,10 +65,10 @@ export const modules: Module[] = [
     icon: 'interpret',
     description: 'Program as value, DSLs and encodings: separating description from execution.',
     articles: [
-      'interpreting-is-giving-meaning-to-data',
-      'description-and-interpretation-program-as-value',
-      'initial-and-final-encodings-two-embedding-philosophies',
-      'design-systems-a-dsl-for-visual-identity'
+      { slug: 'interpreting-is-giving-meaning-to-data', title: 'Interpreting, Giving Meaning' },
+      { slug: 'description-and-interpretation-program-as-value', title: 'Program as Value' },
+      { slug: 'initial-and-final-encodings-two-embedding-philosophies', title: 'Initial and Final Encodings' },
+      { slug: 'design-systems-a-dsl-for-visual-identity', title: 'Design Systems as DSLs' }
     ]
   },
   {
@@ -79,9 +79,9 @@ export const modules: Module[] = [
     icon: 'logic',
     description: 'Curry-Howard, Propositions as Types, Refinement Types: when types become proofs.',
     articles: [
-      'curry-howard-correspondence-linking-programs-and-proofs',
-      'propositions-as-types-wadlers-unification',
-      'refinement-and-dependent-types-towards-types-that-prove'
+      { slug: 'curry-howard-correspondence-linking-programs-and-proofs', title: 'Curry-Howard' },
+      { slug: 'propositions-as-types-wadlers-unification', title: 'Propositions as Types' },
+      { slug: 'refinement-and-dependent-types-towards-types-that-prove', title: 'Refinement and Dependent Types' }
     ]
   },
   {
@@ -92,39 +92,11 @@ export const modules: Module[] = [
     icon: 'pattern',
     description: 'Currying, implicit injection, interfaces and architectural decisions: advanced patterns.',
     articles: [
-      'from-currying-to-dynamic-scope-threads-of-implicit-injection',
-      'deductive-and-inductive-interfaces-from-user-gesture-to-business-command',
-      'three-orthogonal-axes-deployment-versioning-architecture'
+      { slug: 'from-currying-to-dynamic-scope-threads-of-implicit-injection', title: 'Currying and Implicit Injection' },
+      { slug: 'deductive-and-inductive-interfaces-from-user-gesture-to-business-command', title: 'Deductive and Inductive Interfaces' },
+      { slug: 'three-orthogonal-axes-deployment-versioning-architecture', title: 'Three Orthogonal Axes' }
     ]
   }
 ]
 
-// Article titles mapping (used by module folder _meta.ts files)
-export const articleTitles: Record<string, string> = {
-  'monoids-a-ubiquitous-abstraction': 'Monoids',
-  'dags-a-ubiquitous-structure-in-programming': 'DAGs',
-  'code-and-data-a-fundamental-duality': 'Code and Data',
-  'type-algebra-products-and-sums': 'Type Algebra',
-  'algebraic-data-types-precision-and-expressiveness': 'Algebraic Data Types',
-  'total-and-partial-functions-the-type-promise': 'Total and Partial Functions',
-  'make-illegal-states-unrepresentable': 'Make Illegal States Unrepresentable',
-  'parse-dont-validate': "Parse, Don't Validate",
-  'state-machines-and-aggregates-in-ddd': 'State Machines and DDD',
-  'isomorphisms-at-boundaries-lossless-translation': 'Isomorphisms at Boundaries',
-  'no-test-without-testability-the-forgotten-prerequisite': 'Testability',
-  'tdd-a-design-discipline-not-a-testing-one': 'TDD and Emergent Design',
-  'property-based-testing-power-and-limits': 'Property-Based Testing',
-  'safe-refactoring-with-property-based-testing': 'Safe Refactoring with PBT',
-  'interpreting-is-giving-meaning-to-data': 'Interpreting, Giving Meaning',
-  'description-and-interpretation-program-as-value': 'Program as Value',
-  'initial-and-final-encodings-two-embedding-philosophies': 'Initial and Final Encodings',
-  'design-systems-a-dsl-for-visual-identity': 'Design Systems as DSLs',
-  'curry-howard-correspondence-linking-programs-and-proofs': 'Curry-Howard',
-  'propositions-as-types-wadlers-unification': 'Propositions as Types',
-  'refinement-and-dependent-types-towards-types-that-prove': 'Refinement and Dependent Types',
-  'from-currying-to-dynamic-scope-threads-of-implicit-injection': 'Currying and Implicit Injection',
-  'deductive-and-inductive-interfaces-from-user-gesture-to-business-command': 'Deductive and Inductive Interfaces',
-  'three-orthogonal-axes-deployment-versioning-architecture': 'Three Orthogonal Axes'
-}
-
-export default buildCategoryMeta(modules)
+export default buildMeta(modules)
