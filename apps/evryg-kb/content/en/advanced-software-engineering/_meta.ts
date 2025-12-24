@@ -4,7 +4,6 @@ import { buildMeta } from '../../../src/libs/nextra-contrib/buildMeta'
 
 export const modules: Module[] = [
   {
-    id: 'foundations',
     slug: 'foundations',
     title: '1. Foundations',
     indexTitle: 'Introduction',
@@ -17,7 +16,6 @@ export const modules: Module[] = [
     ]
   },
   {
-    id: 'type-basics',
     slug: 'type-structures',
     title: '2. Type Structures',
     indexTitle: 'Introduction',
@@ -30,7 +28,6 @@ export const modules: Module[] = [
     ]
   },
   {
-    id: 'type-design',
     slug: 'type-design',
     title: '3. Design by Types',
     indexTitle: 'Introduction',
@@ -44,7 +41,6 @@ export const modules: Module[] = [
     ]
   },
   {
-    id: 'quality',
     slug: 'quality-and-testing',
     title: '4. Quality & Testing',
     indexTitle: 'Introduction',
@@ -58,7 +54,6 @@ export const modules: Module[] = [
     ]
   },
   {
-    id: 'interpretation',
     slug: 'description-and-interpretation',
     title: '5. Description & Interpretation',
     indexTitle: 'Introduction',
@@ -72,7 +67,6 @@ export const modules: Module[] = [
     ]
   },
   {
-    id: 'types-logic',
     slug: 'types-and-logic',
     title: '6. Types & Logic',
     indexTitle: 'Introduction',
@@ -85,7 +79,6 @@ export const modules: Module[] = [
     ]
   },
   {
-    id: 'advanced-patterns',
     slug: 'advanced-patterns',
     title: '7. Advanced Patterns',
     indexTitle: 'Introduction',

@@ -4,7 +4,6 @@ import { buildMeta } from '../../../src/libs/nextra-contrib/buildMeta'
 
 export const modules: Module[] = [
   {
-    id: 'fondations-lean',
     slug: 'fondations-lean',
     title: '1. Fondations Lean',
     indexTitle: 'Introduction',
@@ -16,7 +15,6 @@ export const modules: Module[] = [
     ]
   },
   {
-    id: 'livraison-continue',
     slug: 'livraison-continue',
     title: '2. Livraison Continue',
     indexTitle: 'Introduction',

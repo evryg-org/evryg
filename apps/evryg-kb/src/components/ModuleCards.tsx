@@ -4,7 +4,6 @@ import { Features } from './Features'
 export type IconType = 'foundation' | 'types' | 'shield' | 'check' | 'interpret' | 'logic' | 'pattern' | 'code' | 'flow'
 
 export interface Module extends ContentItem {
-  id: string
   icon: IconType
   description: string
   items: ContentItem[]  // required for modules (overrides optional from ContentItem)
