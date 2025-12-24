@@ -1,7 +1,13 @@
-import type { ContentItem } from './types'
+import type { ContentItem, ModuleContent } from './types'
+
+interface ModuleWithContent {
+  slug: string
+  title: string
+  content: ModuleContent
+}
 
 export interface ContentData {
-  modules: ContentItem[]
+  modules: ModuleWithContent[]
 }
 
 export type ContentLoader = () => Promise<ContentData>
@@ -34,7 +40,7 @@ async function loadContentData(
  * Returns:
  * - For category index (length 1): null (not handled)
  * - For group index (length 2): group.title
- * - For item (length 3): item.title from group.items
+ * - For item (length 3): item.title from group.content.items
  */
 export function createTitleLookup(registry: ContentRegistry) {
   return async function lookupTitle(
@@ -61,10 +67,10 @@ export function createTitleLookup(registry: ContentRegistry) {
       return group.title
     }
 
-    if (mdxPath.length >= 3 && group.items) {
-      // Item - find in group.items
+    if (mdxPath.length >= 3 && group.content?.items) {
+      // Item - find in group.content.items
       const itemSlug = mdxPath[2]
-      const item = group.items.find(i => i.slug === itemSlug)
+      const item = group.content.items.find(i => i.slug === itemSlug)
       return item?.title || null
     }
 

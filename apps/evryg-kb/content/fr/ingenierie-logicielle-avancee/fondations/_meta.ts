@@ -1,5 +1,13 @@
+import type { ModuleContent } from '../../../../src/libs/nextra-contrib/types'
 import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
-import { modules } from '../_meta'
 
-const mod = modules.find(m => m.slug === 'fondations')!
-export default buildMeta(mod.items, mod.indexTitle)
+export const content: ModuleContent = {
+  index: 'Introduction',
+  items: [
+    { slug: 'les-monoides-une-abstraction-omnipresente', title: 'Les monoides' },
+    { slug: 'les-dags-une-structure-omnipresente-en-programmation', title: 'Les DAGs' },
+    { slug: 'code-et-data-une-dualite-fondamentale', title: 'Code et Data' }
+  ]
+}
+
+export default buildMeta(content.items, content.index)

@@ -2,28 +2,24 @@
 import type { Module } from '../../../src/components/ModuleCards'
 import { buildMeta } from '../../../src/libs/nextra-contrib/buildMeta'
 
+// Import content from each module (colocalized)
+import { content as fondationsLean } from './fondations-lean/_meta'
+import { content as livraisonContinue } from './livraison-continue/_meta'
+
 export const modules: Module[] = [
   {
     slug: 'fondations-lean',
     title: '1. Fondations Lean',
-    indexTitle: 'Introduction',
     icon: 'foundation',
     description: 'Principes fondamentaux du Lean appliqués au logiciel : détection précoce des erreurs et gestion du flux.',
-    items: [
-      { slug: 'detecter-les-erreurs-au-plus-tot-du-lean-au-shift-left', title: 'Shift Left' },
-      { slug: 'kanban-du-signal-de-production-a-la-todo-list-devoyee', title: 'Kanban' }
-    ]
+    content: fondationsLean
   },
   {
     slug: 'livraison-continue',
     title: '2. Livraison Continue',
-    indexTitle: 'Introduction',
     icon: 'flow',
     description: 'Pratiques de déploiement continu et patterns de collaboration pour un flux de livraison fluide.',
-    items: [
-      { slug: 'f-git-production-lequation-du-deploiement-continu', title: 'f(git) = production' },
-      { slug: 'pull-requests-une-barriere-nee-de-la-mefiance', title: 'Pull Requests' }
-    ]
+    content: livraisonContinue
   }
 ]
 

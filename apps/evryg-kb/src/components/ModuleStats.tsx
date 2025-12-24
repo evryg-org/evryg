@@ -6,7 +6,7 @@ interface ModuleStatsProps {
 
 export function ModuleStats({ modules }: ModuleStatsProps) {
   const moduleCount = modules.length
-  const articleCount = modules.reduce((sum, mod) => sum + mod.items.length, 0)
+  const articleCount = modules.reduce((sum, mod) => sum + mod.content.items.length, 0)
 
   return (
     <p>

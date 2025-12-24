@@ -1,5 +1,14 @@
+import type { ModuleContent } from '../../../../src/libs/nextra-contrib/types'
 import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
-import { modules } from '../_meta'
 
-const mod = modules.find(m => m.slug === 'qualite-et-tests')!
-export default buildMeta(mod.items, mod.indexTitle)
+export const content: ModuleContent = {
+  index: 'Introduction',
+  items: [
+    { slug: 'pas-de-test-sans-testabilite-le-prerequis-oublie', title: 'La testabilité' },
+    { slug: 'tdd-une-discipline-de-design-pas-de-test', title: 'TDD et design emergent' },
+    { slug: 'property-based-testing-puissance-et-limites', title: 'Property-Based Testing' },
+    { slug: 'refactoring-securise-par-property-based-testing', title: 'Refactoring sécurisé par PBT' }
+  ]
+}
+
+export default buildMeta(content.items, content.index)

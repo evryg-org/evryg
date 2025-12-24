@@ -6,8 +6,8 @@ import type { ContentItem } from './types'
  */
 export const buildMeta = (
   items: ContentItem[],
-  indexTitle = 'Introduction'
+  index = 'Introduction'
 ): Record<string, string> => ({
-  index: indexTitle,
+  index,
   ...Object.fromEntries(items.map(item => [item.slug, item.title]))
 })

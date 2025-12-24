@@ -1,10 +1,16 @@
 /**
- * ContentItem - a recursive tree node for content structure.
- * Leaves omit items, parents have children.
+ * ContentItem - a leaf node for content structure (article).
  */
 export interface ContentItem {
   slug: string
   title: string
-  indexTitle?: string
-  items?: ContentItem[]
+}
+
+/**
+ * ModuleContent - the content structure exported by each module's _meta.ts.
+ * Contains the index page title and the list of articles.
+ */
+export interface ModuleContent {
+  index: string
+  items: ContentItem[]
 }
