@@ -2,7 +2,7 @@
 pageType: index
 ---
 
-import { ModuleCards, ModuleStats } from '../../../src/components'
+import { ContentCardGrid, ModuleStats } from '../../../src/components'
 import { modules } from './_meta'
 
 # Ingénierie logicielle avancée
@@ -11,4 +11,4 @@ L'ingénierie logicielle avancée repose sur des fondements théoriques solides.
 
 <ModuleStats modules={modules} />
 
-<ModuleCards lang="fr" basePath="ingenierie-logicielle-avancee" modules={modules} />
+<ContentCardGrid lang="fr" basePath="ingenierie-logicielle-avancee" items={modules} />

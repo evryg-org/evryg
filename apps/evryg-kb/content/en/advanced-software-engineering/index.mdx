@@ -3,7 +3,7 @@ canonical-slug: ingenierie-logicielle-avancee
 pageType: index
 ---
 
-import { ModuleCards, ModuleStats } from '../../../src/components'
+import { ContentCardGrid, ModuleStats } from '../../../src/components'
 import { modules } from './_meta'
 
 # Advanced Software Engineering
@@ -12,4 +12,4 @@ Advanced software engineering rests on solid theoretical foundations. This secti
 
 <ModuleStats modules={modules} />
 
-<ModuleCards lang="en" basePath="advanced-software-engineering" modules={modules} />
+<ContentCardGrid lang="en" basePath="advanced-software-engineering" items={modules} />

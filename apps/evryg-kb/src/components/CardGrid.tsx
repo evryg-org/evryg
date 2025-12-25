@@ -1,4 +1,4 @@
-import styles from './Features.module.css'
+import styles from './CardGrid.module.css'
 
 const icons = {
   code: (
@@ -67,20 +67,20 @@ const icons = {
   )
 } as const
 
-interface Feature {
+interface CardGridItem {
   icon: keyof typeof icons
   title: string
   description: string
   href: string
 }
 
-interface FeaturesProps {
-  items: Feature[]
+interface CardGridProps {
+  items: CardGridItem[]
 }
 
-export function Features({ items }: FeaturesProps) {
+export function CardGrid({ items }: CardGridProps) {
   return (
-    <div className={styles.features}>
+    <div className={styles.cardGrid}>
       {items.map((item, i) => (
         <a key={i} href={item.href} className={styles.card}>
           <div className={styles.icon}>{icons[item.icon]}</div>
