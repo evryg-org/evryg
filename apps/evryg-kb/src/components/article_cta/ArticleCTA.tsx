@@ -1,3 +1,4 @@
+import { Logo } from '../../design_system/EvrygLogo'
 import styles from './ArticleCTA.module.css'
 
 const CONFIG = {
@@ -34,6 +35,9 @@ export function ArticleCTA({ lang }: ArticleCTAProps) {
 
   return (
     <div className={styles.container}>
+      <div className={styles.logo}>
+        <Logo theme="light" />
+      </div>
       <h3 className={styles.headline}>{text.headline}</h3>
 
       <p className={styles.description}>{text.description}</p>

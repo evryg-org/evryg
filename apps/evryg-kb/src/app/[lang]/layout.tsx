@@ -5,6 +5,7 @@ import 'nextra-theme-docs/style.css'
 import 'katex/dist/katex.min.css'
 import { LocaleSwitch } from '../../components/LocaleSwitch'
 import { DOCS_REPOSITORY_BASE } from '../../config'
+import { ThemedEvrygLogo } from '../../design_system/ThemedEvrygLogo'
 import { VerticalSeparator } from '../../design_system/VerticalSeparator'
 import { getSlugMappings } from '../../slug-mappings'
 
@@ -68,7 +69,7 @@ export default async function LangLayout({
 
   const navbar = (
     <Navbar
-      logo={<a href={`/${lang}`} style={{ fontWeight: 'bold', color: 'inherit', textDecoration: 'none' }}>evryg</a>}
+      logo={<a href={`/${lang}`} style={{ display: "flex", alignItems: "center", height: "100%" }}><ThemedEvrygLogo /></a>}
       logoLink={false}
     >
       <LocaleSwitch i18n={i18n} slugMappings={slugMappings} />

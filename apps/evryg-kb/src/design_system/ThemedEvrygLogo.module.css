@@ -1,0 +1,9 @@
+.themeAdaptive {
+  display: inline-flex;
+  align-items: center;
+  color: black;
+}
+
+:global(html.dark) .themeAdaptive {
+  color: white;
+}
