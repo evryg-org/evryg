@@ -5,17 +5,11 @@ pageType: index
 ---
 
 import { ContentCardGrid, ModuleStats } from '../../../src/components'
-import { modules } from './_meta'
 
 # Lean et Flux de valeur
 
 Le Lean software delivery applique les principes du Toyota Production System au developpement logiciel. Cette section explore comment optimiser le flux de valeur.
 
-<ModuleStats modules={modules} />
+<ModuleStats lang="fr" basePath="lean-et-flux-de-valeur" />
 
-<ContentCardGrid
-  lang="fr"
-  basePath="lean-et-flux-de-valeur"
-  moduleSlugs={modules.map(m => m.slug)}
-  firstArticleSlugs={Object.fromEntries(modules.map(m => [m.slug, m.items[0].slug]))}
-/>
+<ContentCardGrid lang="fr" basePath="lean-et-flux-de-valeur" />

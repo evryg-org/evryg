@@ -5,17 +5,11 @@ pageType: index
 ---
 
 import { ContentCardGrid, ModuleStats } from '../../../src/components'
-import { modules } from './_meta'
 
 # Ingénierie logicielle avancée
 
 L'ingénierie logicielle avancée repose sur des fondements théoriques solides. Cette section explore les concepts qui permettent de construire des systèmes fiables, expressifs et maintenables.
 
-<ModuleStats modules={modules} />
+<ModuleStats lang="fr" basePath="ingenierie-logicielle-avancee" />
 
-<ContentCardGrid
-  lang="fr"
-  basePath="ingenierie-logicielle-avancee"
-  moduleSlugs={modules.map(m => m.slug)}
-  firstArticleSlugs={Object.fromEntries(modules.map(m => [m.slug, m.items[0].slug]))}
-/>
+<ContentCardGrid lang="fr" basePath="ingenierie-logicielle-avancee" />

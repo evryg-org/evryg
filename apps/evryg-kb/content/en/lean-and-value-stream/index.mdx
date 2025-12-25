@@ -6,17 +6,11 @@ pageType: index
 ---
 
 import { ContentCardGrid, ModuleStats } from '../../../src/components'
-import { modules } from './_meta'
 
 # Lean & Value Stream
 
 Lean software delivery applies Toyota Production System principles to software development. This section explores how to optimize the value stream.
 
-<ModuleStats modules={modules} />
+<ModuleStats lang="en" basePath="lean-and-value-stream" />
 
-<ContentCardGrid
-  lang="en"
-  basePath="lean-and-value-stream"
-  moduleSlugs={modules.map(m => m.slug)}
-  firstArticleSlugs={Object.fromEntries(modules.map(m => [m.slug, m.items[0].slug]))}
-/>
+<ContentCardGrid lang="en" basePath="lean-and-value-stream" />

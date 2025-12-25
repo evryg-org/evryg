@@ -6,17 +6,11 @@ pageType: index
 ---
 
 import { ContentCardGrid, ModuleStats } from '../../../src/components'
-import { modules } from './_meta'
 
 # Advanced Software Engineering
 
 Advanced software engineering rests on solid theoretical foundations. This section explores concepts that enable building reliable, expressive, and maintainable systems.
 
-<ModuleStats modules={modules} />
+<ModuleStats lang="en" basePath="advanced-software-engineering" />
 
-<ContentCardGrid
-  lang="en"
-  basePath="advanced-software-engineering"
-  moduleSlugs={modules.map(m => m.slug)}
-  firstArticleSlugs={Object.fromEntries(modules.map(m => [m.slug, m.items[0].slug]))}
-/>
+<ContentCardGrid lang="en" basePath="advanced-software-engineering" />

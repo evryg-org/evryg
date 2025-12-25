@@ -1,31 +1,45 @@
-import { importPage } from 'nextra/pages'
+import { getPageMap } from 'nextra/page-map'
+import type { Folder, MdxFile } from 'nextra'
 import type { IconType } from '../libs/nextra-contrib/types'
 import { CardGrid } from './CardGrid'
 
 interface ContentCardGridProps {
   lang: string
   basePath: string
-  moduleSlugs: string[]
-  firstArticleSlugs: Record<string, string>
 }
 
 export async function ContentCardGrid({
   lang,
-  basePath,
-  moduleSlugs,
-  firstArticleSlugs
+  basePath
 }: ContentCardGridProps) {
-  const modules = await Promise.all(
-    moduleSlugs.map(async slug => {
-      const { metadata } = await importPage([basePath, slug], lang)
+  const pageMap = await getPageMap(`/${lang}/${basePath}`)
+
+  // Filter for folders (modules) and build items
+  const items = pageMap
+    .filter((item): item is Folder => 'children' in item)
+    .map(folder => {
+      // Find the index page for this module (for title, icon, description)
+      const indexPage = folder.children.find(
+        (child): child is MdxFile => 'frontMatter' in child && child.name === 'index'
+      )
+      // Find the first article (non-index page)
+      const firstArticle = folder.children.find(
+        (child): child is MdxFile => 'frontMatter' in child && child.name !== 'index'
+      )
+
+      const frontMatter = indexPage?.frontMatter as {
+        sidebarTitle?: string
+        icon?: IconType
+        description?: string
+      } | undefined
+
       return {
-        title: (metadata as { sidebarTitle?: string }).sidebarTitle || slug,
-        icon: (metadata as { icon?: IconType }).icon!,
-        description: (metadata as { description?: string }).description || '',
-        href: `/${lang}/${basePath}/${slug}/${firstArticleSlugs[slug]}`
+        title: frontMatter?.sidebarTitle || folder.name,
+        icon: frontMatter?.icon || 'foundation',
+        description: frontMatter?.description || '',
+        href: firstArticle?.route || folder.route
       }
     })
-  )
 
-  return <CardGrid items={modules} />
+  return <CardGrid items={items} />
 }
