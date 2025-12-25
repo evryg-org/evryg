@@ -1,13 +1,23 @@
+import { Source_Sans_3 } from 'next/font/google'
 import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-docs'
 import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
+
 import 'katex/dist/katex.min.css'
+
 import { LocaleSwitch } from '../../components/LocaleSwitch'
 import { DOCS_REPOSITORY_BASE } from '../../config'
 import { ThemedEvrygLogo } from '../../design_system/ThemedEvrygLogo'
 import { VerticalSeparator } from '../../design_system/VerticalSeparator'
 import { getSlugMappings } from '../../slug-mappings'
+
+const sourceSans3 = Source_Sans_3({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-source-sans',
+  display: 'swap',
+})
 
 const bannerTranslations = {
   en: "Looking for experienced guidance on Lean software delivery? We'd be glad to explore how we can work together.",
@@ -90,10 +100,15 @@ export default async function LangLayout({
     <html
       lang={lang}
       dir="ltr"
+      className={sourceSans3.variable}
       suppressHydrationWarning
     >
       <Head>
-        {/* Your additional tags should be passed as children of <Head> element */}
+        <style>{`
+          :root {
+            --x-font-sans: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
+          }
+        `}</style>
       </Head>
       <body>
         <Layout
