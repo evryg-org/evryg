@@ -1,7 +1,11 @@
-import type { ModuleContent } from '../../../../src/libs/nextra-contrib/types'
+import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
 import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
 
-export const content: ModuleContent = {
+export const content: ContentNode = {
+  slug: 'fondations',
+  title: '1. Fondations',
+  icon: 'foundation',
+  description: 'Monoides, DAGs et dualité code/data : les structures universelles qui sous-tendent la programmation.',
   index: 'Introduction',
   items: [
     { slug: 'les-monoides-une-abstraction-omnipresente', title: 'Les monoides' },
@@ -10,4 +14,4 @@ export const content: ModuleContent = {
   ]
 }
 
-export default buildMeta(content.items, content.index)
+export default buildMeta(content)

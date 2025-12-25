@@ -1,7 +1,11 @@
-import type { ModuleContent } from '../../../../src/libs/nextra-contrib/types'
+import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
 import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
 
-export const content: ModuleContent = {
+export const content: ContentNode = {
+  slug: 'livraison-continue',
+  title: '2. Livraison Continue',
+  icon: 'flow',
+  description: 'Pratiques de déploiement continu et patterns de collaboration pour un flux de livraison fluide.',
   index: 'Introduction',
   items: [
     { slug: 'f-git-production-lequation-du-deploiement-continu', title: 'f(git) = production' },
@@ -9,4 +13,4 @@ export const content: ModuleContent = {
   ]
 }
 
-export default buildMeta(content.items, content.index)
+export default buildMeta(content)

@@ -1,7 +1,11 @@
-import type { ModuleContent } from '../../../../src/libs/nextra-contrib/types'
+import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
 import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
 
-export const content: ModuleContent = {
+export const content: ContentNode = {
+  slug: 'description-et-interpretation',
+  title: '5. Description et Interprétation',
+  icon: 'interpret',
+  description: "Le programme comme valeur, DSLs et encodages : séparer la description de l'exécution.",
   index: 'Introduction',
   items: [
     { slug: 'interpreter-cest-donner-du-sens-aux-donnees', title: 'Interpréter, donner du sens' },
@@ -11,4 +15,4 @@ export const content: ModuleContent = {
   ]
 }
 
-export default buildMeta(content.items, content.index)
+export default buildMeta(content)

@@ -1,7 +1,11 @@
-import type { ModuleContent } from '../../../../src/libs/nextra-contrib/types'
+import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
 import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
 
-export const content: ModuleContent = {
+export const content: ContentNode = {
+  slug: 'advanced-patterns',
+  title: '7. Advanced Patterns',
+  icon: 'pattern',
+  description: 'Currying, implicit injection, interfaces and architectural decisions: advanced patterns.',
   index: 'Introduction',
   items: [
     { slug: 'from-currying-to-dynamic-scope-threads-of-implicit-injection', title: 'Currying and Implicit Injection' },
@@ -10,4 +14,4 @@ export const content: ModuleContent = {
   ]
 }
 
-export default buildMeta(content.items, content.index)
+export default buildMeta(content)

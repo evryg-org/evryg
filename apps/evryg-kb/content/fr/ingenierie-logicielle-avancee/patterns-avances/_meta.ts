@@ -1,7 +1,11 @@
-import type { ModuleContent } from '../../../../src/libs/nextra-contrib/types'
+import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
 import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
 
-export const content: ModuleContent = {
+export const content: ContentNode = {
+  slug: 'patterns-avances',
+  title: '7. Patterns Avancés',
+  icon: 'pattern',
+  description: "Currying, injection implicite, interfaces et décisions architecturales : les patterns avancés.",
   index: 'Introduction',
   items: [
     { slug: 'du-currying-au-dynamic-scope-fils-conducteurs-de-linjection-implicite', title: 'Currying et injection implicite' },
@@ -10,4 +14,4 @@ export const content: ModuleContent = {
   ]
 }
 
-export default buildMeta(content.items, content.index)
+export default buildMeta(content)

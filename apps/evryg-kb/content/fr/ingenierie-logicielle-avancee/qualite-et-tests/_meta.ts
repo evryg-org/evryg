@@ -1,7 +1,11 @@
-import type { ModuleContent } from '../../../../src/libs/nextra-contrib/types'
+import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
 import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
 
-export const content: ModuleContent = {
+export const content: ContentNode = {
+  slug: 'qualite-et-tests',
+  title: '4. Qualité et Tests',
+  icon: 'check',
+  description: 'Testabilité, TDD et Property-Based Testing : construire la confiance dans le code.',
   index: 'Introduction',
   items: [
     { slug: 'pas-de-test-sans-testabilite-le-prerequis-oublie', title: 'La testabilité' },
@@ -11,4 +15,4 @@ export const content: ModuleContent = {
   ]
 }
 
-export default buildMeta(content.items, content.index)
+export default buildMeta(content)

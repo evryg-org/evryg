@@ -1,7 +1,11 @@
-import type { ModuleContent } from '../../../../src/libs/nextra-contrib/types'
+import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
 import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
 
-export const content: ModuleContent = {
+export const content: ContentNode = {
+  slug: 'fondations-lean',
+  title: '1. Fondations Lean',
+  icon: 'foundation',
+  description: 'Principes fondamentaux du Lean appliqués au logiciel : détection précoce des erreurs et gestion du flux.',
   index: 'Introduction',
   items: [
     { slug: 'detecter-les-erreurs-au-plus-tot-du-lean-au-shift-left', title: 'Shift Left' },
@@ -9,4 +13,4 @@ export const content: ModuleContent = {
   ]
 }
 
-export default buildMeta(content.items, content.index)
+export default buildMeta(content)

@@ -1,7 +1,11 @@
-import type { ModuleContent } from '../../../../src/libs/nextra-contrib/types'
+import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
 import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
 
-export const content: ModuleContent = {
+export const content: ContentNode = {
+  slug: 'structures-de-types',
+  title: '2. Structures de Types',
+  icon: 'types',
+  description: "Algèbre des types, ADTs et fonctions totales : les bases d'un système de types expressif.",
   index: 'Introduction',
   items: [
     { slug: 'algebre-des-types-produits-et-sommes', title: "L'algèbre des types" },
@@ -10,4 +14,4 @@ export const content: ModuleContent = {
   ]
 }
 
-export default buildMeta(content.items, content.index)
+export default buildMeta(content)
