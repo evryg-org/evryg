@@ -1,17 +1,20 @@
-import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
-import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
+import type { MetaRecord } from 'nextra'
 
-export const content: ContentNode = {
+export const content = {
   slug: 'foundations',
-  title: '1. Foundations',
-  icon: 'foundation',
-  description: 'Monoids, DAGs and code/data duality: the universal structures underlying programming.',
   index: 'Introduction',
   items: [
-    { slug: 'monoids-a-ubiquitous-abstraction', title: 'Monoids' },
-    { slug: 'dags-a-ubiquitous-structure-in-programming', title: 'DAGs' },
-    { slug: 'code-and-data-a-fundamental-duality', title: 'Code and Data' }
+    { slug: 'monoids-a-ubiquitous-abstraction' },
+    { slug: 'dags-a-ubiquitous-structure-in-programming' },
+    { slug: 'code-and-data-a-fundamental-duality' }
   ]
 }
 
-export default buildMeta(content)
+const meta: MetaRecord = {
+  index: 'Introduction',
+  'monoids-a-ubiquitous-abstraction': '',
+  'dags-a-ubiquitous-structure-in-programming': '',
+  'code-and-data-a-fundamental-duality': ''
+}
+
+export default meta

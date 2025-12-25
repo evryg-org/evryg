@@ -13,4 +13,9 @@ Le Lean software delivery applique les principes du Toyota Production System au 
 
 <ModuleStats modules={modules} />
 
-<ContentCardGrid lang="fr" basePath="lean-et-flux-de-valeur" items={modules} />
+<ContentCardGrid
+  lang="fr"
+  basePath="lean-et-flux-de-valeur"
+  moduleSlugs={modules.map(m => m.slug)}
+  firstArticleSlugs={Object.fromEntries(modules.map(m => [m.slug, m.items[0].slug]))}
+/>

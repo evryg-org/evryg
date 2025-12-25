@@ -13,4 +13,9 @@ L'ingénierie logicielle avancée repose sur des fondements théoriques solides.
 
 <ModuleStats modules={modules} />
 
-<ContentCardGrid lang="fr" basePath="ingenierie-logicielle-avancee" items={modules} />
+<ContentCardGrid
+  lang="fr"
+  basePath="ingenierie-logicielle-avancee"
+  moduleSlugs={modules.map(m => m.slug)}
+  firstArticleSlugs={Object.fromEntries(modules.map(m => [m.slug, m.items[0].slug]))}
+/>

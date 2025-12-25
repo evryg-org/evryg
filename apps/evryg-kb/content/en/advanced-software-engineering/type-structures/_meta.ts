@@ -1,17 +1,18 @@
-import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
-import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
-
-export const content: ContentNode = {
+export const content = {
   slug: 'type-structures',
-  title: '2. Type Structures',
-  icon: 'types',
-  description: 'Type algebra, ADTs and total functions: the foundations of an expressive type system.',
   index: 'Introduction',
   items: [
-    { slug: 'type-algebra-products-and-sums', title: 'Type Algebra' },
-    { slug: 'algebraic-data-types-precision-and-expressiveness', title: 'Algebraic Data Types' },
-    { slug: 'total-and-partial-functions-the-type-promise', title: 'Total and Partial Functions' }
+    { slug: 'type-algebra-products-and-sums' },
+    { slug: 'algebraic-data-types-precision-and-expressiveness' },
+    { slug: 'total-and-partial-functions-the-type-promise' }
   ]
 }
 
-export default buildMeta(content)
+const meta = {
+  index: 'Introduction',
+  'type-algebra-products-and-sums': '',
+  'algebraic-data-types-precision-and-expressiveness': '',
+  'total-and-partial-functions-the-type-promise': ''
+}
+
+export default meta

@@ -1,7 +1,3 @@
-import type { ContentNode } from '../../../src/libs/nextra-contrib/types'
-import { buildMeta } from '../../../src/libs/nextra-contrib/buildMeta'
-
-// Import content from each module (colocalized)
 import { content as foundations } from './foundations/_meta'
 import { content as typeStructures } from './type-structures/_meta'
 import { content as typeDesign } from './type-design/_meta'
@@ -10,8 +6,7 @@ import { content as descriptionAndInterpretation } from './description-and-inter
 import { content as typesAndLogic } from './types-and-logic/_meta'
 import { content as advancedPatterns } from './advanced-patterns/_meta'
 
-// Aggregate all modules - they are ContentNodes with icon/description
-export const modules: ContentNode[] = [
+export const modules = [
   foundations,
   typeStructures,
   typeDesign,
@@ -21,4 +16,15 @@ export const modules: ContentNode[] = [
   advancedPatterns
 ]
 
-export default buildMeta({ items: modules })
+const meta = {
+  index: 'Introduction',
+  'foundations': '',
+  'type-structures': '',
+  'type-design': '',
+  'quality-and-testing': '',
+  'description-and-interpretation': '',
+  'types-and-logic': '',
+  'advanced-patterns': ''
+}
+
+export default meta

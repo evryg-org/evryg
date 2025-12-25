@@ -14,4 +14,9 @@ Advanced software engineering rests on solid theoretical foundations. This secti
 
 <ModuleStats modules={modules} />
 
-<ContentCardGrid lang="en" basePath="advanced-software-engineering" items={modules} />
+<ContentCardGrid
+  lang="en"
+  basePath="advanced-software-engineering"
+  moduleSlugs={modules.map(m => m.slug)}
+  firstArticleSlugs={Object.fromEntries(modules.map(m => [m.slug, m.items[0].slug]))}
+/>

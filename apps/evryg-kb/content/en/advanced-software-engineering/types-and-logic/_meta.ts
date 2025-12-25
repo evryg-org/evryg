@@ -1,17 +1,18 @@
-import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
-import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
-
-export const content: ContentNode = {
+export const content = {
   slug: 'types-and-logic',
-  title: '6. Types & Logic',
-  icon: 'logic',
-  description: 'Curry-Howard, Propositions as Types, Refinement Types: when types become proofs.',
   index: 'Introduction',
   items: [
-    { slug: 'curry-howard-correspondence-linking-programs-and-proofs', title: 'Curry-Howard' },
-    { slug: 'propositions-as-types-wadlers-unification', title: 'Propositions as Types' },
-    { slug: 'refinement-and-dependent-types-towards-types-that-prove', title: 'Refinement and Dependent Types' }
+    { slug: 'curry-howard-correspondence-linking-programs-and-proofs' },
+    { slug: 'propositions-as-types-wadlers-unification' },
+    { slug: 'refinement-and-dependent-types-towards-types-that-prove' }
   ]
 }
 
-export default buildMeta(content)
+const meta = {
+  index: 'Introduction',
+  'curry-howard-correspondence-linking-programs-and-proofs': '',
+  'propositions-as-types-wadlers-unification': '',
+  'refinement-and-dependent-types-towards-types-that-prove': ''
+}
+
+export default meta

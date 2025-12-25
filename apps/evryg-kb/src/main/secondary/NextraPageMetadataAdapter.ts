@@ -6,9 +6,8 @@ import { importPage } from 'nextra/pages'
 import type { PageMetadataPort } from '../core/ports/PageMetadataPort'
 import type { PageMetadata } from '../core/domain/OGImageData'
 import { createTitleLookup } from '../../libs/nextra-contrib/createTitleLookup'
-import { contentRegistry } from '../../content-registry'
 
-const lookupTitle = createTitleLookup(contentRegistry)
+const lookupTitle = createTitleLookup()
 
 export function createNextraPageMetadataAdapter(): PageMetadataPort {
   return {

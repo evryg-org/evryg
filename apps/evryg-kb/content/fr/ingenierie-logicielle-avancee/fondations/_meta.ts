@@ -1,17 +1,18 @@
-import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
-import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
-
-export const content: ContentNode = {
+export const content = {
   slug: 'fondations',
-  title: '1. Fondations',
-  icon: 'foundation',
-  description: 'Monoides, DAGs et dualité code/data : les structures universelles qui sous-tendent la programmation.',
   index: 'Introduction',
   items: [
-    { slug: 'les-monoides-une-abstraction-omnipresente', title: 'Les monoides' },
-    { slug: 'les-dags-une-structure-omnipresente-en-programmation', title: 'Les DAGs' },
-    { slug: 'code-et-data-une-dualite-fondamentale', title: 'Code et Data' }
+    { slug: 'les-monoides-une-abstraction-omnipresente' },
+    { slug: 'les-dags-une-structure-omnipresente-en-programmation' },
+    { slug: 'code-et-data-une-dualite-fondamentale' }
   ]
 }
 
-export default buildMeta(content)
+const meta = {
+  index: 'Introduction',
+  'les-monoides-une-abstraction-omnipresente': '',
+  'les-dags-une-structure-omnipresente-en-programmation': '',
+  'code-et-data-une-dualite-fondamentale': ''
+}
+
+export default meta

@@ -1,18 +1,20 @@
-import type { ContentNode } from '../../../../src/libs/nextra-contrib/types'
-import { buildMeta } from '../../../../src/libs/nextra-contrib/buildMeta'
-
-export const content: ContentNode = {
+export const content = {
   slug: 'description-and-interpretation',
-  title: '5. Description & Interpretation',
-  icon: 'interpret',
-  description: 'Program as value, DSLs and encodings: separating description from execution.',
   index: 'Introduction',
   items: [
-    { slug: 'interpreting-is-giving-meaning-to-data', title: 'Interpreting, Giving Meaning' },
-    { slug: 'description-and-interpretation-program-as-value', title: 'Program as Value' },
-    { slug: 'initial-and-final-encodings-two-embedding-philosophies', title: 'Initial and Final Encodings' },
-    { slug: 'design-systems-a-dsl-for-visual-identity', title: 'Design Systems as DSLs' }
+    { slug: 'interpreting-is-giving-meaning-to-data' },
+    { slug: 'description-and-interpretation-program-as-value' },
+    { slug: 'initial-and-final-encodings-two-embedding-philosophies' },
+    { slug: 'design-systems-a-dsl-for-visual-identity' }
   ]
 }
 
-export default buildMeta(content)
+const meta = {
+  index: 'Introduction',
+  'interpreting-is-giving-meaning-to-data': '',
+  'description-and-interpretation-program-as-value': '',
+  'initial-and-final-encodings-two-embedding-philosophies': '',
+  'design-systems-a-dsl-for-visual-identity': ''
+}
+
+export default meta
