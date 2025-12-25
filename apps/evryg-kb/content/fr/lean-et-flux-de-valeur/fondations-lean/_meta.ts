@@ -1,13 +1,6 @@
-export const content = {
-  slug: 'fondations-lean',
-  index: 'Introduction',
-  items: [
-    { slug: 'detecter-les-erreurs-au-plus-tot-du-lean-au-shift-left' },
-    { slug: 'kanban-du-signal-de-production-a-la-todo-list-devoyee' }
-  ]
-}
+import type { MetaRecord } from 'nextra'
 
-const meta = {
+const meta: MetaRecord = {
   index: 'Introduction',
   'detecter-les-erreurs-au-plus-tot-du-lean-au-shift-left': '',
   'kanban-du-signal-de-production-a-la-todo-list-devoyee': ''

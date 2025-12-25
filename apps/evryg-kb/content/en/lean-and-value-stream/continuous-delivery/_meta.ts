@@ -1,13 +1,6 @@
-export const content = {
-  slug: 'continuous-delivery',
-  index: 'Introduction',
-  items: [
-    { slug: 'f-git-production-the-continuous-deployment-equation' },
-    { slug: 'pull-requests-a-barrier-born-from-distrust' }
-  ]
-}
+import type { MetaRecord } from 'nextra'
 
-const meta = {
+const meta: MetaRecord = {
   index: 'Introduction',
   'f-git-production-the-continuous-deployment-equation': '',
   'pull-requests-a-barrier-born-from-distrust': ''

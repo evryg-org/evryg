@@ -1,15 +1,6 @@
-export const content = {
-  slug: 'type-design',
-  index: 'Introduction',
-  items: [
-    { slug: 'make-illegal-states-unrepresentable' },
-    { slug: 'parse-dont-validate' },
-    { slug: 'state-machines-and-aggregates-in-ddd' },
-    { slug: 'isomorphisms-at-boundaries-lossless-translation' }
-  ]
-}
+import type { MetaRecord } from 'nextra'
 
-const meta = {
+const meta: MetaRecord = {
   index: 'Introduction',
   'make-illegal-states-unrepresentable': '',
   'parse-dont-validate': '',

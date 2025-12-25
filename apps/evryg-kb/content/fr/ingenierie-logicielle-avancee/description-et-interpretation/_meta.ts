@@ -1,15 +1,6 @@
-export const content = {
-  slug: 'description-et-interpretation',
-  index: 'Introduction',
-  items: [
-    { slug: 'interpreter-cest-donner-du-sens-aux-donnees' },
-    { slug: 'description-et-interpretation-le-programme-comme-valeur' },
-    { slug: 'encodages-initial-et-final-deux-philosophies-dembedding' },
-    { slug: 'design-systems-un-dsl-pour-lidentite-visuelle' }
-  ]
-}
+import type { MetaRecord } from 'nextra'
 
-const meta = {
+const meta: MetaRecord = {
   index: 'Introduction',
   'interpreter-cest-donner-du-sens-aux-donnees': '',
   'description-et-interpretation-le-programme-comme-valeur': '',
