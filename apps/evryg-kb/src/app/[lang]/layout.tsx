@@ -110,6 +110,31 @@ export default async function LangLayout({
             --x-font-sans: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
           }
         `}</style>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebSite",
+                "@id": "https://kb.evryg.com/#website",
+                "name": "evryg Knowledge Base",
+                "url": "https://kb.evryg.com",
+                "publisher": { "@id": "https://kb.evryg.com/#organization" },
+                "inLanguage": ["fr", "en"]
+              },
+              {
+                "@type": "Organization",
+                "@id": "https://kb.evryg.com/#organization",
+                "name": "evryg",
+                "url": "https://www.evryg.com",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://kb.evryg.com/evryg-logo.svg"
+                }
+              }
+            ]
+          })
+        }} />
       </Head>
       <body>
         <Layout

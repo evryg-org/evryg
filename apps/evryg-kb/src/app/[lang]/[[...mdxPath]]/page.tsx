@@ -5,6 +5,32 @@ import { translatePath } from '../../../slug-mappings'
 
 const BASE_URL = 'https://kb.evryg.com'
 
+function buildBreadcrumbList(lang: string, mdxPath?: string[]) {
+  const items = [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": `${BASE_URL}/${lang}`
+    }
+  ]
+
+  if (mdxPath) {
+    let currentPath = `/${lang}`
+    mdxPath.forEach((segment, index) => {
+      currentPath += `/${segment}`
+      items.push({
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": segment.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+        "item": `${BASE_URL}${currentPath}`
+      })
+    })
+  }
+
+  return items
+}
+
 export const generateStaticParams = generateStaticParamsFor('mdxPath')
 
 export async function generateMetadata(props: {
@@ -68,8 +94,41 @@ export default async function Page(props: {
   const pageType = (metadata as { pageType?: string }).pageType
   const showCTA = pageType === 'article'
 
+  const path = params.mdxPath?.join('/') || ''
+  const currentUrl = `${BASE_URL}/${params.lang}${path ? `/${path}` : ''}`
+  const publishedTime = (metadata as { timestamp?: string })?.timestamp
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": buildBreadcrumbList(params.lang, params.mdxPath)
+      },
+      {
+        "@type": "TechArticle",
+        "headline": metadata?.title,
+        "description": metadata?.description,
+        "url": currentUrl,
+        "inLanguage": params.lang,
+        ...(publishedTime && { "datePublished": new Date(publishedTime).toISOString() }),
+        "author": {
+          "@type": "Organization",
+          "name": "evryg",
+          "url": "https://www.evryg.com"
+        },
+        "publisher": { "@id": "https://kb.evryg.com/#organization" },
+        "isPartOf": { "@id": "https://kb.evryg.com/#website" }
+      }
+    ]
+  }
+
   return (
     <Wrapper toc={toc} metadata={metadata}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <MDXContent {...props} params={params} />
       {showCTA && <ArticleCTA lang={params.lang} />}
     </Wrapper>
