@@ -1,6 +1,9 @@
 import { generateStaticParamsFor, importPage } from 'nextra/pages'
 import { useMDXComponents } from '../../../mdx-components'
 import { ArticleCTA } from '../../../components/article_cta'
+import { translatePath } from '../../../slug-mappings'
+
+const BASE_URL = 'https://kb.evryg.com'
 
 export const generateStaticParams = generateStaticParamsFor('mdxPath')
 
@@ -19,8 +22,17 @@ export async function generateMetadata(props: {
     ? new Date(metadata.timestamp).toISOString()
     : undefined
 
+  const currentPath = `/${params.lang}${path ? `/${path}` : ''}`
+
   return {
     ...metadata,
+    alternates: {
+      canonical: `${BASE_URL}${translatePath(currentPath, 'fr')}`,
+      languages: {
+        en: `${BASE_URL}${translatePath(currentPath, 'en')}`,
+        fr: `${BASE_URL}${translatePath(currentPath, 'fr')}`,
+      },
+    },
     openGraph: {
       ...metadata?.openGraph,
       type: 'article',

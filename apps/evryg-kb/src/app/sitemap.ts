@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getPageMap } from 'nextra/page-map'
 import type { PageMapItem } from 'nextra'
+import { translatePath } from '../slug-mappings'
 
 const BASE_URL = 'https://kb.evryg.com'
 const locales = ['en', 'fr'] as const
@@ -36,8 +37,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: route === `/${lang}` ? 1 : 0.8,
         alternates: {
           languages: {
-            en: `${BASE_URL}/en${route.replace(/^\/(en|fr)/, '')}`,
-            fr: `${BASE_URL}/fr${route.replace(/^\/(en|fr)/, '')}`,
+            en: `${BASE_URL}${translatePath(route, 'en')}`,
+            fr: `${BASE_URL}${translatePath(route, 'fr')}`,
+            'x-default': `${BASE_URL}${translatePath(route, 'fr')}`,
           },
         },
       })
