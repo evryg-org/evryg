@@ -1,0 +1,47 @@
+---
+canonical-slug: propositions-as-types-lunification-de-wadler
+pageType: article
+sidebarTitle: "Propositions as Types"
+---
+
+# Propositions as Types: Wadler's Unification
+
+Philip Wadler, in his [talk](https://www.youtube.com/watch?v=IOiZatlZtGU) and [paper](https://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf) "Propositions as Types," offers a historical and philosophical meditation on [the Curry-Howard correspondence](/en/advanced-software-engineering/types-and-logic/curry-howard-correspondence-linking-programs-and-proofs).
+
+## A Correspondence Discovered, Not Invented
+
+Wadler's point goes beyond mere technical exposition: he marvels at the fact that this correspondence was not invented but discovered. Logicians, then decades later computer scientists, working independently on distinct problems, converged on identical structures.
+
+In the 1930s, mathematician and logician [Gerhard Gentzen](https://en.wikipedia.org/wiki/Gerhard_Gentzen) developed natural deduction to formalize mathematical reasoning; during the same period, [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church) invented lambda calculus to explore the foundations of mathematics. These two formalisms turned out to be two sides of the same coin, suggesting a deep truth about the nature of computation and logic.
+
+## The Natural Character of the Correspondence
+
+Wadler insists on the natural character of this correspondence, as opposed to artificial constructions. Invented programming languages (COBOL, BASIC, even aspects of C++) bear the marks of their creators, their idiosyncrasies, their historical compromises.
+
+Typed lambda calculus, however, seems to exist independently of its discoverers, like prime numbers or the Pythagorean theorem. Every time we try to rigorously formalize the notion of computation or proof, we fall back on the same structures. This universality suggests that the correspondence is not a happy accident but a fundamental property of what it means to reason and compute.
+
+## The Historical Threads
+
+The paper traces the historical threads that led to this unification.
+
+[Brouwer](https://en.wikipedia.org/wiki/L._E._J._Brouwer)'s intuitionistic logic, which rejects the [law of excluded middle](https://en.wikipedia.org/wiki/Law_of_excluded_middle) (the principle that every proposition is either true or false, with no third option) and demands constructive proofs, finds its perfect expression in programs: you cannot prove the existence of an object without proposing a method to construct it.
+
+Curry's work on combinatory logic, Howard's work on the correspondence with natural deduction, then [Martin-Löf](https://en.wikipedia.org/wiki/Per_Martin-L%C3%B6f)'s extension to [dependent types](/en/advanced-software-engineering/types-and-logic/refinement-and-dependent-types-towards-types-that-prove) form a coherent lineage. Each generation deepened the same intuition: proofs are programs, propositions are types, and this identity is not metaphorical.
+
+## Extensions Beyond Propositional Logic
+
+Wadler also explores extensions of this correspondence beyond simple propositional logic:
+
+- Classical logic, with its excluded middle, corresponds to non-local control flow: exceptions (`try`/`catch`/`throw`) embody proof by contradiction.
+- Girard's linear logic, where each hypothesis must be used exactly once, corresponds to type systems that track resource consumption: Rust's ownership system is the best-known example. Rust actually uses *affine types* (each value used *at most* once: 0 or 1) rather than strict linear types (exactly once: 1), but the lineage is direct.
+- [Moggi](https://en.wikipedia.org/wiki/Eugenio_Moggi)'s monads capture computational effects (I/O, state, exceptions) while preserving logical purity. This is the theoretical foundation of the `IO` monad in Haskell, popularized by Wadler himself, or the `State` and `Either` monads respectively.
+
+Each advance in logic finds its reflection in type theory, and vice versa: the two disciplines progress hand in hand.
+
+## The Philosophical Scope
+
+The philosophical scope of "Propositions as Types" transcends computer science.
+
+If computation and deduction are fundamentally identical, then **programming is reasoning, and reasoning is programming**, regardless of the programming language. Modern proof assistants exploit this identity: proving a mathematical theorem means writing a program in a dependently typed language. Conversely, writing a well-typed program means proving a theorem about its behavior.
+
+Wadler leaves us with an open question: why does this correspondence exist? Is it a contingent fact of our universe, or a logical necessity? This question, at the frontier of mathematics and metaphysics, remains without definitive answer; yet its very formulation testifies to the depth of the Curry-Howard isomorphism.

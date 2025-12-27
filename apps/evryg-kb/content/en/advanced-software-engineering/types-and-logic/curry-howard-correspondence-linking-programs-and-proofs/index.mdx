@@ -1,0 +1,172 @@
+---
+canonical-slug: la-correspondance-de-curry-howard-lien-entre-programmes-et-preuves
+pageType: article
+sidebarTitle: "Curry-Howard"
+---
+
+import { Tabs } from 'nextra/components'
+
+# The Curry-Howard Correspondence: Linking Programs and Proofs
+
+The Curry-Howard correspondence, sometimes called the Curry-Howard isomorphism, establishes a deep equivalence between two apparently distinct domains: formal logic and type theory. The term *isomorphism* here means that these two domains have exactly the same structure: they are two ways of looking at the same thing.
+
+## The Foundational Isomorphism
+
+Discovered independently by Haskell Curry in the 1930s and William Alvin Howard in 1969, this correspondence reveals that **types are logical propositions** and **programs are proofs of those propositions**.
+
+A program that compiles is thus literally a demonstration that its type is inhabited, meaning there exists at least one value satisfying this specification. This duality is not a mere poetic analogy; it's a rigorous structural identity.
+
+## Correspondences Between Types and Logical Propositions
+
+The elementary correspondences between types on one hand and logical propositions on the other are elegant in their simplicity:
+
+| Type | Logic | Interpretation |
+|------|-------|----------------|
+| $A \times B$ | $A \land B$ | To prove "A and B", provide a proof of A and a proof of B |
+| $A \mid B$ | $A \lor B$ | A proof of "A or B" is either a proof of A, or a proof of B |
+| $A \to B$ | $A \Rightarrow B$ | A proof of "A implies B" transforms a proof of A into a proof of B |
+| `void` | $\bot$ | Contradiction (zero inhabitants) |
+| `unit` | $\top$ | Trivial truth (one inhabitant) |
+
+This similarity of structure, clearly apparent in the table, is what constitutes the isomorphism[^2] itself.
+
+See also: [Type Algebra: Products and Sums](/en/advanced-software-engineering/type-structures/type-algebra-products-and-sums)
+
+## The `never` Type and Contradiction
+
+This correspondence illuminates the role of the `never` type in TypeScript or `Nothing` in Scala.
+
+A function of type $A \to \text{never}$ asserts "if A is true, then there's a contradiction": in other words, A is false, A is uninhabited (= A contains no value). This is exactly the principle of *ex falso quodlibet*: from falsehood, anything can be derived.
+
+When the compiler infers that an expression's type is `never`, it proves that this execution path is impossible. Exhaustive pattern matching analyses exploit this mechanism: if all cases are covered, the residual case is of type `never`, proving that no case was forgotten.
+
+## Polymorphic Types and Quantifiers
+
+Polymorphic types[^1] correspond to logic quantifiers.
+
+**The universal quantifier** $\forall$, pronounced "for all": a function of type $\forall A. A \to A$ (meaning "for all types A, a function from A to A") must work for *any* type A.
+
+<Tabs items={['TypeScript', 'Python', 'Java', 'Haskell']}>
+  <Tabs.Tab>
+```typescript
+function identity<A>(x: A): A {
+  return x  // only possible implementation
+}
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```python
+from typing import TypeVar
+
+A = TypeVar('A')
+
+def identity(x: A) -> A:
+    return x  # only possible implementation
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```java
+public static <A> A identity(A x) {
+    return x;  // only possible implementation
+}
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```haskell
+identity :: a -> a
+identity x = x  -- only possible implementation
+```
+  </Tabs.Tab>
+</Tabs>
+
+This function cannot inspect what A is, nor make special cases: it's the caller who chooses. The type constrains the implementation to the point of determining it entirely.
+
+**The existential quantifier** $\exists$, pronounced "there exists": a type like $\exists A. (A, A \to \text{String})$ means "there exists a type A, and I provide a value of that type plus a function to convert it."
+
+<Tabs items={['TypeScript', 'Python', 'Java', 'Haskell']}>
+  <Tabs.Tab>
+```typescript
+interface Showable {
+  // A is hidden - caller doesn't know what it is
+  show: () => string
+}
+
+const myShowable: Showable = {
+  // implementer chooses A = number
+  show: () => String(42)
+}
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```python
+from typing import Protocol
+
+class Showable(Protocol):
+    # A is hidden - caller doesn't know what it is
+    def show(self) -> str: ...
+
+class MyShowable:
+    # implementer chooses A = int
+    def __init__(self):
+        self._value = 42
+
+    def show(self) -> str:
+        return str(self._value)
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```java
+interface Showable {
+    // A is hidden - caller doesn't know what it is
+    String show();
+}
+
+Showable myShowable = new Showable() {
+    // implementer chooses A = Integer
+    private final int value = 42;
+
+    public String show() {
+        return String.valueOf(value);
+    }
+};
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```haskell
+-- Existential type with GADT
+data Showable where
+  MkShowable :: Show a => a -> Showable
+
+-- implementer chooses a = Int
+myShowable :: Showable
+myShowable = MkShowable (42 :: Int)
+
+showIt :: Showable -> String
+showIt (MkShowable x) = show x
+```
+  </Tabs.Tab>
+</Tabs>
+
+Here it's the implementer who chooses A, and the caller doesn't know what it is: this is the foundation of abstract types and encapsulation.
+
+This correspondence extends to higher-order logics with [dependent types](/en/advanced-software-engineering/types-and-logic/refinement-and-dependent-types-towards-types-that-prove): a type like $\forall n : \text{Nat}. \text{Vector}\langle n \rangle \to \text{Vector}\langle n \rangle$, read "for all natural numbers n, a function from a vector of size n to a vector of size n," expresses a proposition quantifying over values, not just types.
+
+Proof assistants like [Coq](https://coq.inria.fr/), [Agda](https://agda.readthedocs.io/), or [Lean](https://lean-lang.org/) fully exploit this equivalence: programs written there are proofs of mathematical theorems.
+
+## Practical Implications in Everyday Programming
+
+The Curry-Howard correspondence seems very theoretical and abstract, but the practical implications for everyday developers are real:
+
+- Designing a function signature is stating a theorem
+- Implementing that function is proving it
+- A type that's too weak (like `any`) corresponds to a trivial proposition that asserts nothing interesting
+- A type impossible to implement reveals a contradictory specification
+
+Concretely, for a TypeScript or Python developer: when the compiler refuses your code with a type error, it's telling you your "proof" is invalid. And when you choose `unknown` rather than `any`, you commit to *proving* that you've correctly identified the type before using it.
+
+Wadler's [free theorems](https://people.mpi-sws.org/~dreyer/tor/papers/wadler.pdf) show that certain polymorphic types have only one possible implementation: the type *is* the complete specification.
+
+The Curry-Howard correspondence thus invites us to see typing not as bureaucratic constraint, but as a formal reasoning system where every program that compiles constitutes a mechanically verified proof. It's, in a way, the developer's [poka-yoke](https://en.wikipedia.org/wiki/Poka-yoke): a mechanism that makes certain errors structurally—mathematically, in reality—impossible.
+
+[^1]: The term comes from Greek: *poly* (many) + *morphe* (form) = "many forms."
+[^2]: From Greek: *iso* (ἴσος, equal) + *morphe* (μορφή, form) = "same form."

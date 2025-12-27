@@ -1,0 +1,64 @@
+---
+canonical-slug: les-monoides-une-abstraction-omnipresente
+pageType: article
+sidebarTitle: Monoids
+---
+
+# Monoids: A Ubiquitous Abstraction
+
+A monoid is an algebraic structure of disarming simplicity: a set equipped with an associative binary operation and a neutral element. That's all.
+
+## Examples Everywhere
+
+- Integers with addition and $0$
+- Strings with concatenation and `""`
+- Lists with `concat` and `[]`
+- Booleans with `&&` and `true`, or with `||` and `false`
+- Functions $A \to A$ with composition and identity
+
+Wherever we look, monoids emerge. This ubiquity is no accident: the monoid captures the minimal pattern of "things that can be combined" without requiring anything more.
+
+## Associativity: The Key to Parallelization
+
+Associativity, the central property of monoids, has considerable practical consequences. It guarantees that:
+
+$$(a \bullet b) \bullet c = a \bullet (b \bullet c)$$
+
+This freedom of parenthesization opens the door to parallelization.
+
+To reduce a list of a thousand elements, we can split it into ten segments, reduce each segment independently on a distinct thread, then combine the intermediate results.
+
+Map-Reduce fundamentally relies on this property: "reduce" is nothing but a distributed monoidal fold. Without associativity, this parallelization would be incorrect.
+
+## Monoids in Business Modeling
+
+In business modeling, monoids appear whenever we aggregate or accumulate data:
+
+- **Shopping cart**: we combine two carts by merging their items, the empty cart is the neutral element
+- **Metrics and statistics**: counters we add together, weighted averages we merge, histograms we combine
+- **Logs and events**: temporal concatenation
+- **Permissions**: we combine access rights from multiple roles, the absence of permission is the neutral element
+
+For a developer, recognizing these structures allows applying generic operations (`fold` / `reduce`, `mconcat`) rather than reinventing the wheel for each domain.
+
+## The Neutral Element: Robustness by Default
+
+The neutral element, often overlooked, plays a crucial role in code robustness:
+
+- It provides a sensible default value when there's "nothing" to combine: reducing an empty list returns the neutral element rather than raising an exception
+- It allows initializing an accumulator without special cases
+- It simplifies APIs: rather than returning `Option<Result>` to handle the empty case, we simply return the neutral result
+
+This uniformity eliminates an entire class of bugs related to edge cases. The monoid transforms absence into trivial presence. See also our article on [total and partial functions](/en/advanced-software-engineering/type-structures/total-and-partial-functions-the-type-promise).
+
+## The Composability of Monoids
+
+Monoids compose remarkably well, which amplifies their utility:
+
+- If $A$ is a monoid and $B$ is a monoid, then the product $(A, B)$ is a monoid with the component-wise operation
+- Functions $X \to M$ to a monoid $M$ themselves form a monoid
+- `Map<K, V>` where $V$ is a monoid allows natural merging of entries sharing the same key
+
+This compositionality allows building complex structures from simple bricks, each preserving monoidal properties.
+
+The developer who recognizes a monoid in their domain automatically inherits a rich vocabulary (`empty`, `combine`, `combineAll`) and formal guarantees about the behavior of these operations.

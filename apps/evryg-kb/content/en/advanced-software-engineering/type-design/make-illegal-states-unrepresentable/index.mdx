@@ -1,0 +1,40 @@
+---
+canonical-slug: make-illegal-states-unrepresentable
+pageType: article
+sidebarTitle: "Make Illegal States Unrepresentable"
+---
+
+# Make Illegal States Unrepresentable
+
+This phrase, popularized by [Yaron Minsky](https://blog.janestreet.com/effective-ml-revisited/) in the context of OCaml, captures the very essence of a defensive approach to modeling: rather than verifying after the fact that a state is valid, we structure types so that invalid states simply cannot be constructed. This is a fundamental shift in perspective: we move from runtime validation to compile-time guarantees, thus pushing error detection as early as possible in the development cycle.
+
+## In Practice: TypeScript Application
+
+In TypeScript, for example, this philosophy translates into judicious use of discriminated union types, literal types, and branded types.
+
+Take the classic example of an e-commerce order:
+- Rather than having an object with potentially inconsistent `shippedAt` and `deliveredAt` fields, such as an order delivered but never shipped...
+- We explicitly model the states `Draft | Confirmed | Shipped | Delivered` as distinct variants, each carrying only the data relevant to its state.
+
+The compiler then becomes a guardian that refuses to compile code attempting to create combinations that are impossible from a business perspective.
+
+## Alignment with Domain-Driven Design
+
+From a Domain-Driven Design perspective, this approach aligns perfectly with the notion of aggregate invariants. A well-designed aggregate should never be instantiable in a state that violates its business rules. Value Objects particularly embody this principle: an `EmailAddress` is not a simple `string`, it's a type that, by construction, guarantees the validity of its content.
+
+This eliminates an entire class of bugs related to the propagation of invalid data throughout the system.
+
+## Waste Reduction in the Lean Sense
+
+This technique also constitutes a powerful lever for reducing muda (waste) in the Lean sense. Each manual validation we no longer need to write, each impossible case test we no longer need to maintain, each production bug we'll never have to investigate represents saved time and energy.
+
+The type system becomes a form of automatically verified executable documentation, reducing the cognitive load on developers who no longer have to keep in mind all theoretically possible states that are, in practice, forbidden by the business.
+
+## Limits and Trade-offs
+
+However, we must acknowledge the limits of this approach:
+
+1. Some invariants are inherently dynamic: email uniqueness in a database, for example, cannot be encoded in the type system alone.
+2. Moreover, overly fine-grained modeling can lead to a combinatorial explosion of types that hurts readability.
+
+The art lies in discernment: identifying critical invariants that deserve static encoding, while accepting that some validations will necessarily remain at runtime. It's a pragmatic trade-off between safety and ergonomics.

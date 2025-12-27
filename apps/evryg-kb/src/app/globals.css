@@ -1,0 +1,16 @@
+/*
+ * Evryg brand color override for Nextra theme
+ *
+ * Nextra sets --nextra-primary-* variables on :root (specificity 0-1-0).
+ * We use :root:root to double specificity (0-2-0) and win the cascade.
+ *
+ * References:
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Specificity
+ * - https://css-tricks.com/almanac/pseudo-selectors/r/root/
+ * - https://philipwalton.com/articles/do-we-actually-need-specificity-in-css/
+ */
+:root:root {
+  --nextra-primary-hue: 150deg;
+  --nextra-primary-saturation: 56%;
+  --nextra-primary-lightness: 45%;
+}

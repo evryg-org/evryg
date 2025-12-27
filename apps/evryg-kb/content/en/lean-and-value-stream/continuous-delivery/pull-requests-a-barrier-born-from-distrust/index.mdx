@@ -1,0 +1,61 @@
+---
+canonical-slug: pull-requests-une-barriere-nee-de-la-mefiance
+pageType: article
+sidebarTitle: "Pull Requests"
+---
+
+# Pull Requests: A Barrier Born from Distrust
+
+Pull requests emerged in a very particular context: that of open source on the Internet, where strangers propose modifications to projects maintained by other strangers.
+
+Linus Torvalds, overwhelmed by contributions to the Linux kernel, needed a filtering mechanism: an airlock where proposed changes could be examined before entering the canonical code. GitHub democratized this workflow, making it accessible and elegant.
+
+In this environment of low trust by default, the pull request plays an essential role: it protects the project from malicious, incompetent, or simply misaligned contributions with the maintainers' vision. It's a necessary barrier when you cannot trust a priori.
+
+## The Inappropriate Import into Enterprise
+
+Transposing this mechanism as-is into an enterprise means importing a solution designed for a problem you shouldn't have.
+
+An enterprise is - or should be - a high-trust environment. Developers have been recruited, evaluated, trained. They share a common context, aligned objectives, collective responsibility toward the product.
+
+Requiring that a colleague approve every change before merge is institutionalizing distrust: "I don't trust you enough to modify the code without supervision." This implicit message, repeated daily, erodes accountability and infantilizes professionals who were deemed worthy of hiring.
+
+## The Compliance Theater
+
+Pull requests in this context often become compliance theater rather than a genuine safety net:
+
+- The reviewer, pressed by their own tasks, skims the diff and approves mechanically
+- Or they block on stylistic details while substantial work stagnates
+- Feedback cycles lengthen: the developer context switches to something else, returns hours or days later, has lost the thread
+
+Lead time explodes, flow disappears, batch size increases to "make worthwhile" the cost of review.
+
+All this for an illusion of control that only detects a fraction of real problems: subtle bugs go unnoticed, only typos are caught.
+
+## Treat the Cause, Not the Symptom
+
+The real question is not "how do we improve our code reviews?" but "why do we need this barrier?".
+
+If the answer is "because we don't trust the quality of the code produced," then the pull request only treats the symptom. The root cause, namely the lack of trust, remains intact.
+
+It's better to invest in what builds trust:
+
+- Pair programming and mob programming where review is continuous and integrated
+- TDD that guarantees a safety net of tests
+- Continuous integration that validates each commit
+- Modular architecture that limits the impact of errors
+- Blameless culture that encourages experimentation
+
+These practices attack the source of the problem rather than erecting checkpoints.
+
+## Toward Eliminating PRs
+
+Tending toward reducing or eliminating pull requests is an indicator of organizational maturity.
+
+Teams practicing *trunk-based development* with direct commits to main demonstrate high trust: in their tests, in their monitoring, in their colleagues.
+
+Each commit triggers a pipeline that automatically verifies what a human reviewer would verify manually, but faster and more exhaustively. Errors that slip through are detected quickly and fixed without drama.
+
+This fluidity is not recklessness; it's the fruit of investment in foundations (skills, tooling, culture) that makes barriers superfluous.
+
+The pull request is not bad in itself; it's simply the sign that you haven't yet built the environment where it becomes unnecessary.

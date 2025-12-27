@@ -1,0 +1,49 @@
+---
+pageType: article
+sidebarTitle: Parse, Don't Validate
+---
+
+# Parse, Don't Validate
+
+L'article d'[Alexis King](https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/), publié en 2019, a cristallisé une intuition que beaucoup de développeurs fonctionnels portaient sans nécessairement savoir l'articuler.
+
+## La thèse centrale
+
+La thèse est limpide : la validation est une opération qui inspecte une donnée et répond par un booléen, puis oublie immédiatement tout ce qu'elle vient d'apprendre. Le parsing, en revanche, transforme une donnée faiblement typée en une donnée fortement typée, préservant ainsi l'information acquise dans le système de types.
+
+Cette distinction apparemment subtile a des conséquences architecturales profondes.
+
+## L'exemple de la liste non vide
+
+King illustre son propos avec l'exemple d'une fonction qui vérifie qu'une liste est non vide avant d'en extraire le premier élément.
+
+- L'approche validatrice retourne un `boolean`, forçant ensuite le code appelant à refaire confiance aveuglément ou à re-vérifier.
+- L'approche parser, elle, retourne directement un type `NonEmptyList` qui prouve structurellement que la liste contient au moins un élément.
+
+Le `head` devient alors une opération totale, sans risque d'exception. On ne demande plus « est-ce valide ? » mais « quelle est la représentation typée de cette donnée ? », et l'échec devient explicite via un type comme `Option` ou `Either`.
+
+## Lien avec "Make Illegal States Unrepresentable"
+
+Cette philosophie s'inscrit dans la continuité directe de [Make Illegal States Unrepresentable](/fr/ingenierie-logicielle-avancee/design-par-les-types/make-illegal-states-unrepresentable) de Yaron Minsky, mais en adresse le versant dynamique.
+
+Là où Minsky parle de la structure des types, King parle de la frontière du système : ce moment où des données non fiables (entrées utilisateur, réponses API, fichiers de configuration, etc.) entrent dans notre domaine. Le parsing constitue cette membrane de traduction qui transforme le chaos extérieur en citoyens de première classe de notre modèle de domaine, avec toutes les garanties que cela implique.
+
+## Architecture en couches de confiance
+
+En pratique, adopter cette approche conduit à repenser l'architecture en termes de couches de confiance :
+
+- À la périphérie, on accepte des `unknown` ou des types larges comme `string`
+- Dès que possible, on parse vers des types métier précis : `UserId`, `PositiveInteger`, `ValidatedEmail`
+- Une fois dans le cœur du domaine, on manipule exclusivement ces types raffinés
+
+Le compilateur garantit alors qu'aucune donnée non validée ne peut s'y glisser. Les smart constructors et les modules opaques deviennent les outils privilégiés de cette stratégie, exposant uniquement des fonctions de parsing qui retournent des types garantis.
+
+## Impact sur la maintenabilité
+
+L'impact sur la maintenabilité est considérable. Le code devient correct par construction plutôt que correct par convention :
+
+- On n'a plus besoin de se demander si telle fonction a été appelée après telle validation : le type l'atteste
+- Les tests peuvent se concentrer sur la logique métier plutôt que sur la vérification défensive de préconditions
+- Les refactorings deviennent plus sûrs : si on oublie de gérer un cas, le compilateur le signale immédiatement
+
+Alexis King nous rappelle ainsi que les types ne sont pas qu'une commodité pour l'autocomplétion : ils sont un langage formel pour exprimer et vérifier les invariants de notre système.

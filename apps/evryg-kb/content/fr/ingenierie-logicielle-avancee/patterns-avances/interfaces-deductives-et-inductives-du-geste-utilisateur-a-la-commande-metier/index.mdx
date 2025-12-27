@@ -1,0 +1,71 @@
+---
+pageType: article
+sidebarTitle: Interfaces déductives et inductives
+---
+
+# Interfaces déductives et inductives : du geste utilisateur à la commande métier
+
+[Greg Young](https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf), dans ses documents fondateurs sur CQRS, introduit une distinction éclairante entre deux styles d'interfaces.
+
+## La distinction de Greg Young
+
+- Une **interface déductive** présente à l'utilisateur des données brutes et lui laisse la liberté de les modifier comme bon lui semble : pensez à un formulaire avec des champs éditables où l'on soumet un état final.
+- Une **interface inductive**, en revanche, guide l'utilisateur à travers des actions spécifiques et intentionnelles : des boutons comme « Approuver », « Rejeter », « Expédier » qui capturent une intention plutôt qu'un delta de données.
+
+Cette distinction, apparemment cosmétique, a des répercussions profondes sur toute l'architecture applicative.
+
+## L'interface déductive et ses limites
+
+L'interface déductive mène naturellement vers des opérations CRUD génériques. L'utilisateur modifie un objet, le frontend calcule un diff ou envoie l'état complet, et le backend doit *déduire* ce que l'utilisateur voulait vraiment faire.
+
+« Le statut est passé de 'pending' à 'approved' : ah, c'est donc une approbation. »
+
+Cette inférence est fragile :
+
+- Elle perd l'intention originelle
+- Elle complique la validation métier
+- Elle rend l'audit trail opaque
+
+Pire, elle couple étroitement la structure de l'interface à la structure des entités, rendant toute évolution du modèle de domaine douloureuse.
+
+## L'interface inductive : capturer l'intention
+
+L'interface inductive capture l'intention au moment même où l'utilisateur l'exprime.
+
+Un clic sur « Approuver la commande » génère une commande (au sens CQRS) :
+
+```
+ApproveOrder { orderId, approverId, comment }
+```
+
+Cette commande traverse le système avec sa sémantique intacte. Le backend n'a plus rien à déduire : il reçoit directement un ordre clair qu'il peut [valider](/fr/ingenierie-logicielle-avancee/design-par-les-types/parse-dont-validate), exécuter et journaliser.
+
+Les use cases deviennent des verbes métier explicites plutôt que des opérations génériques de persistance. On retrouve ici l'essence du *task-based UI* : l'interface reflète les tâches que l'utilisateur accomplit, pas la structure des données qu'il manipule.
+
+## Alignement de bout en bout
+
+Cette approche établit un alignement remarquable de bout en bout :
+
+1. Le domain expert parle d'« approuver une commande »
+2. Le designer UX crée un bouton « Approuver »
+3. Le frontend émet une commande `ApproveOrder`
+4. Le backend expose un handler `ApproveOrderHandler`
+5. L'[agrégat](/fr/ingenierie-logicielle-avancee/design-par-les-types/machines-a-etat-et-aggregats-en-ddd) implémente une méthode `approve()`
+6. L'événement `OrderApproved` est émis
+
+Le même vocabulaire, la même granularité d'intention, traverse toutes les couches. C'est l'*ubiquitous language* poussé à son terme logique : non seulement dans le code serveur, mais jusqu'à l'interface utilisateur.
+
+Les use cases métier ne sont plus des idées documentées ici ou là sous forme de schémas ou vagues descriptions, mais des artéfacts concrets et traçables directement dans le code.
+
+## Conséquences sur le design
+
+Les conséquences sur le design sont considérables :
+
+- **Côté lecture** : on peut construire des projections optimisées pour chaque écran, libérées du carcan d'un modèle de données normalisé
+- **Côté écriture** : chaque commande peut porter [exactement les données nécessaires](/fr/ingenierie-logicielle-avancee/design-par-les-types/make-illegal-states-unrepresentable) à sa validation, ni plus ni moins
+
+L'évolution devient plus sûre : ajouter une nouvelle action métier, c'est ajouter une nouvelle commande, un nouveau handler, un nouveau bouton : sans toucher aux flux existants.
+
+On évite ainsi le syndrome du formulaire omniscient qui tente de tout faire et finit par mal faire tout ce qu'il fait.
+
+L'interface inductive n'est pas qu'un pattern UI : c'est une philosophie de conception qui reconnaît que les systèmes métier sont faits d'actions intentionnelles, pas de mutations arbitraires de données.

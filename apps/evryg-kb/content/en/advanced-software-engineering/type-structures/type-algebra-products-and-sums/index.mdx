@@ -1,0 +1,54 @@
+---
+canonical-slug: algebre-des-types-produits-et-sommes
+pageType: article
+sidebarTitle: Type Algebra
+---
+
+# Type Algebra: Products and Sums
+
+Algebraic type theory offers us an elegant correspondence between data structures and elementary arithmetic.
+
+## Product Types
+
+A *product type*, that is, a structure, tuple, or record, represents a [conjunction](https://en.wikipedia.org/wiki/Logical_conjunction): to construct a value of this type, all components must be provided simultaneously.
+
+If type $A$ has 3 possible inhabitants and type $B$ has 5, then the type $(A, B)$ has exactly 15, which is $3 \times 5$. This is the Cartesian product in the set-theoretic sense: each possible combination of values constitutes a distinct inhabitant of the product type.
+
+## Sum Types
+
+*Sum types*, which are discriminated unions, variants, or enums, embody [exclusive disjunction](https://en.wikipedia.org/wiki/Exclusive_or). A value of a sum type is exactly one of the possible alternatives, never multiple.
+
+If $A$ has 3 inhabitants and $B$ has 5, then $A | B$ has 8, which is $3 + 5$. We add possibilities rather than multiplying them.
+
+This distinction is not merely an abstract mathematical exercise: it directly guides our modeling choices by forcing us to make explicit whether two pieces of information necessarily coexist or mutually exclude each other.
+
+## Eliminating Invalid States
+
+This algebra explains why sum types are so powerful for eliminating invalid states.
+
+Consider an entity that can be either in "draft" state with modifiable content, or in "published" state with a publication date:
+
+- A naive product type `{ status: Status, content: string, publishedAt?: Date }` allows $2 \times \infty \times (\infty + 1)$ combinations, including aberrations like a draft with a publication date.
+- A sum type `Draft { content } | Published { content, publishedAt }` drastically reduces the state space by only allowing semantically valid combinations.
+
+We move from a polluted Cartesian product to a precise sum.
+
+## In Practice with TypeScript
+
+TypeScript illustrates this duality well with its interfaces (products) and discriminated unions (sums).
+
+A common pattern is to use a discriminant field, often named `type` or `kind`, to transform what would otherwise be an ambiguous structural union into an explicit sum. The compiler can then perform *narrowing*: in each branch of a `switch` on the discriminant, it knows exactly which variant is active and which fields are available.
+
+This is the direct exploitation of OR semantics: at any given moment, we're in one branch, not multiple.
+
+## The Unit and Impossible Types
+
+This algebraic perspective also gives us a vocabulary for reasoning about unit and impossible types:
+
+- The `void` or `unit` type (one inhabitant) is the neutral element of multiplication: $A \times \text{unit} \cong A$
+- The `never` type (zero inhabitants) is the neutral element of addition: $A \mid \text{never} \cong A$
+- And the absorbing element of multiplication: $A \times \text{never} \cong \text{never}$
+
+These identities are not theoretical curiosities: they explain why a function returning `never` proves that a case is impossible, or why a field of type `never` makes the entire record uninhabited.
+
+Mastering this algebra means having a mental tool for designing types that express exactly what we want to allow, no more, no less.

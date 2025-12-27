@@ -1,4 +1,10 @@
-import { Hero, HomeStats, Features } from '../../src/components'
+---
+title: Base de connaissances evryg
+description: Expertise en ingénierie logicielle avancée et pratiques Lean.
+pageType: home
+---
+
+import { Hero, HomeStats, CardGrid } from '../../src/components'
 
 <Hero
   title="L'excellence par les fondamentaux"
@@ -12,7 +18,7 @@ import { Hero, HomeStats, Features } from '../../src/components'
   labels={{ articles: 'Articles', domains: 'Domaines', toLearn: 'À apprendre' }}
 />
 
-<Features items={[
+<CardGrid items={[
   {
     icon: 'code',
     title: 'Ingénierie logicielle avancée',

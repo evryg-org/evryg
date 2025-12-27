@@ -1,0 +1,80 @@
+---
+pageType: article
+sidebarTitle: Property-Based Testing
+---
+
+# Property-Based Testing : puissance et limites
+
+Le property-based testing (PBT), popularisé par [QuickCheck](https://hackage.haskell.org/package/QuickCheck) en Haskell à la fin des années 1990, renverse l'approche traditionnelle du test unitaire.
+
+## La révolution du test aléatoire
+
+Plutôt que d'écrire des exemples spécifiques avec des entrées et sorties attendues, le PBT nous invite à exprimer des propriétés universelles que le code doit satisfaire pour toute entrée valide. Ensuite, on laisse la librairie de PBT générer des centaines ou des milliers de cas aléatoires.
+
+Cette approche découvre souvent des bugs dans des cas limites auxquels un développeur n'aurait jamais pensé :
+
+- Valeurs extrêmes
+- Chaînes vides
+- Nombres négatifs
+- Combinaisons inhabituelles
+
+Le générateur explore l'espace des entrées de manière bien plus exhaustive que notre imagination.
+
+## Le shrinking : la clé de la debuggabilité
+
+La vraie puissance du PBT réside dans le *shrinking* : quand un cas d'échec est découvert, le framework tente automatiquement de le réduire au plus petit exemple reproductible.
+
+Un tableau de 500 éléments qui fait échouer un tri devient peut-être un tableau de 3 éléments avec une configuration précise. Cette minimisation transforme un échec obscur en un cas de test lisible et debuggable.
+
+C'est également un formidable outil de spécification : formuler une propriété force à réfléchir aux invariants fondamentaux du code. « Trier une liste préserve sa longueur », « encoder puis décoder redonne l'original », « l'opération est commutative » : ces assertions révèlent l'essence du comportement attendu mieux qu'une collection d'exemples disparates.
+
+## Le défi des propriétés
+
+Identifier les bonnes propriétés est souvent le défi principal. Pour une fonction de tri, les propriétés classiques sont bien connues :
+
+- Idempotence : $\text{sort}(\text{sort}(xs)) = \text{sort}(xs)$
+- Préservation des éléments
+- Ordre croissant du résultat
+
+Mais pour une logique métier complexe, quelles propriétés exprimer ? On tombe parfois dans le piège de réécrire l'implémentation dans le test, ce qui ne vérifie rien du tout.
+
+Les propriétés les plus utiles sont souvent :
+
+- Les *round-trips* : encode/decode, serialize/deserialize
+- Les invariants de structure : « l'arbre reste équilibré »
+- Les comparaisons avec un oracle : « ma version optimisée produit le même résultat que la version naïve »
+
+Mais toutes les fonctions ne se prêtent pas naturellement à ce style.
+
+## La qualité des générateurs
+
+La qualité des générateurs constitue une autre limite significative.
+
+Un générateur uniforme sur les entiers passera l'essentiel de son temps sur des valeurs « inintéressantes » et ratera peut-être le cas précis où $n = 0$ ou $n = -1$ déclenche un bug. Les bons frameworks permettent de biaiser la génération vers les cas limites, mais cela requiert une expertise et un effort de configuration.
+
+De plus, pour des structures de données complexes avec des invariants internes (par ex. un arbre binaire de recherche valide, un graphe connexe), écrire un générateur qui ne produit que des instances valides peut s'avérer aussi difficile que d'écrire le code testé lui-même.
+
+## Complémentarité avec les tests par l'exemple
+
+Le PBT ne remplace pas les tests par l'exemple ; il les complète.
+
+Les *example-based tests* restent précieux pour :
+
+- Documenter le comportement attendu dans des scénarios métier spécifiques
+- Servir de filet de sécurité lors des refactorings
+- Les cas où la propriété serait trop complexe à exprimer
+
+L'approche pragmatique consiste à utiliser le PBT là où il excelle (fonctions pures, transformations de données, algorithmes avec des invariants clairs) et à conserver les tests classiques pour la logique métier aux frontières floues.
+
+Ensemble, ces deux approches offrent une couverture bien supérieure à ce que chacune pourrait atteindre isolément.
+
+## En savoir plus: les librairies de référence
+
+- [QuickCheck](https://hackage.haskell.org/package/QuickCheck) - Haskell, le pionnier
+- [fast-check](https://fast-check.dev/) - TypeScript/JavaScript
+- [Hypothesis](https://hypothesis.readthedocs.io/) - Python
+- [jqwik](https://jqwik.net/) - Java
+- [ScalaCheck](https://scalacheck.org/) - Scala
+- [FsCheck](https://fscheck.github.io/FsCheck/) - .NET (F#/C#)
+- [proptest](https://docs.rs/proptest/) - Rust
+- [rapid](https://github.com/flyingmutant/rapid) - Go

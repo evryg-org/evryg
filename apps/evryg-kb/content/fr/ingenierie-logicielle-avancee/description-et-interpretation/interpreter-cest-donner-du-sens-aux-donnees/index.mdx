@@ -1,0 +1,66 @@
+---
+pageType: article
+sidebarTitle: Interpréter, donner du sens
+---
+
+# Interpréter, c'est donner du sens aux données
+
+Une donnée brute n'a pas de signification intrinsèque : elle n'est qu'une suite de 1 et de 0, une structure inerte, un arrangement de symboles. C'est l'interprétation qui lui confère un sens.
+
+La séquence `01000001` peut être :
+
+- La lettre 'A' en ASCII
+- Le nombre 65 en entier non signé
+- Une nuance de rouge dans un canal de couleur
+- Une instruction machine
+
+selon le contexte où on la lit.
+
+La donnée elle-même ne dit pas ce qu'elle est ; c'est l'interpréteur, qu'il soit programme, machine, ou esprit humain, qui projette une grille de lecture et extrait une signification. Sans interprétation, il n'y a que du bruit, de la donnée brute.
+
+## Formats et protocoles
+
+Cette observation éclaire la notion de format et de protocole.
+
+Un fichier JSON n'est qu'une chaîne de caractères ; c'est le parser JSON qui lui donne une structure arborescente. Un paquet réseau n'est qu'une séquence d'octets ; c'est la pile TCP/IP qui en extrait des adresses, des ports, des payloads.
+
+Chaque couche d'interprétation transforme une donnée opaque en une donnée signifiante pour la couche suivante. Le même flux binaire traversant des interpréteurs différents, tels qu'un un éditeur hexadécimal, un lecteur audio, un décompresseur, produira des « réalités » entièrement différentes.
+
+L'interpréteur est le créateur de sens.
+
+## Program as value
+
+En programmation fonctionnelle, cette idée prend une forme particulièrement explicite avec le pattern [program as value](/fr/ingenierie-logicielle-avancee/description-et-interpretation/description-et-interpretation-le-programme-comme-valeur).
+
+Un `Effect<A>` ou un `IO<A>` est une donnée : une description inerte de ce qu'un programme pourrait faire. Sans interpréteur, cette description reste lettre morte, une structure de données que l'on peut manipuler, combiner, transformer, mais qui ne fait rien.
+
+L'interpréteur (`unsafeRunSync`, `runPromise` ou un runtime de test) parcourt cette structure et lui donne vie, traduit la description en effets réels.
+
+La même description soumise à des interpréteurs différents produira des comportements différents : exécution réelle, simulation, logging, dry-run, etc.
+
+## Les DSL comme dualité description/interprétation
+
+Les DSL incarnent cette dualité avec élégance.
+
+Un DSL produit des données : un AST dans l'[encodage initial](/fr/ingenierie-logicielle-avancee/description-et-interpretation/encodages-initial-et-final-deux-philosophies-dembedding), des fonctions polymorphes dans l'encodage final ; tout ceci ne représentant que des intentions, sans les exécuter.
+
+L'interpréteur est ce qui transforme « ajouter 10 au compte X » en :
+
+- Une vraie transaction bancaire
+- Une ligne de log
+- Une mise à jour de test
+
+La valeur du DSL réside précisément dans cette séparation : on peut raisonner sur les descriptions, les valider, les optimiser, avant de choisir comment leur donner sens. L'interprétation devient un point d'extension où l'on décide ce que « signifie » chaque opération du langage.
+
+## Le développeur comme concepteur d'interpréteurs
+
+Cette perspective a des implications profondes sur le design logiciel.
+
+Si interpréter c'est donner du sens, alors concevoir un système c'est décider quelles interprétations seront possibles :
+
+- Un type bien conçu contraint les interprétations valides ; un type trop large en autorise de fausses
+- Une frontière de module définit où l'interprétation change, où les données du domaine deviennent des données d'infrastructure, où les intentions métier deviennent des effets techniques
+
+Le développeur, ultimement, est un concepteur d'interpréteurs : il définit comment les données (entrées utilisateur, événements, commandes, configurations, etc.) seront lues, comprises, et transformées en comportement par le logiciel.
+
+Le code qu'il écrit n'est rien d'autre que la formalisation de cette grille de lecture.

@@ -1,0 +1,62 @@
+---
+canonical-slug: du-currying-au-dynamic-scope-fils-conducteurs-de-linjection-implicite
+pageType: article
+sidebarTitle: "Currying and Implicit Injection"
+---
+
+# From Currying to Dynamic Scope: Threads of Implicit Injection
+
+Partial application and currying transform a function with multiple arguments into a chain of single-argument functions.
+
+A function $(a, b, c) \to d$ becomes $a \to b \to c \to d$: we can provide arguments one by one, obtaining at each step a function that awaits the rest.
+
+This technique, seemingly innocuous, allows us to "preconfigure" a function with certain parameters and pass the resulting function to code that doesn't know about those parameters. The context (configuration, dependencies, environment) is captured in the closure, invisible to the caller who only provides the arguments specific to their case.
+
+It's a primitive but powerful form of dependency injection.
+
+## The Reader Monad
+
+The Reader monad systematizes this intuition.
+
+A `Reader<E, A>` is essentially a function $E \to A$ dressed up to compose monadically. The type `E` represents an environment (configuration, services, context) that the program will read without modifying.
+
+We build computations that depend on this environment without ever mentioning it explicitly in intermediate signatures; only the final execution, via `runReader(env)`, provides the concrete value.
+
+Intermediate functions don't know where the environment comes from: they only know it will be available. This implicit propagation eliminates *parameter drilling* where each layer must explicitly transmit the context to the next.
+
+## The Object as Closure
+
+Object-oriented programming solves the same problem differently with an object's `this` context.
+
+A constructor captures dependencies (injected or instantiated) and stores them in the instance. Each method then accesses these dependencies via `this.dependency` without receiving them as parameters.
+
+The object is a closure:
+
+- The constructor plays the role of the initial partial application
+- `this` plays the role of the captured environment
+
+The difference lies in potential mutability and in the dynamic binding of `this`, source of famous bugs in JavaScript for example. But fundamentally, constructor and Reader answer the same question: how to propagate a context without making it explicit at every call.
+
+## React Context
+
+React Context transposes this pattern to the world of components.
+
+A `Provider` establishes a contextual value at the top of the tree; descendant components access it via `useContext` without intermediate components explicitly transmitting it through props (the famous **props drilling**).
+
+This is exactly the Reader's semantics: an environmental value implicitly available for the entire subtree.
+
+React goes further with the ability to *shadow* the context (a nested `Provider` redefines the value for its subtree), thus joining the capabilities of *dynamic scope* where variable binding depends on the call stack rather than lexical structure.
+
+## Controlled Dynamic Scope
+
+These mechanisms (currying, Reader, `this`, Context) all emulate a form of *controlled dynamic scope* in lexically scoped languages, which are the most common today.
+
+Pure dynamic scope, where a variable resolves by climbing the call stack, is notoriously difficult to reason about and has been largely abandoned. That said, the need it addressed (accessing an ambient context without passing it explicitly) remains real.
+
+Modern solutions reintroduce this power in a disciplined way:
+
+- The Reader makes the environment type explicit
+- React Context limits propagation to the component tree
+- Constructor-based dependency injection limits it to the instance
+
+Each offers the ergonomics of dynamic scope (the absence of parameter drilling) with the traceability guarantees of lexical scope.

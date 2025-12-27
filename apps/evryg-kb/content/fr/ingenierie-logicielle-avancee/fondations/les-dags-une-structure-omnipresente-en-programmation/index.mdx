@@ -1,0 +1,60 @@
+---
+pageType: article
+sidebarTitle: Les DAGs
+---
+
+# Les DAGs : une structure omniprésente en programmation
+
+Le graphe orienté acyclique (DAG, pour *directed acyclic graph*) est une structure si fondamentale qu'elle apparaît dans presque tous les domaines de la programmation, souvent sans qu'on la nomme explicitement.
+
+Un DAG combine deux propriétés :
+
+- Des **arêtes orientées** qui établissent une relation de précédence ou de dépendance
+- L'**absence de cycles** qui garantit qu'on ne peut pas revenir à un nœud en suivant les arêtes
+
+Cette combinaison capture une intuition universelle : certaines choses doivent venir avant d'autres, et cette relation d'antériorité ne peut pas être circulaire. Partout où existe un « avant » et un « après » sans boucle temporelle, un DAG se cache.
+
+## Git : un DAG de commits
+
+Git incarne peut-être l'usage le plus familier des DAGs pour les développeurs.
+
+Chaque commit pointe vers ses parents et forme un graphe orienté de l'histoire du projet. L'absence de cycles est structurelle : un commit ne peut pas être son propre ancêtre.
+
+- Les branches ne sont que des pointeurs vers des nœuds de ce graphe
+- Les merges créent des nœuds à plusieurs parents
+- Les rebases réécrivent des portions du graphe
+
+Comprendre Git, c'est comprendre les opérations sur ce DAG : trouver l'ancêtre commun, parcourir l'histoire, déterminer l'accessibilité d'un commit depuis un autre. La puissance et parfois la complexité de Git découlent directement de cette structure sous-jacente.
+
+## Systèmes de build et dépendances
+
+Les systèmes de build et les gestionnaires de dépendances reposent entièrement sur des DAGs.
+
+Un module dépend d'autres modules, qui dépendent eux-mêmes d'autres modules : un graphe orienté de dépendances. L'acyclicité est cruciale : une dépendance circulaire rendrait la compilation impossible, car il faudrait compiler A avant B et B avant A simultanément.
+
+Le tri topologique du DAG produit un ordre de compilation valide. Make, Bazel, Gradle, npm, Cargo : tous construisent ce graphe et le parcourent pour déterminer quoi recalculer quand une source change.
+
+La propagation d'invalidation suit les arêtes du DAG : modifier un nœud invalide tous ses descendants.
+
+## Pipelines d'orchestration
+
+Les pipelines d'orchestration (CI/CD, workflows de données, ETL) sont des DAGs explicites de tâches.
+
+Chaque nœud représente une étape (compilation, test, déploiement, transformation), chaque arête une dépendance d'exécution. Airflow, GitHub Actions, GitLab CI, Temporal : tous modélisent leurs workflows comme des DAGs.
+
+Cette structure permet :
+
+- La **parallélisation automatique** : deux tâches sans relation de dépendance peuvent s'exécuter simultanément
+- La **reprise sur échec** : si une tâche échoue, on sait exactement quelles tâches en aval sont affectées et lesquelles ont déjà réussi
+
+Le DAG rend le flux d'exécution raisonnable et visualisable.
+
+## Les tableurs : un DAG caché
+
+Les tableurs (Excel, Google Sheet, etc.) révèlent un DAG caché dans leurs formules.
+
+Chaque cellule contenant une formule dépend des cellules qu'elle référence. Quand on modifie une valeur, le tableur doit recalculer toutes les cellules qui en dépendent, directement ou transitivement : une propagation le long des arêtes du DAG.
+
+Les références circulaires sont interdites précisément parce qu'elles violeraient l'acyclicité, rendant l'ordre de recalcul indéterminé. Cette structure permet le recalcul incrémental efficace : seuls les nœuds descendants du nœud modifié doivent être réévalués.
+
+Du tableur au système de build, du contrôle de version au pipeline de données, le DAG s'impose comme la structure canonique pour modéliser les dépendances et la causalité en programmation.

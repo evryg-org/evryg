@@ -1,4 +1,10 @@
-import { Hero, HomeStats, Features } from '../../src/components'
+---
+title: evryg Knowledge Base
+description: Expert insights on advanced software engineering and Lean delivery practices.
+pageType: home
+---
+
+import { Hero, HomeStats, CardGrid } from '../../src/components'
 
 <Hero
   title="Excellence Through Fundamentals"
@@ -12,7 +18,7 @@ import { Hero, HomeStats, Features } from '../../src/components'
   labels={{ articles: 'Articles', domains: 'Domains', toLearn: 'To Learn' }}
 />
 
-<Features items={[
+<CardGrid items={[
   {
     icon: 'code',
     title: 'Advanced Software Engineering',

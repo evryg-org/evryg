@@ -1,0 +1,67 @@
+---
+canonical-slug: encodages-initial-et-final-deux-philosophies-dembedding
+pageType: article
+sidebarTitle: "Initial and Final Encodings"
+---
+
+# Initial and Final Encodings: Two Embedding Philosophies
+
+Embedded domain-specific languages (*embedded DSLs*) allow building mini-languages within a host language, inheriting its syntax, type system, and tooling.
+
+Two fundamental strategies contrast for representing programs of these DSLs:
+
+- **Initial encoding**, often called *deep embedding*
+- **Final encoding**, or *shallow embedding*, popularized under the name *tagless final* by Oleg Kiselyov
+
+This apparently technical distinction has profound consequences on the extensibility, performance, and analysis capabilities of DSLs thus constructed.
+
+## Initial Encoding (Deep Embedding)
+
+Initial encoding represents DSL programs as data structures: typically, an abstract syntax tree (AST).
+
+Each language operation becomes a constructor of an algebraic type:
+
+```
+Literal(n), Add(e1, e2), IfThenElse(cond, then, else)
+```
+
+A program is a tree that can be inspected, transformed, optimized, serialized. Interpretation comes later, when we traverse this tree with a recursive function that gives meaning to each node.
+
+This approach excels when you want to analyze or transform programs (optimization, compilation, pretty-printing) because the structure is explicitly accessible.
+
+However, adding a new operation to the DSL requires modifying the AST type and all existing interpreters.
+
+## Final Encoding (Tagless Final)
+
+Final encoding represents programs not as data but as polymorphic expressions abstract over an interface.
+
+Instead of an `Expr` type with constructors, we define a typeclass or interface with methods `literal`, `add`, `ifThenElse`. A program is a generic function that uses these methods without knowing which implementation will provide them.
+
+Each interpreter becomes an instance of this interface:
+
+- The evaluator implements `add` as real addition
+- The pretty-printer as string concatenation
+
+Adding a new interpreter is trivial: we provide a new instance without touching existing code. Conversely, adding a new operation requires modifying the interface and all its instances.
+
+## The Expression Problem
+
+This duality embodies the famous *expression problem* formulated by Philip Wadler:
+
+- **Initial encoding** facilitates adding interpreters (new functions on a fixed type)
+- **Final encoding** facilitates adding operations (new methods implemented by fixed types)
+
+The choice depends on the anticipated axis of extension:
+
+- A DSL whose operations are stable but will need many backends (compilation, interpretation, analysis, documentation) favors initial encoding
+- A DSL that will frequently evolve with new primitives, interpreted uniformly, favors final encoding
+
+## Practical Advantages of Tagless Final
+
+In practice, final encoding offers an often decisive additional advantage: the absence of an intermediate AST allows natural fusion of interpretations and eliminates the overhead of constructing then traversing a tree.
+
+The program is directly its interpretation, parameterized by the choice of instance.
+
+This efficiency, combined with the safety provided by polymorphism (we can only construct well-formed programs), explains the growing popularity of the *tagless final* style in functional effect libraries.
+
+Initial encoding remains valuable when introspection is necessary, but for many business DSLs where we simply want to describe then execute, final encoding offers elegance and extensibility that are hard to match.

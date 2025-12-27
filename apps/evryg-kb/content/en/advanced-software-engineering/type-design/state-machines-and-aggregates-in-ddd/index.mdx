@@ -1,0 +1,60 @@
+---
+canonical-slug: machines-a-etat-et-aggregats-en-ddd
+pageType: article
+sidebarTitle: "State Machines and DDD"
+---
+
+# State Machines and Aggregates: A Natural Convergence
+
+An aggregate in Domain-Driven Design is fundamentally a guardian of invariants: it encapsulates a cluster of entities and value objects whose coherence must be maintained at each transaction.
+
+## The Aggregate as Implicit State Machine
+
+In many business domains, invariants are inherently linked to the notion of state. An order goes from "draft" to "confirmed" to "shipped" to "delivered", and each transition is only allowed under certain conditions.
+
+The aggregate doesn't just store data: it orchestrates a lifecycle, making it an implicit state machine. Making this machine explicit considerably clarifies the model.
+
+## Formalizing Transitions
+
+The state machine formalizes what the aggregate can do and when it can do it. Each state defines a set of acceptable commands and possible transitions:
+
+- A "shipped" order cannot be canceled
+- A "refunded" payment cannot be refunded again
+
+These rules, often scattered across `if` conditions throughout the code, become an explicit graph of states and transitions. The domain expert can then visually validate the model: "yes, this is indeed how our process works."
+
+This improves the *ubiquitous language* since states and transitions carry precise business names.
+
+## Strong Typing of States
+
+This correspondence allows applying the [Make Illegal States Unrepresentable](/en/advanced-software-engineering/type-design/make-illegal-states-unrepresentable) principle with fine granularity.
+
+Rather than a monolithic aggregate with optional fields whose presence depends on the current state, we can model each state as a distinct variant of a [sum type](/en/advanced-software-engineering/type-structures/type-algebra-products-and-sums), carrying exactly the relevant data:
+
+```
+Order = DraftOrder | ConfirmedOrder | ShippedOrder | DeliveredOrder
+```
+
+Each with its own structure. Transition methods then return the type of the next state, and the compiler guarantees you cannot call `ship()` on a `DraftOrder`: the operation simply doesn't exist on that type.
+
+## Domain Events and Event Sourcing
+
+Domain events integrate naturally into this model. Each state machine transition corresponds to a business event:
+
+- `OrderConfirmed`
+- `OrderShipped`
+- `OrderDelivered`
+
+These events capture not only the fact that a transition occurred, but also the context of that transition: who triggered it, when, with what data.
+
+In an event-sourced architecture, the aggregate literally becomes the projection of its state machine: we replay events to reconstruct the current state, and each event represents a validated transition. The state machine and event sourcing reinforce each other.
+
+## Avoiding Over-Modeling
+
+Nevertheless, we must avoid the pitfall of over-modeling.
+
+Not all aggregates are complex state machines: some are simple data containers with validation rules. Forcing state modeling on a domain that doesn't need it adds ceremony without value.
+
+Moreover, hierarchical or parallel state machines (like those supported by [XState](https://xstate.js.org/)) can capture sophisticated behaviors, but at the cost of increased complexity.
+
+Discernment remains essential: the state machine is a powerful tool when the domain naturally exhibits distinct phases with controlled transitions, but it should not become an end in itself.
