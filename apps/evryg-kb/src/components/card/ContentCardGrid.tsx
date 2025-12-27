@@ -1,6 +1,6 @@
 import { getPageMap } from 'nextra/page-map'
 import type { Folder, MdxFile } from 'nextra'
-import type { IconType } from '../libs/nextra-contrib/types'
+import type { IconType } from '../../libs/nextra-contrib/types'
 import { CardGrid } from './CardGrid'
 
 interface ContentCardGridProps {
