@@ -44,14 +44,26 @@ export async function generateMetadata(props: {
   const ogImageUrl = `/api/og?lang=${params.lang}&path=${encodeURIComponent(path)}`
 
   const description = metadata?.description || ''
-  const publishedTime = metadata?.timestamp
+  const modifiedTime = metadata?.timestamp
     ? new Date(metadata.timestamp).toISOString()
     : undefined
+
+  // Get section title from the section's index.mdx frontmatter
+  let section: string | undefined
+  if (params.mdxPath?.[0]) {
+    try {
+      const sectionPage = await importPage([params.mdxPath[0]], params.lang)
+      section = sectionPage.metadata?.title
+    } catch {
+      // Section index not found, skip section metadata
+    }
+  }
 
   const currentPath = `/${params.lang}${path ? `/${path}` : ''}`
 
   return {
     ...metadata,
+    authors: [{ name: 'evryg', url: 'https://www.evryg.com' }],
     alternates: {
       canonical: `${BASE_URL}${translatePath(currentPath, 'fr')}`,
       languages: {
@@ -64,7 +76,8 @@ export async function generateMetadata(props: {
       type: 'article',
       description,
       authors: ['evryg'],
-      publishedTime,
+      modifiedTime,
+      ...(section && { section }),
       images: [
         {
           url: ogImageUrl,
@@ -96,7 +109,7 @@ export default async function Page(props: {
 
   const path = params.mdxPath?.join('/') || ''
   const currentUrl = `${BASE_URL}/${params.lang}${path ? `/${path}` : ''}`
-  const publishedTime = (metadata as { timestamp?: string })?.timestamp
+  const modifiedTime = (metadata as { timestamp?: number })?.timestamp
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -111,9 +124,12 @@ export default async function Page(props: {
         "description": metadata?.description,
         "url": currentUrl,
         "inLanguage": params.lang,
-        ...(publishedTime && { "datePublished": new Date(publishedTime).toISOString() }),
+        ...(modifiedTime && {
+          "dateModified": new Date(modifiedTime).toISOString()
+        }),
         "author": {
           "@type": "Organization",
+          "@id": "https://kb.evryg.com/#organization",
           "name": "evryg",
           "url": "https://www.evryg.com"
         },
