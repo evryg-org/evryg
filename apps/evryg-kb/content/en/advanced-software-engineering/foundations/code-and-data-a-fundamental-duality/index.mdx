@@ -22,7 +22,7 @@ Data duplicated in two places will inevitably diverge: someone will update one o
 
 Code, being data, obeys the same law. Duplicated code will eventually diverge: a developer will fix a bug in one copy without knowing the other exists, or will evolve a behavior here but not there.
 
-Duplication is debt that accrues interest.
+Duplication is debt that accrues interest. A pricing rule duplicated in four places and modified in only three: that's a customer receiving an inconsistent invoice, a commercial dispute, a loss of trust. These divergences propagate silently until they become visible incidents.
 
 ## Coincidence vs Shared Behavior
 
@@ -42,6 +42,8 @@ Two distinct modules that calculate a 20% VAT should not share this code if one 
 Conversely, two apparently different calculations that must always produce the same result (a displayed price and an invoiced price, for example) should share their implementation even if their calling contexts differ.
 
 Deliberate duplication and deliberate consolidation are both design choices; only accidental duplication is a fault.
+
+In regulatory contexts, this distinction becomes critical. An auditor asking "where is the source of truth for the processing fee calculation?" expects a precise answer, not "in several files we keep manually synchronized." Duplicating business knowledge turns every audit into code archaeology.
 
 ## DRY Properly Understood
 
