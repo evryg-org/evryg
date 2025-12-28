@@ -33,12 +33,12 @@ Map-Reduce repose fondamentalement sur cette propriété : « `reduce` » n'est 
 
 Dans la modélisation métier, les monoïdes apparaissent dès qu'on agrège ou accumule des données :
 
-- **Panier d'achat** : on combine deux paniers en fusionnant leurs articles, le panier vide est le neutre
-- **Métriques et statistiques** : compteurs qu'on additionne, moyennes pondérées qu'on fusionne, histogrammes qu'on combine
-- **Logs et événements** : concaténation temporelle
-- **Permissions** : on combine les droits d'accès de plusieurs rôles, l'absence de permission est le neutre
+- **Panier d'achat** : on combine deux paniers en fusionnant leurs articles, le panier vide est le neutre. Reconnaître cette structure permet d'utiliser des opérations génériques (`merge`, `combineAll`) testées et éprouvées, plutôt qu'une logique ad hoc source de bugs subtils.
+- **Métriques et statistiques** : compteurs qu'on additionne, moyennes pondérées qu'on fusionne, histogrammes qu'on combine. Des tableaux de bord fiables reposent sur des agrégations correctes : une erreur de calcul dans les métriques de vente peut conduire à des décisions stratégiques erronées.
+- **Logs et événements** : concaténation temporelle. Un audit trail cohérent est un prérequis réglementaire (RGPD, SOC2) : la fusion de journaux provenant de plusieurs sources doit préserver l'ordre et la complétude.
+- **Permissions** : on combine les droits d'accès de plusieurs rôles, l'absence de permission est le neutre. Une logique de permissions ad hoc est une source fréquente de failles de sécurité ; une structure monoïdale rend le comportement explicite et vérifiable.
 
-Pour un développeur, reconnaître ces structures permet d'appliquer des opérations génériques (`fold` / `reduce`, `mconcat`) plutôt que de réinventer la roue pour chaque domaine.
+Pour un développeur, reconnaître ces structures permet d'appliquer des opérations génériques (`fold` / `reduce`, `mconcat`) plutôt que de réinventer une logique de combinaison pour chaque domaine : moins de code signifie moins de bugs, et des comportements déjà éprouvés.
 
 ## L'élément neutre : la robustesse par défaut
 
@@ -48,7 +48,7 @@ L'élément neutre, souvent négligé, joue un rôle crucial dans la robustesse 
 - Il permet d'initialiser un accumulateur sans cas particulier
 - Il simplifie les API : plutôt que de retourner `Option<Result>` pour gérer le cas vide, on retourne simplement le résultat neutre
 
-Cette uniformité élimine toute une classe de bugs liés aux cas limites. Le monoïde transforme l'absence en présence triviale. Voir aussi notre article sur [les fonctions totales et partielles](/fr/ingenierie-logicielle-avancee/structures-de-types/fonctions-totales-et-partielles-la-promesse-du-type).
+Cette uniformité élimine toute une classe de bugs liés aux cas limites, des bugs souvent découverts tardivement en production lorsqu'un utilisateur tombe pour la première fois sur le cas « aucun élément ». Le monoïde transforme l'absence en présence triviale, supprimant ainsi le besoin de tests et de gestion d'erreur pour ces scénarios. Voir aussi notre article sur [les fonctions totales et partielles](/fr/ingenierie-logicielle-avancee/structures-de-types/fonctions-totales-et-partielles-la-promesse-du-type).
 
 ## La capacité de composition des monoïdes
 

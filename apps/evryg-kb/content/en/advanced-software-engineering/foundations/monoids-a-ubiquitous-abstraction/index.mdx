@@ -34,12 +34,12 @@ Map-Reduce fundamentally relies on this property: "reduce" is nothing but a dist
 
 In business modeling, monoids appear whenever we aggregate or accumulate data:
 
-- **Shopping cart**: we combine two carts by merging their items, the empty cart is the neutral element
-- **Metrics and statistics**: counters we add together, weighted averages we merge, histograms we combine
-- **Logs and events**: temporal concatenation
-- **Permissions**: we combine access rights from multiple roles, the absence of permission is the neutral element
+- **Shopping cart**: we combine two carts by merging their items, the empty cart is the neutral element. Recognizing this structure allows using generic, battle-tested operations (`merge`, `combineAll`) rather than ad hoc logic prone to subtle bugs.
+- **Metrics and statistics**: counters we add together, weighted averages we merge, histograms we combine. Reliable dashboards depend on correct aggregations: an error in sales metrics can lead to flawed strategic decisions.
+- **Logs and events**: temporal concatenation. A coherent audit trail is a regulatory prerequisite (GDPR, SOC2): merging logs from multiple sources must preserve order and completeness.
+- **Permissions**: we combine access rights from multiple roles, the absence of permission is the neutral element. Ad hoc permission logic is a frequent source of security vulnerabilities; a monoidal structure makes behavior explicit and verifiable.
 
-For a developer, recognizing these structures allows applying generic operations (`fold` / `reduce`, `mconcat`) rather than reinventing the wheel for each domain.
+For a developer, recognizing these structures allows applying generic operations (`fold` / `reduce`, `mconcat`) rather than reinventing combination logic for each domain: less code means fewer bugs, and behaviors that are already proven.
 
 ## The Neutral Element: Robustness by Default
 
@@ -49,7 +49,7 @@ The neutral element, often overlooked, plays a crucial role in code robustness:
 - It allows initializing an accumulator without special cases
 - It simplifies APIs: rather than returning `Option<Result>` to handle the empty case, we simply return the neutral result
 
-This uniformity eliminates an entire class of bugs related to edge cases. The monoid transforms absence into trivial presence. See also our article on [total and partial functions](/en/advanced-software-engineering/type-structures/total-and-partial-functions-the-type-promise).
+This uniformity eliminates an entire class of bugs related to edge cases—bugs often discovered late in production when a user encounters the "no elements" case for the first time. The monoid transforms absence into trivial presence, eliminating the need for tests and error handling for these scenarios. See also our article on [total and partial functions](/en/advanced-software-engineering/type-structures/total-and-partial-functions-the-type-promise).
 
 ## The Composability of Monoids
 
