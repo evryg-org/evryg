@@ -67,14 +67,11 @@ export default async function TagPage({
 
   return (
     <div className={styles.container}>
+      <h1 className={styles.title}>{tagTitle}</h1>
+      <p className={styles.statsLine}>{t.articleCount(stats.articleCount)}</p>
       <Link href={`/${lang}/tags`} className={styles.backLink}>
         &larr; {t.backToTags}
       </Link>
-
-      <h1 className={styles.title}>
-        <span className={styles.highlight}>{tagTitle}</span>
-      </h1>
-      <p className={styles.statsLine}>{t.articleCount(stats.articleCount)}</p>
 
       <ul className={styles.articleList}>
         {articles.map(article => (
