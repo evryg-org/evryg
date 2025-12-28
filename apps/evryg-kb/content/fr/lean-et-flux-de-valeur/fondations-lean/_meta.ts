@@ -9,7 +9,8 @@ const meta: MetaRecord = {
   'dandotsu-lexcellence-radicale-comme-objectif': '',
   'andon-cord-le-droit-darreter-la-production': '',
   'seiton-co-localiser-pour-fluidifier': '',
-  'broken-window-theory-quand-le-desordre-appelle-le-desordre': ''
+  'broken-window-theory-quand-le-desordre-appelle-le-desordre': '',
+  'boy-scout-rule-laisser-le-code-plus-propre': ''
 }
 
 export default meta
