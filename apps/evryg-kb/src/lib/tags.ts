@@ -1,37 +1,13 @@
 import { getPageMap } from 'nextra/page-map'
 import { importPage } from 'nextra/pages'
 import type { PageMapItem, MdxFile, Folder } from 'nextra'
+import { extractExcerpt } from '../main/core/use_cases/ExtractExcerpt'
 
 interface ArticleWithTags {
   title: string
   excerpt?: string
   route: string
   tags: string[]
-}
-
-function extractFirstParagraph(sourceCode: string): string {
-  // Remove frontmatter (---\n...\n---)
-  const withoutFrontmatter = sourceCode.replace(/^---[\s\S]*?---\n*/, '')
-
-  // Split into lines and find first non-heading, non-empty content
-  const lines = withoutFrontmatter.split('\n')
-
-  let paragraph = ''
-  for (const line of lines) {
-    const trimmed = line.trim()
-    // Skip empty lines, headings, imports, and JSX
-    if (!trimmed || trimmed.startsWith('#') || trimmed.startsWith('import') || trimmed.startsWith('<')) {
-      if (paragraph) break // End of paragraph
-      continue
-    }
-    paragraph += (paragraph ? ' ' : '') + trimmed
-  }
-
-  // Clean up markdown formatting and truncate
-  return paragraph
-    .replace(/\*([^*]+)\*/g, '$1') // Remove italics
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Remove links, keep text
-    .slice(0, 200) + (paragraph.length > 200 ? '...' : '')
 }
 
 interface TagInfo {
@@ -107,7 +83,7 @@ export async function getArticlesByTag(
         // Convert route to mdxPath: /en/foo/bar -> ['foo', 'bar']
         const mdxPath = article.route.split('/').slice(2)
         const result = await importPage(mdxPath, lang)
-        const excerpt = extractFirstParagraph(result.sourceCode)
+        const excerpt = extractExcerpt(result.sourceCode, 'mdx')
         return { ...article, excerpt }
       } catch {
         return article
