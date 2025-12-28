@@ -132,3 +132,23 @@
 :global(.dark) .articleDescription {
   color: #d1d5db;
 }
+
+.readingTime {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-left: 0.5rem;
+}
+
+:global(.dark) .readingTime {
+  color: #9ca3af;
+}
+
+.statsLine {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0 0 1rem;
+}
+
+:global(.dark) .statsLine {
+  color: #9ca3af;
+}

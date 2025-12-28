@@ -2,10 +2,12 @@ import { getPageMap } from 'nextra/page-map'
 import { importPage } from 'nextra/pages'
 import type { PageMapItem, MdxFile, Folder } from 'nextra'
 import { extractExcerpt } from '../main/core/use_cases/ExtractExcerpt'
+import { calculateReadingTime } from '../main/core/domain/OGImageData'
 
 interface ArticleWithTags {
   title: string
   excerpt?: string
+  readingTime?: number
   route: string
   tags: string[]
 }
@@ -84,7 +86,8 @@ export async function getArticlesByTag(
         const mdxPath = article.route.split('/').slice(2)
         const result = await importPage(mdxPath, lang)
         const excerpt = extractExcerpt(result.sourceCode, 'mdx')
-        return { ...article, excerpt }
+        const readingTime = calculateReadingTime(result.sourceCode)
+        return { ...article, excerpt, readingTime }
       } catch {
         return article
       }

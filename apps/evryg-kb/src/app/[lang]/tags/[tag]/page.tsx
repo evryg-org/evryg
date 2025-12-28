@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getAllTagSlugs, getArticlesByTag, toTitleCase } from '../../../../lib/tags'
+import { getTagStats } from '../../../../main/core/use_cases/GetTagStats'
 import styles from '../tags.module.css'
 
 const BASE_URL = 'https://kb.evryg.com'
@@ -8,10 +9,14 @@ const translations = {
   en: {
     articlesTagged: 'Articles tagged',
     backToTags: 'Back to all tags',
+    minRead: (n: number) => `${n} min read`,
+    articleCount: (n: number) => `${n} article${n === 1 ? '' : 's'}`,
   },
   fr: {
     articlesTagged: 'Articles taggu\u00e9s',
     backToTags: 'Retour aux tags',
+    minRead: (n: number) => `${n} min de lecture`,
+    articleCount: (n: number) => `${n} article${n === 1 ? '' : 's'}`,
   },
 }
 
@@ -56,6 +61,7 @@ export default async function TagPage({
 }) {
   const { lang, tag } = await params
   const articles = await getArticlesByTag(lang, tag)
+  const stats = getTagStats(articles)
   const t = translations[lang as keyof typeof translations] || translations.en
   const tagTitle = toTitleCase(tag)
 
@@ -66,8 +72,9 @@ export default async function TagPage({
       </Link>
 
       <h1 className={styles.title}>
-        {t.articlesTagged} <span className={styles.highlight}>{tagTitle}</span>
+        <span className={styles.highlight}>{tagTitle}</span>
       </h1>
+      <p className={styles.statsLine}>{t.articleCount(stats.articleCount)}</p>
 
       <ul className={styles.articleList}>
         {articles.map(article => (
@@ -75,6 +82,9 @@ export default async function TagPage({
             <Link href={article.route} className={styles.articleLink}>
               {article.title}
             </Link>
+            {article.readingTime && (
+              <span className={styles.readingTime}>{t.minRead(article.readingTime)}</span>
+            )}
             {article.excerpt && (
               <p className={styles.articleDescription}>{article.excerpt}</p>
             )}
