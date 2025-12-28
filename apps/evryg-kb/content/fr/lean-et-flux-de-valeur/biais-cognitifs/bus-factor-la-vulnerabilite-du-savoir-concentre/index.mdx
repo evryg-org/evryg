@@ -1,0 +1,63 @@
+---
+pageType: article
+sidebarTitle: Bus factor
+tags: [knowledge-management, risk, team-organization, documentation, resilience]
+---
+
+# Bus factor : la vulnérabilité du savoir concentré
+
+Le *bus factor* d'une équipe désigne le nombre de personnes qui pourraient « se faire renverser par un bus » avant que le projet ne soit paralysé. Un bus factor de 1 signifie qu'une seule absence suffit à bloquer l'organisation. La métaphore est morbide, mais la réalité qu'elle décrit est banale : départ en vacances, congé maladie, démission, ou simple changement de poste. Dans la plupart des équipes IT, le bus factor réel oscille entre 1 et 2 pour les systèmes critiques.
+
+Cette vulnérabilité n'est pas un accident. Elle émerge naturellement de la façon dont les organisations gèrent (ou ignorent) le savoir technique. Si certains individus cultivent délibérément leur indispensabilité, la majorité des situations de concentration du savoir résultent de dynamiques systémiques que personne n'a consciemment choisies.
+
+## Les visages du point de défaillance unique
+
+Le *DBA legacy*. Il est là depuis quinze ans. Il connaît chaque procédure stockée, chaque trigger, chaque contournement historique de la base de données de production. La documentation ? « C'est dans sa tête. » Quand il part en vacances, l'équipe retient son souffle. Quand il démissionnera, ce sera une crise.
+
+L'*architecte silencieux*. Il a conçu le système il y a cinq ans. Il sait pourquoi ce module communique avec celui-là, pourquoi cette dépendance existe, pourquoi « il ne faut surtout pas toucher à ce fichier ». Il n'a jamais documenté ces décisions : elles lui semblaient évidentes. Chaque nouvelle recrue passe des semaines à reconstituer une fraction de ce savoir par archéologie du code.
+
+Le *DevOps solo*. Il gère l'infrastructure, les pipelines CI/CD, les secrets, les certificats, les accès cloud. Il est le seul à savoir déployer en production. Les développeurs lui envoient des tickets ; il les résout. Personne d'autre n'a les droits, les connaissances, ni même la curiosité de comprendre ce qu'il fait.
+
+Le *fondateur technique*. Dans les startups, c'est souvent le CTO ou le premier développeur. Il a écrit les premières lignes de code, choisi le stack, défini les conventions. Cinq ans plus tard, l'équipe a grandi, mais les décisions fondatrices restent opaques pour tous sauf lui.
+
+Ces profils ne sont pas des exceptions. Ils sont la norme.
+
+## Un symptôme systémique, pas une faute individuelle
+
+Il est tentant de blâmer ces individus : « Il garde l'information pour lui », « Elle refuse de documenter ». Cette lecture passe à côté de l'essentiel. La concentration du savoir est rarement un choix délibéré ; elle est le résultat prévisible de plusieurs forces organisationnelles.
+
+**La pression de la vélocité.** Documenter prend du temps. Former un collègue prend du temps. Quand chaque sprint est une course contre la montre, le savoir reste dans la tête de celui qui l'a acquis. L'organisation récompense implicitement l'exécution rapide, pas la transmission.
+
+**L'absence de redondance planifiée.** Les équipes sont souvent dimensionnées au plus juste. Chaque personne a « son » domaine. Cette spécialisation maximise l'efficacité apparente à court terme et crée des points de défaillance uniques à moyen terme.
+
+**La valorisation de l'expertise individuelle.** Les organisations célèbrent les « experts », les « référents », les « go-to persons ». Cette reconnaissance, légitime en soi, renforce la centralisation du savoir. Être indispensable devient un marqueur de valeur, consciemment ou non.
+
+**Le turnover comme tabou.** Beaucoup d'organisations planifient comme si leurs employés clés ne partiraient jamais. Préparer une transition est parfois perçu comme un manque de confiance, voire comme une invitation au départ.
+
+Quand le système pousse vers la concentration, attendre des individus qu'ils résistent seuls à cette pression est illusoire.
+
+## Mesurer et réduire le risque
+
+Le bus factor n'est pas une fatalité. Il se mesure et se travaille, à condition d'en faire une priorité explicite.
+
+**Cartographier les dépendances de savoir.** Pour chaque système critique, identifier qui sait quoi. La question n'est pas « qui est responsable ? » mais « qui peut intervenir si le responsable n'est pas là ? ». Un tableau simple suffit : système, expert principal, backup, niveau de documentation.
+
+**Institutionnaliser le pair programming et la revue de code.** Ces pratiques ne servent pas seulement la qualité ; elles diffusent le savoir. Un code revu par deux personnes est un code compris par deux personnes. Une fonctionnalité développée en pair est une fonctionnalité que deux cerveaux peuvent maintenir.
+
+**Rotation des responsabilités.** Imposer périodiquement que le « backup » prenne le lead sur un système qu'il ne maîtrise pas. L'inconfort à court terme produit de la résilience à long terme. Les équipes SRE de Google appellent cela le « wheel of misfortune » : chacun doit être capable de gérer les incidents de n'importe quel service.
+
+**Documentation comme livrable.** Intégrer la documentation dans la définition de « terminé ». Un système non documenté n'est pas livré. Cette règle, difficile à tenir sous pression, est la seule qui produise une documentation à jour.
+
+**Onboarding comme test de résilience.** Chaque nouvelle recrue qui galère à comprendre un système révèle un déficit de transmission. Traiter l'onboarding non comme une corvée mais comme un audit du bus factor.
+
+## Le coût caché de l'indispensabilité
+
+Les organisations sous-estiment systématiquement le coût de la concentration du savoir. Le coût visible (salaire de l'expert, temps de formation) est minime comparé aux coûts invisibles.
+
+Le *coût d'opportunité* : l'expert surchargé devient un goulot d'étranglement. Les projets attendent sa disponibilité. Son temps est monopolisé par le support plutôt que par l'innovation.
+
+Le *coût de la peur* : les équipes évitent de toucher aux systèmes qu'elles ne comprennent pas. Le code legacy devient intouchable, la dette technique s'accumule, l'agilité disparaît.
+
+Le *coût du départ* : quand l'expert finit par partir (et il partira), l'organisation découvre l'étendue de sa dépendance. Les projets s'arrêtent, les incidents se multiplient, le savoir doit être reconstruit à grands frais.
+
+Investir dans la distribution du savoir n'est pas un luxe. C'est une assurance contre un risque qui se matérialise toujours, la seule question étant quand.
