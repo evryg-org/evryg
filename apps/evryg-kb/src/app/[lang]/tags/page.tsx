@@ -58,25 +58,40 @@ export default async function TagsPage({
   const tags = await getAllTags(lang)
   const t = translations[lang as keyof typeof translations] || translations.en
 
+  // Sort alphabetically and group by first letter
+  const sortedTags = [...tags].sort((a, b) => a.tag.localeCompare(b.tag))
+  const grouped = sortedTags.reduce(
+    (acc, { tag, count }) => {
+      const letter = tag.charAt(0).toUpperCase()
+      if (!acc[letter]) acc[letter] = []
+      acc[letter].push({ tag, count })
+      return acc
+    },
+    {} as Record<string, { tag: string; count: number }[]>
+  )
+  const letters = Object.keys(grouped).sort()
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{t.title}</h1>
       <p className={styles.description}>{t.description}</p>
 
-      <div className={styles.tagGrid}>
-        {tags.map(({ tag, count }) => (
-          <Link
-            key={tag}
-            href={`/${lang}/tags/${tag}`}
-            className={styles.tagCard}
-          >
-            <span className={styles.tagName}>{toTitleCase(tag)}</span>
-            <span className={styles.tagCount}>
-              {count} {count === 1 ? t.article : t.articles}
-            </span>
-          </Link>
-        ))}
-      </div>
+      {letters.map(letter => (
+        <div key={letter} className={styles.letterGroup}>
+          <h2 className={styles.letterHeading}>{letter}</h2>
+          <div className={styles.tagList}>
+            {grouped[letter].map(({ tag, count }) => (
+              <Link
+                key={tag}
+                href={`/${lang}/tags/${tag}`}
+                className={styles.tag}
+              >
+                {toTitleCase(tag)} ({count})
+              </Link>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

@@ -37,54 +37,56 @@
   opacity: 0.8;
 }
 
-/* Tag Grid for /tags page */
-.tagGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
+/* Letter grouping for /tags page */
+.letterGroup {
+  margin-bottom: 1.5rem;
 }
 
-.tagCard {
-  display: flex;
-  flex-direction: column;
-  padding: 1.25rem;
-  background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
-  border: 1px solid #e2e8f0;
-  border-left: 3px solid #32b26e;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-:global(.dark) .tagCard {
-  background: linear-gradient(145deg, #221d23 0%, #10100e 100%);
-  border-color: #8d919b;
-  border-left-color: #32b26e;
-}
-
-.tagCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(50, 178, 110, 0.15);
-}
-
-:global(.dark) .tagCard:hover {
-  box-shadow: 0 8px 30px rgba(50, 178, 110, 0.25);
-}
-
-.tagName {
-  font-size: 1.1rem;
+.letterHeading {
+  font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.tagCount {
-  font-size: 0.85rem;
   color: #64748b;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #e2e8f0;
 }
 
-:global(.dark) .tagCount {
+:global(.dark) .letterHeading {
   color: #94a3b8;
+  border-bottom-color: #374151;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #32b26e;
+  background-color: rgba(50, 178, 110, 0.1);
+  border-radius: 0;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.tag:hover {
+  background-color: rgba(50, 178, 110, 0.2);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+:global(.dark) .tag {
+  color: #4ade80;
+  background-color: rgba(74, 222, 128, 0.15);
+}
+
+:global(.dark) .tag:hover {
+  background-color: rgba(74, 222, 128, 0.25);
 }
 
 /* Article List for /tags/[tag] page */
