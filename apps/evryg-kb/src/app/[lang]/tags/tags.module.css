@@ -1,0 +1,134 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.highlight {
+  color: #32b26e;
+}
+
+.description {
+  color: #64748b;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+:global(.dark) .description {
+  color: #94a3b8;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: #32b26e;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.backLink:hover {
+  opacity: 0.8;
+}
+
+/* Tag Grid for /tags page */
+.tagGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.tagCard {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #32b26e;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+:global(.dark) .tagCard {
+  background: linear-gradient(145deg, #221d23 0%, #10100e 100%);
+  border-color: #8d919b;
+  border-left-color: #32b26e;
+}
+
+.tagCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(50, 178, 110, 0.15);
+}
+
+:global(.dark) .tagCard:hover {
+  box-shadow: 0 8px 30px rgba(50, 178, 110, 0.25);
+}
+
+.tagName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.tagCount {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+:global(.dark) .tagCount {
+  color: #94a3b8;
+}
+
+/* Article List for /tags/[tag] page */
+.articleList {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.articleItem {
+  text-align: left;
+}
+
+.articleLink {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a8f5c;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.articleLink:hover {
+  text-decoration: underline;
+}
+
+:global(.dark) .articleLink {
+  color: #34d399;
+}
+
+.articleDescription {
+  font-size: 0.9rem;
+  color: #4b5563;
+  line-height: 1.5;
+  margin: 0.25rem 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+:global(.dark) .articleDescription {
+  color: #d1d5db;
+}
