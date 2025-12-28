@@ -4,7 +4,8 @@ const meta: MetaRecord = {
   index: 'Introduction',
   'detect-errors-early-from-lean-to-shift-left': '',
   'kanban-from-production-signal-to-corrupted-todo-list': '',
-  'pull-flow-vs-one-piece-flow-two-complementary-levers': ''
+  'pull-flow-vs-one-piece-flow-two-complementary-levers': '',
+  'muda-muri-mura-the-three-enemies-of-flow': ''
 }
 
 export default meta
