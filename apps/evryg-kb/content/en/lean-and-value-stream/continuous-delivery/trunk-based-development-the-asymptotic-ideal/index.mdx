@@ -1,0 +1,50 @@
+---
+pageType: article
+sidebarTitle: Trunk-Based Development
+tags: [continuous-delivery, lean, one-piece-flow, trunk-based-development, feature-flags, testing, team-practices]
+canonical-slug: trunk-based-development-lideal-asymptotique
+---
+
+# Trunk-Based Development: The Asymptotic Ideal
+
+*Trunk-Based Development* (TBD) takes the logic of continuous flow to its conclusion: all developers commit directly to a single branch (trunk or main), multiple times per day, without long-lived feature branches.
+
+This practice represents the exact transposition of Lean's *one-piece flow* to software development. Where Toyota aims for a flow of single pieces traversing the production line without intermediate accumulation, TBD aims for a flow of individual commits reaching production without storage in parallel branches. Each change is a unit of value delivered, not a batch waiting its turn to merge.
+
+## Feature branches: institutionalized waste
+
+Branching strategies like GitFlow institutionalize what Lean calls *muda*: waste. A feature branch that lives for several days or weeks accumulates divergence from trunk. The more it diverges, the riskier the merge becomes, the more the developer hesitates to perform it, the more the divergence grows: a vicious cycle.
+
+This invisible work in progress (WIP hidden in branches) represents undelivered value, unvalidated risk, deferred integration. The dreaded "merge hell" is not a technical inevitability; it's the symptom of an interrupted flow, of batch size too large.
+
+[Pull requests](/en/lean-and-value-stream/continuous-delivery/pull-requests-a-barrier-born-from-distrust) amplify the problem: each PR adds an approval delay, a context switch for the reviewer, an additional queue. Lead time explodes while throughput collapses.
+
+## Technical prerequisites: the automated safety net
+
+TBD without a safety net is a recipe for chaos. Three technical pillars are non-negotiable:
+
+**Comprehensive automated tests.** Each commit triggers a test suite that validates the change within minutes. Without this rapid validation, trunk becomes unstable and everyone suffers. Coverage must be sufficient to provide confidence—not perfect, but functional.
+
+**Feature flags.** A commit to trunk doesn't necessarily mean a feature visible in production. Feature flags decouple deployment (technical) from release (business). You can merge incomplete code, deploy it disabled, activate it progressively. Commit batch size reduces to its smallest useful expression.
+
+**Fine-grained slicing.** Each commit must be small, autonomous, deployable. The art of slicing into thin vertical increments is a skill to develop. Think in increments of a few hours, not a few days.
+
+## Organizational prerequisites: raising the bar
+
+TBD requires more than a tooling change; it demands an elevation of the team's collective level.
+
+**Pair programming and mob programming.** Review becomes continuous, integrated into the workflow rather than deferred to a PR. Two pairs of eyes see the code being born, not two days later when context is lost.
+
+**Psychological safety.** Errors reach trunk and potentially production. A *blameless* culture is essential: mistakes are learning opportunities, not faults to punish. Without this psychological safety, developers will hesitate to commit frequently.
+
+**Jidoka: the right to stop the line.** If trunk breaks, everything stops. This rule, inherited from Toyota's [Andon cord](/en/lean-and-value-stream/lean-foundations/andon-cord-the-right-to-stop-production), creates collective pressure to keep trunk green. Everyone becomes responsible for the health of the shared flow.
+
+## The asymptote and the path
+
+TBD is an asymptotic ideal: you approach it without ever reaching it perfectly. And that's precisely what makes it a useful compass.
+
+Practicing TBD without the prerequisites produces exactly the chaos you fear: unstable trunk, blocked deployments, frustrated team. Failure doesn't invalidate TBD; it reveals gaps to fill. Insufficient tests? Improve coverage. Painful merges? Reduce batch size. Fear of breaking things? Build psychological safety.
+
+Each friction encountered on the path to TBD points to a necessary investment: skills, tooling, culture. These investments have intrinsic value, independent of TBD itself. A team with solid tests, fine-grained slicing, and a blameless culture will perform better regardless of their branching workflow.
+
+TBD is not a destination; it's a direction. Teams that approach it discover that flow fluidity, feedback speed, and mental model simplicity are well worth the effort of leveling up.
