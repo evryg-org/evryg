@@ -3,7 +3,8 @@ import type { MetaRecord } from 'nextra'
 const meta: MetaRecord = {
   index: 'Introduction',
   'detect-errors-early-from-lean-to-shift-left': '',
-  'kanban-from-production-signal-to-corrupted-todo-list': ''
+  'kanban-from-production-signal-to-corrupted-todo-list': '',
+  'pull-flow-vs-one-piece-flow-two-complementary-levers': ''
 }
 
 export default meta
