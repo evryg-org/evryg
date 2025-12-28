@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "pnpm tsx scripts/CheckLinks.ts",
+    "prebuild": "pnpm tsx scripts/CheckLinks.ts && pnpm tsx scripts/TagConsistency.ts",
     "build": "next build",
     "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind",
     "start": "next start",
     "lint": "eslint",
-    "check-links": "pnpm tsx scripts/CheckLinks.ts"
+    "check-links": "pnpm tsx scripts/CheckLinks.ts",
+    "check-tags": "pnpm tsx scripts/TagConsistency.ts"
   },
   "dependencies": {
     "katex": "^0.16.27",

@@ -1,6 +1,7 @@
 import { generateStaticParamsFor, importPage } from 'nextra/pages'
 import { useMDXComponents } from '../../../mdx-components'
 import { ArticleCTA } from '../../../components/article_cta'
+import { ArticleTags } from '../../../components/article_tags'
 import { translatePath } from '../../../slug-mappings'
 
 const BASE_URL = 'https://kb.evryg.com'
@@ -47,6 +48,7 @@ export async function generateMetadata(props: {
   const modifiedTime = metadata?.timestamp
     ? new Date(metadata.timestamp).toISOString()
     : undefined
+  const tags = (metadata as { tags?: string[] })?.tags || []
 
   // Get section title from the section's index.mdx frontmatter
   let section: string | undefined
@@ -64,6 +66,7 @@ export async function generateMetadata(props: {
   return {
     ...metadata,
     authors: [{ name: 'evryg', url: 'https://www.evryg.com' }],
+    keywords: tags,
     alternates: {
       canonical: `${BASE_URL}${translatePath(currentPath, 'fr')}`,
       languages: {
@@ -78,6 +81,7 @@ export async function generateMetadata(props: {
       authors: ['evryg'],
       modifiedTime,
       ...(section && { section }),
+      tags,
       images: [
         {
           url: ogImageUrl,
@@ -105,6 +109,7 @@ export default async function Page(props: {
   const { default: MDXContent, toc, metadata } = result
 
   const pageType = (metadata as { pageType?: string }).pageType
+  const tags = (metadata as { tags?: string[] })?.tags || []
   const showCTA = pageType === 'article'
 
   const path = params.mdxPath?.join('/') || ''
@@ -127,6 +132,7 @@ export default async function Page(props: {
         ...(modifiedTime && {
           "dateModified": new Date(modifiedTime).toISOString()
         }),
+        "keywords": tags.join(', '),
         "author": {
           "@type": "Organization",
           "@id": "https://kb.evryg.com/#organization",
@@ -145,6 +151,7 @@ export default async function Page(props: {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+      <ArticleTags tags={tags} lang={params.lang} />
       <MDXContent {...props} params={params} />
       {showCTA && <ArticleCTA lang={params.lang} />}
     </Wrapper>

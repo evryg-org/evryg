@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import { getPageMap } from 'nextra/page-map'
 import type { PageMapItem } from 'nextra'
 import { translatePath } from '../slug-mappings'
+import { getAllTags } from '../lib/tags'
 
 const BASE_URL = 'https://kb.evryg.com'
 const locales = ['en', 'fr'] as const
@@ -40,6 +41,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             en: `${BASE_URL}${translatePath(route, 'en')}`,
             fr: `${BASE_URL}${translatePath(route, 'fr')}`,
             'x-default': `${BASE_URL}${translatePath(route, 'fr')}`,
+          },
+        },
+      })
+    }
+
+    // Add tag pages
+    entries.push({
+      url: `${BASE_URL}/${lang}/tags`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.6,
+      alternates: {
+        languages: {
+          en: `${BASE_URL}/en/tags`,
+          fr: `${BASE_URL}/fr/tags`,
+          'x-default': `${BASE_URL}/fr/tags`,
+        },
+      },
+    })
+
+    const tags = await getAllTags(lang)
+    for (const { tag } of tags) {
+      entries.push({
+        url: `${BASE_URL}/${lang}/tags/${tag}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.5,
+        alternates: {
+          languages: {
+            en: `${BASE_URL}/en/tags/${tag}`,
+            fr: `${BASE_URL}/fr/tags/${tag}`,
+            'x-default': `${BASE_URL}/fr/tags/${tag}`,
           },
         },
       })

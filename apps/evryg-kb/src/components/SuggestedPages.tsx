@@ -7,16 +7,13 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 import type { Suggestion } from '../main/core/domain/Suggestions'
 import { findSuggestions } from '../main/core/use_cases/FindSuggestions'
+import { extractExcerpt } from '../main/core/use_cases/ExtractExcerpt'
 import { createPagefindAdapter } from '../main/secondary/PagefindAdapter'
 import styles from './NotFoundPage.module.css'
 
 const translations = {
   en: { suggestionsTitle: 'Perhaps you were looking for:' },
   fr: { suggestionsTitle: 'Peut-être cherchiez-vous :' }
-}
-
-function stripHtmlTags(html: string): string {
-  return html.replace(/<[^>]*>/g, '')
 }
 
 function cleanUrl(url: string): string {
@@ -82,7 +79,7 @@ export function SuggestedPages() {
               </a>
               <div className={styles.resultUrl}>{url}</div>
               <p className={styles.resultExcerpt}>
-                {stripHtmlTags(suggestion.excerpt)}
+                {extractExcerpt(suggestion.excerpt, 'html')}
               </p>
             </li>
           )
