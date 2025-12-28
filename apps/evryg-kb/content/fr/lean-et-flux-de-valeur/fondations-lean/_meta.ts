@@ -8,7 +8,8 @@ const meta: MetaRecord = {
   'muda-muri-mura-les-trois-ennemis-du-flux': '',
   'dandotsu-lexcellence-radicale-comme-objectif': '',
   'andon-cord-le-droit-darreter-la-production': '',
-  'seiton-co-localiser-pour-fluidifier': ''
+  'seiton-co-localiser-pour-fluidifier': '',
+  'broken-window-theory-quand-le-desordre-appelle-le-desordre': ''
 }
 
 export default meta

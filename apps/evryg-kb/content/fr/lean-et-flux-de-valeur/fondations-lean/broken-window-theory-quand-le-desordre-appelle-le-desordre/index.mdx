@@ -1,0 +1,45 @@
+---
+pageType: article
+sidebarTitle: Broken window theory
+tags: [lean, quality, kaizen, jidoka, technical-debt, culture, continuous-improvement]
+---
+
+# Broken window theory : quand le désordre appelle le désordre
+
+En 1982, les criminologues James Q. Wilson et George L. Kelling formulent une hypothèse simple : une vitre brisée laissée sans réparation signale que personne ne surveille, et invite d'autres dégradations[^1]. Ce qui commence par une fenêtre cassée se termine par un bâtiment abandonné. La théorie, controversée dans son domaine d'origine, trouve une application remarquablement pertinente dans le développement logiciel et l'IT.
+
+Un système où l'on tolère un test qui échoue « temporairement », un warning ignoré depuis des mois, ou une portion de code que « personne n'ose toucher » envoie un message implicite à toute l'équipe : la qualité n'est pas une priorité ici. Ce message, une fois internalisé, devient une prophétie auto-réalisatrice.
+
+## Le mécanisme de contagion
+
+La dégradation progressive d'une codebase suit un schéma prévisible. Un développeur introduit un raccourci « temporaire » pour tenir un délai. Ce raccourci reste. Le développeur suivant, constatant que de tels compromis sont acceptés, en ajoute un autre. La dette technique s'accumule non pas linéairement, mais exponentiellement : chaque vitre brisée légitime la suivante.
+
+Le phénomène dépasse le code. Une documentation obsolète décourage quiconque de la maintenir. Un backlog de bugs non triés signale que les signalements ne seront pas traités. Des alertes de monitoring ignorées enseignent à l'équipe que ces alertes n'ont pas d'importance. L'environnement lui-même programme les comportements.
+
+Pour un décideur, l'enjeu n'est pas technique mais économique : le coût de correction d'une « vitre brisée » croît avec le temps et avec le nombre de dégradations qui s'y sont greffées.
+
+## La réponse Lean : Kaizen et Jidoka
+
+Le Lean Manufacturing offre deux réponses complémentaires au syndrome de la vitre brisée. Le *kaizen*, ou amélioration continue, prescrit de traiter les petits problèmes immédiatement plutôt que de les laisser s'accumuler. Cette philosophie s'oppose frontalement à la logique du « on verra plus tard » qui alimente la dégradation.
+
+Le *jidoka*, ou « automatisation avec une touche humaine », va plus loin : il donne à chacun le pouvoir et le devoir de s'arrêter dès qu'une anomalie est détectée. L'*andon cord* de Toyota incarne ce principe : tirer le cordon pour signaler un problème est valorisé, pas puni. En IT, cela se traduit par des pipelines CI/CD qui bloquent sur le premier test rouge, et par une culture où remonter un problème de qualité n'est jamais vu comme une perte de temps.
+
+Ces deux approches partagent une conviction : le coût apparent de s'arrêter pour réparer est toujours inférieur au coût réel de laisser le désordre s'installer.
+
+## Les vitres brisées de l'IT moderne
+
+Dans une organisation technologique, les vitres brisées prennent des formes spécifiques que tout décideur devrait apprendre à reconnaître. Les tests « flaky » qu'on relance jusqu'à ce qu'ils passent. Les TODO laissés dans le code depuis des années. Les environnements de développement qui « marchent chez moi ». Les déploiements manuels « parce que l'automatisation est cassée ». Les revues de code approuvées sans lecture réelle.
+
+Chacun de ces signaux, pris isolément, semble anodin. Leur accumulation révèle une organisation qui a cessé de se soucier de sa propre hygiène. Cette absence de soin se transmet : un nouveau développeur apprend en quelques semaines que les standards affichés ne sont pas les standards réels.
+
+L'indicateur le plus fiable d'une culture de vitres brisées n'est pas technique — c'est la phrase « c'est comme ça ici » prononcée sans ironie.
+
+## Réparer la première vitre : une décision managériale
+
+Inverser la tendance ne nécessite pas un grand programme de transformation. Cela commence par une décision simple : réparer une vitre, visiblement, et communiquer que cette réparation compte. Supprimer les warnings du build. Corriger le test flaky. Mettre à jour la documentation d'onboarding. Un acte concret vaut plus qu'une directive abstraite.
+
+Le rôle du management est de créer les conditions où ces réparations sont possibles : du temps protégé, une valorisation explicite, et surtout l'exemple. Une équipe de direction qui tolère ses propres vitres brisées (processus de décision opaques, réunions sans suivi, engagements non tenus) ne peut pas attendre mieux de ses équipes techniques.
+
+La broken window theory rappelle une vérité que le Lean a formalisée : la qualité n'est pas un état, c'est une discipline quotidienne. Cette discipline commence par le refus de normaliser le désordre.
+
+[^1]: Wilson, J. Q., & Kelling, G. L. (1982). "Broken Windows: The police and neighborhood safety". *The Atlantic Monthly*, 249(3), 29-38.
