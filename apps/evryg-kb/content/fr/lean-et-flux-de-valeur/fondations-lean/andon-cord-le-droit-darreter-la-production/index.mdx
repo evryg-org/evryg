@@ -1,0 +1,45 @@
+---
+pageType: article
+sidebarTitle: Andon cord
+tags: [lean, quality, jidoka, continuous-improvement, team-practices, incident-management]
+---
+
+# Andon cord : le droit d'arrêter la production
+
+Dans les usines Toyota, un cordon (ou corde) court le long de chaque ligne de production[^1]. N'importe quel ouvrier peut le tirer pour signaler un problème et, si nécessaire, arrêter toute la chaîne. Ce dispositif, appelé *andon cord*, incarne un principe contre-intuitif : donner à chacun le pouvoir d'interrompre le flux est le meilleur moyen de le préserver.
+
+L'*andon* fait partie du *jidoka*, l'un des deux piliers du système de production Toyota avec le juste-à-temps. Le *jidoka* signifie « automatisation avec une touche humaine » : la capacité de détecter une anomalie et de s'arrêter immédiatement plutôt que de propager le défaut.
+
+## Arrêter pour mieux avancer
+
+Tirer la corde d'*andon* déclenche une séquence précise. Un signal lumineux s'allume au-dessus du poste, indiquant la nature et la localisation du problème. Un superviseur arrive en quelques secondes. Si le problème peut être résolu rapidement, la ligne reprend. Sinon, elle s'arrête complètement jusqu'à ce que la cause racine soit identifiée et corrigée.
+
+Cette approche semble coûteuse : arrêter une ligne de production représente des pertes immédiates. Pourtant, Toyota a démontré qu'elle est moins coûteuse que l'alternative : laisser un défaut se propager à travers le système, où il sera plus difficile et plus cher à corriger.
+
+Le coût d'un bug découvert en production est typiquement 100 fois supérieur à celui d'un bug détecté au moment de son introduction. L'*andon* applique cette logique à l'échelle de l'organisation.
+
+## Application en développement logiciel
+
+En IT, l'équivalent de l'*andon cord* prend plusieurs formes. La plus directe est le pouvoir donné à chaque membre de l'équipe de bloquer un déploiement ou de déclencher un rollback sans attendre l'approbation hiérarchique.
+
+Les pipelines CI/CD incarnent une forme automatisée d'*andon* : un test qui échoue arrête le déploiement immédiatement. Mais l'automatisation ne suffit pas. L'esprit de l'*andon* réside dans la culture qui l'entoure : la conviction que signaler un problème est valorisé, pas puni.
+
+Une équipe où les développeurs hésitent à remonter les anomalies par peur des reproches a perdu l'essence de l'*andon*, même si elle dispose des meilleurs outils d'alerte.
+
+## La culture de l'arrêt
+
+L'efficacité de l'*andon* repose sur une inversion culturelle. Dans la plupart des organisations, s'arrêter est perçu comme un échec. Celui qui interrompt le flux doit se justifier. La pression implicite pousse à continuer malgré les signaux d'alerte.
+
+Chez Toyota, c'est l'inverse : ne pas tirer le cordon quand on détecte un problème est considéré comme une faute. Le système récompense la vigilance, pas la complaisance. Les managers qui répondent à un *andon* ne demandent pas « pourquoi as-tu arrêté ? » mais « comment puis-je t'aider ? ».
+
+Transposer cette culture en IT signifie célébrer les incidents évités plutôt que de punir les alertes « inutiles ». Cela signifie aussi accepter que ralentir temporairement est parfois la décision la plus efficace.
+
+## Au-delà de l'incident : l'amélioration continue
+
+L'*andon* n'est pas qu'un mécanisme de gestion d'incident. Chaque activation génère une opportunité d'amélioration. Le problème signalé est analysé, sa cause racine identifiée, et le processus modifié pour éviter sa récurrence.
+
+En développement, cela se traduit par les analyses post-incident sans reproche, les rétrospectives focalisées sur les systèmes plutôt que sur les personnes, et l'investissement continu dans l'outillage de détection.
+
+L'*andon* transforme chaque anomalie en connaissance organisationnelle. Sans ce mécanisme, les mêmes problèmes se répètent indéfiniment, masqués par des contournements locaux qui ne remontent jamais à la surface.
+
+[^1]: Le cordon physique est progressivement remplacé par des boutons dans les usines modernes. Voir [Andon (manufacturing)](https://en.wikipedia.org/wiki/Andon_(manufacturing)) sur Wikipedia.

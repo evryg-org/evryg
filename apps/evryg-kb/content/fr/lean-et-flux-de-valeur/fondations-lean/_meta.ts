@@ -6,7 +6,8 @@ const meta: MetaRecord = {
   'kanban-du-signal-de-production-a-la-todo-list-devoyee': '',
   'flux-tire-vs-one-piece-flow-deux-leviers-complementaires': '',
   'muda-muri-mura-les-trois-ennemis-du-flux': '',
-  'dandotsu-lexcellence-radicale-comme-objectif': ''
+  'dandotsu-lexcellence-radicale-comme-objectif': '',
+  'andon-cord-le-droit-darreter-la-production': ''
 }
 
 export default meta
