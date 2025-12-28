@@ -10,7 +10,8 @@ const meta: MetaRecord = {
   'andon-cord-le-droit-darreter-la-production': '',
   'seiton-co-localiser-pour-fluidifier': '',
   'broken-window-theory-quand-le-desordre-appelle-le-desordre': '',
-  'boy-scout-rule-laisser-le-code-plus-propre': ''
+  'boy-scout-rule-laisser-le-code-plus-propre': '',
+  'le-cycle-pdca-quand-lentreprise-adopte-la-demarche-scientifique': ''
 }
 
 export default meta

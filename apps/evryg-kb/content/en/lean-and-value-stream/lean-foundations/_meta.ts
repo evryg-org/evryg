@@ -10,7 +10,8 @@ const meta: MetaRecord = {
   'andon-cord-the-right-to-stop-production': '',
   'seiton-colocate-to-streamline': '',
   'broken-window-theory-when-disorder-breeds-disorder': '',
-  'boy-scout-rule-leave-code-cleaner': ''
+  'boy-scout-rule-leave-code-cleaner': '',
+  'the-pdca-cycle-when-business-adopts-the-scientific-method': ''
 }
 
 export default meta
