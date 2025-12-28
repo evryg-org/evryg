@@ -7,7 +7,8 @@ const meta: MetaRecord = {
   'pull-flow-vs-one-piece-flow-two-complementary-levers': '',
   'muda-muri-mura-the-three-enemies-of-flow': '',
   'dandotsu-radical-excellence-as-a-goal': '',
-  'andon-cord-the-right-to-stop-production': ''
+  'andon-cord-the-right-to-stop-production': '',
+  'seiton-colocate-to-streamline': ''
 }
 
 export default meta

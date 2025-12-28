@@ -7,7 +7,8 @@ const meta: MetaRecord = {
   'flux-tire-vs-one-piece-flow-deux-leviers-complementaires': '',
   'muda-muri-mura-les-trois-ennemis-du-flux': '',
   'dandotsu-lexcellence-radicale-comme-objectif': '',
-  'andon-cord-le-droit-darreter-la-production': ''
+  'andon-cord-le-droit-darreter-la-production': '',
+  'seiton-co-localiser-pour-fluidifier': ''
 }
 
 export default meta
