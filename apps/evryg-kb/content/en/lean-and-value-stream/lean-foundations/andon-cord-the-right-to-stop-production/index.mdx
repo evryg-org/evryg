@@ -1,0 +1,46 @@
+---
+pageType: article
+sidebarTitle: Andon cord
+tags: [lean, quality, jidoka, continuous-improvement, team-practices, incident-management]
+canonical-slug: andon-cord-le-droit-darreter-la-production
+---
+
+# Andon Cord: The Right to Stop Production
+
+In Toyota factories, a cord runs along every production line[^1]. Any worker can pull it to signal a problem and, if necessary, stop the entire chain. This device, called the *andon cord*, embodies a counterintuitive principle: giving everyone the power to interrupt flow is the best way to preserve it.
+
+The *andon* is part of *jidoka*, one of the two pillars of the Toyota Production System alongside just-in-time. *Jidoka* means "automation with a human touch": the ability to detect an anomaly and stop immediately rather than propagate the defect.
+
+## Stop to Move Forward
+
+Pulling the *andon* cord triggers a precise sequence. A light signal illuminates above the workstation, indicating the nature and location of the problem. A supervisor arrives within seconds. If the problem can be resolved quickly, the line resumes. Otherwise, it stops completely until the root cause is identified and corrected.
+
+This approach seems costly: stopping a production line represents immediate losses. Yet Toyota has demonstrated it is less costly than the alternative: letting a defect propagate through the system, where it will be harder and more expensive to correct.
+
+The cost of a bug discovered in production is typically 100 times higher than one detected at the moment of introduction. The *andon* applies this logic at organizational scale.
+
+## Application in Software Development
+
+In IT, the equivalent of the *andon cord* takes several forms. The most direct is the power given to each team member to block a deployment or trigger a rollback without waiting for hierarchical approval.
+
+CI/CD pipelines embody an automated form of *andon*: a failing test stops deployment immediately. But automation is not enough. The spirit of *andon* lies in the culture surrounding it: the conviction that reporting a problem is valued, not punished.
+
+A team where developers hesitate to raise anomalies for fear of blame has lost the essence of *andon*, even if they have the best alerting tools.
+
+## The Culture of Stopping
+
+The effectiveness of *andon* rests on a cultural inversion. In most organizations, stopping is perceived as failure. Whoever interrupts flow must justify themselves. Implicit pressure pushes people to continue despite warning signs.
+
+At Toyota, it's the opposite: not pulling the cord when detecting a problem is considered a fault. The system rewards vigilance, not complacency. Managers responding to an *andon* don't ask "why did you stop?" but "how can I help?".
+
+Transposing this culture to IT means celebrating avoided incidents rather than punishing "unnecessary" alerts. It also means accepting that slowing down temporarily is sometimes the most effective decision.
+
+## Beyond Incidents: Continuous Improvement
+
+The *andon* is not just an incident management mechanism. Each activation generates an improvement opportunity. The reported problem is analyzed, its root cause identified, and the process modified to prevent recurrence.
+
+In development, this translates to blameless post-incident analyses, retrospectives focused on systems rather than people, and continuous investment in detection tooling.
+
+The *andon* transforms each anomaly into organizational knowledge. Without this mechanism, the same problems repeat indefinitely, masked by local workarounds that never surface.
+
+[^1]: The physical cord is gradually being replaced by buttons in modern factories. See [Andon (manufacturing)](https://en.wikipedia.org/wiki/Andon_(manufacturing)) on Wikipedia.

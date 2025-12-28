@@ -1,0 +1,54 @@
+---
+pageType: article
+sidebarTitle: A Financial Imperative
+tags: [continuous-delivery, lean, lead-time, business-value, cash-flow, cost-of-delay]
+canonical-slug: continuous-delivery-un-enjeu-financier
+---
+
+# Continuous Delivery: A Financial Imperative
+
+*Continuous Delivery* is too often relegated to a "technical issue for the dev team." This classification is a strategic mistake. Reducing lead time (the delay between an idea and its deployment to production) is primarily a matter of cash flow, working capital, and investment capacity. It's a C-suite concern, not an implementation detail. A long lead time is not a technical constraint: it's a management decision, often made without measuring its cost.
+
+## Lead time and cash flow: the ignored equation
+
+A feature delivered faster is sold faster, invoiced faster, paid faster. Funds hit the bank account sooner. This acceleration of the cash-to-cash cycle has a direct impact on working capital requirements.
+
+Consider an example. A SaaS company develops a premium feature billable at €10,000 per month to enterprise clients. With a 3-month delivery cycle, billing starts in month 4. With a 2-week cycle, billing starts in month 1. Over a year, the difference represents €30,000 in additional revenue, not created, but simply collected earlier.
+
+This cash available sooner means less debt to incur, less interest to pay, more capacity to invest in growth. Lead time is not a technical metric; it's a financial lever.
+
+## The opportunity cost of unshipped work
+
+Every line of code written but not deployed represents an investment with no return. Salaries have been paid, overhead covered, but value remains dormant in a Git branch or a release queue.
+
+A team of 5 developers costs approximately €50,000 per month. If their January work isn't shipped until March, the company has €50,000 worth of value sitting in inventory, idle, generating no return. Multiply by 10 teams and a 6-month average cycle: that's 3 million euros of work in progress sitting dormant in Git branches.
+
+This unshipped work is not an asset: it's an option. An option whose value decays over time, because the market doesn't wait.
+
+## Cost of Delay: revenue lost, not just delayed
+
+*Cost of Delay* (CoD) goes beyond simple cash flow timing. In a competitive market, arriving three months later can mean revenue permanently lost, not merely postponed.
+
+A competitor who ships before you captures the customers. A market window that closes doesn't reopen. A regulation coming into effect transforms your "nice to have" feature into a legal requirement, at least for those who already have it.
+
+CoD is calculated as revenue lost per unit of time. If a feature generates €100,000 per year and you're 6 months late to market, you haven't "delayed" €50,000: you've lost it. It went to competitors, or it simply no longer exists because the opportunity window has closed.
+
+While you wait 6 months to ship, a competitor is already collecting 6 months of revenue, accumulating customer feedback, and locking down the market. Delay is not neutral: it widens the gap.
+
+## The risk of obsolescence
+
+The longer the delivery cycle, the higher the risk of building something useless. Markets evolve, customer needs change, strategic priorities pivot.
+
+A feature specified in January for June delivery has 6 months to become obsolete. Six months during which a competitor can release a better solution, a customer can change their mind, a technology can emerge and render the approach moot.
+
+*Continuous Delivery* reduces this risk by shortening the feedback loop. Practices like [Trunk-Based Development](/en/lean-and-value-stream/continuous-delivery/trunk-based-development-the-asymptotic-ideal) enable shipping in 2 weeks or less, validating hypotheses quickly, pivoting if necessary, avoiding building cathedrals in the desert. Code untested in production is an unvalidated hypothesis, and unvalidated hypotheses have a value close to zero.
+
+## Breaking down silos: a C-suite concern
+
+As long as *Continuous Delivery* remains "the technical team's problem," it will receive neither the budget, the attention, nor the sponsorship it requires. Dev teams fight for CI/CD pipelines, test environments, automation, perceived as costs by leadership that doesn't see the business impact.
+
+This disconnect is a strategic communication failure. The CFO who understands that lead time impacts working capital becomes an ally for CD investment. The CEO who sees the link between delivery speed and competitive advantage makes it a strategic priority.
+
+*Continuous Delivery* is not an engineering practice: it's an organizational capability that transforms technical velocity into financial advantage. Companies that understand this, and have elevated it to their executive committee, systematically outperform those who treat it as a geek topic.
+
+The question is not whether you can afford to invest in *Continuous Delivery*, but whether you can afford not to.

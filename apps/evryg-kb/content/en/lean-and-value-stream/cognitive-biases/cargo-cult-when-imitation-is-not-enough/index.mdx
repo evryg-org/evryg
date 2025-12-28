@@ -1,0 +1,48 @@
+---
+pageType: article
+sidebarTitle: Cargo cult
+tags: [cognitive-bias, anti-pattern, decision-making, architecture, agile, microservices]
+canonical-slug: cargo-cult-quand-imiter-ne-suffit-pas
+---
+
+# Cargo Cult: When Imitation Is Not Enough
+
+During World War II, inhabitants of certain Melanesian islands witnessed an extraordinary phenomenon: military aircraft dropped cargo loads of food, clothing, and equipment. After the armed forces departed, some islanders built bamboo landing strips, straw control towers, and wooden airplane replicas. They meticulously reproduced the gestures of air traffic controllers, hoping the planes would return. The planes never came back. These practices, documented by anthropologists, are known as [cargo cults](https://en.wikipedia.org/wiki/Cargo_cult) ([culte du cargo](https://fr.wikipedia.org/wiki/Culte_du_cargo) in French).
+
+Physicist Richard Feynman transposed this concept to science in his famous 1974 speech on "cargo cult science": practices that have the appearance of scientific rigor without possessing its substance. The software industry suffers from the same syndrome, at a scale few decision-makers appreciate.
+
+## Netflix Has Microservices. You Are Not Netflix.
+
+The reasoning is seductive: Netflix, Google, Amazon use microservices; we want their success; therefore we must adopt microservices. This logic omits one detail: these companies adopted this architecture *after* reaching a scale and organizational complexity that made it necessary. Netflix migrated to microservices to allow hundreds of teams to deploy independently. A twenty-developer startup adopting the same architecture is reproducing the bamboo landing strip.
+
+The same pattern repeats with Kubernetes. The tool solves large-scale orchestration problems that most organizations don't have. But its adoption has become a marker of modernity, a signal sent to investors and recruiters. Teams spend months mastering complexity that brings them no value, because "everyone uses Kubernetes." The mockup is perfect. The plane still doesn't come.
+
+## The Ceremony Without the Meaning
+
+Cargo cult is not limited to technology choices. It contaminates methods and processes with the same insidiousness.
+
+A team adopts Scrum: daily standups, two-week sprints, retrospectives. The rituals are followed to the letter. But standups are disguised status reports, sprints are interrupted by constant emergencies, retrospectives produce no change. The team practices *cargo cult agility*: reproducing the gestures without understanding their purpose. Agility aimed to shorten feedback loops and maximize adaptation; the cargo cult version maximizes conformity to a framework.
+
+SAFe pushes this paradox to its extreme: a framework that promises agility at scale by multiplying roles, ceremonies, and artifacts. Organizations adopt it because it resembles what they know (processes, deliverables, milestones) while bearing the "agile" label. Form is preserved, substance is evacuated.
+
+## GraphQL, gRPC, and the Solution in Search of a Problem
+
+Technological cargo cult follows a recurring pattern: a technology emerges to solve a specific problem in a specific context; it gains visibility; it is adopted as a universal solution by teams that don't have the problem it solves.
+
+GraphQL was created by Facebook to allow thousands of front-end developers to query a complex data graph without constant coordination with back-end teams. For a ten-person team with three REST endpoints, GraphQL adds a layer of complexity without proportional benefit. But GraphQL is "modern," and REST is "legacy." The decision is made on signal, not analysis.
+
+gRPC solves performance and interoperability problems in high-load distributed systems. Its adoption by teams whose traffic would fit on a Raspberry Pi follows the same mechanism: the giants' technology confers prestige by association.
+
+## Recognizing Cargo Cult in Your Organization
+
+Cargo cult is difficult to identify because it always presents itself in the guise of rationality. Some warning signs for decision-makers:
+
+**The technological authority argument.** "Google/Netflix/Spotify does it this way" is not a justification, it's an admission of absent analysis. The pertinent question is: what problem does this approach solve, and do we have that problem?
+
+**Means-end inversion.** When adopting a technology or method becomes the goal rather than the means, cargo cult sets in. "We must be cloud-native" is a declaration of faith, not a strategy.
+
+**Complexity as a marker of seriousness.** A simple architecture that works is often perceived as naive. A complex architecture that malfunctions is perceived as ambitious. This bias pushes organizations toward oversized solutions.
+
+**Mimicry without adaptation.** Copying another organization's practices without understanding its context is building a straw control tower. Practices that work elsewhere emerged from specific constraints and culture.
+
+The real question is never "what technology do the best use?" but "what problem are we trying to solve, and what is the simplest solution that works?" This question is less seductive. It doesn't generate buzz at conferences. But it's the only one that distinguishes engineering from ritual.

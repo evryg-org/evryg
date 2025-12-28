@@ -1,0 +1,41 @@
+---
+pageType: article
+sidebarTitle: Boy Scout Rule
+tags: [lean, quality, kaizen, technical-debt, clean-code, continuous-improvement]
+---
+
+# Boy Scout Rule : laisser le code plus propre qu'on ne l'a trouvé
+
+« Laisse toujours le campement plus propre que tu ne l'as trouvé. » Ce principe scout, transposé au développement logiciel par Robert C. Martin, est devenu l'un des préceptes les plus cités de la culture *clean code*. La *Boy Scout Rule* prescrit d'améliorer marginalement chaque fichier que l'on touche, indépendamment de la tâche en cours.
+
+La règle ne demande pas de refactorer un module entier ni de rembourser toute la dette technique d'un coup. Elle prescrit uniquement de laisser le code légèrement meilleur qu'avant : renommer une variable obscure, extraire une constante magique, supprimer un import inutilisé, clarifier un commentaire ambigu. Ces micro-améliorations, accumulées sur des centaines de commits, produisent un effet de nettoyage continu que les grands projets de refactoring peinent à égaler.
+
+## Le mécanisme vertueux
+
+Là où la [broken window theory](/fr/lean-et-flux-de-valeur/fondations-lean/broken-window-theory-quand-le-desordre-appelle-le-desordre) décrit une spirale descendante (le désordre engendre le désordre), la Boy Scout Rule enclenche la dynamique inverse. Un code légèrement amélioré envoie un signal au contributeur suivant : « ici, on prend soin de ce qu'on touche ». Ce signal invite à maintenir le niveau de soin, voire à l'élever. La qualité devient contagieuse.
+
+En pratique, chaque développeur se transforme en agent de maintenance préventive. Le coût de cette maintenance est négligeable : quelques minutes par commit, absorbées dans le flux de travail normal. Mais l'effet cumulé est considérable. Une équipe de dix développeurs produisant chacun cinq commits par jour génère 250 micro-améliorations par semaine, sans jamais planifier un sprint de « nettoyage ».
+
+## Conditions d'application
+
+L'adoption de la Boy Scout Rule ne va pas de soi. Elle requiert un cadre organisationnel qui la rende possible.
+
+Les revues de code doivent valoriser les petites améliorations opportunistes plutôt que les rejeter comme « hors scope ». Un reviewer qui demande de séparer le nettoyage de la fonctionnalité tue la règle dans l'oeuf : le développeur, contraint de créer une pull request dédiée, renoncera à l'effort.
+
+Les équipes doivent accepter que certains commits mêlent une fonctionnalité et un nettoyage mineur. Cette tolérance suppose une confiance dans le jugement des développeurs : le nettoyage doit rester proportionné et non invasif. Un renommage de variable est bienvenu ; une restructuration majeure mérite sa propre discussion.
+
+Les outils doivent faciliter la démarche. Un linter qui signale les problèmes locaux, un formateur automatique qui homogénéise le style, une suite de tests rapide qui valide les changements : autant de filets de sécurité qui permettent d'améliorer sans crainte de casser.
+
+## Ce que la règle n'est pas
+
+La Boy Scout Rule n'est pas une licence pour le *scope creep*. Elle ne justifie pas de refactorer l'architecture d'un module sous couvert d'un bug fix. Elle ne dispense pas de planifier les évolutions structurelles importantes. Elle opère à l'échelle du fichier, pas du système.
+
+Elle n'est pas non plus un substitut à la gestion de la dette technique. Certaines dégradations nécessitent un effort coordonné qu'aucune accumulation de micro-améliorations ne résoudra. La règle scoute entretient le terrain ; elle ne le reconstruit pas.
+
+## Une responsabilité distribuée
+
+La force de la Boy Scout Rule réside dans sa distribution. Elle ne repose pas sur une équipe dédiée à la qualité, ni sur des sprints de refactoring sanctuarisés. Elle fait de chaque contributeur un gardien du code, responsable non seulement de sa fonctionnalité mais de l'environnement dans lequel elle s'inscrit.
+
+Cette distribution a une conséquence managériale : la qualité du code devient un indicateur de culture plus que de compétence technique. Une équipe qui applique la règle scoute démontre qu'elle a internalisé le soin comme valeur collective. Une équipe qui l'ignore, même composée d'experts, révèle une culture où chacun se limite à son périmètre strict.
+
+La Boy Scout Rule rappelle que la qualité logicielle n'est pas un état à atteindre, mais une pratique à maintenir. Chaque commit est une occasion de l'exercer.

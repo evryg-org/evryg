@@ -1,0 +1,45 @@
+---
+pageType: article
+sidebarTitle: Flux tiré vs One-piece flow
+tags: [lean, flow, pull-system, one-piece-flow, continuous-delivery, batch-size]
+---
+
+# Flux tiré vs One-piece flow : deux leviers complémentaires
+
+Le flux tiré (*pull flow*) et le *one-piece flow* sont deux concepts fondamentaux du Lean souvent confondus, voire utilisés de manière interchangeable.
+
+Cette confusion masque une distinction essentielle : le flux tiré concerne le *déclenchement* du travail (qui donne le signal de commencer), tandis que le *one-piece flow* concerne la *granularité* (quelle quantité traiter à chaque étape).
+
+Comprendre cette différence permet de combiner ces deux leviers de manière optimale, en production industrielle comme en développement logiciel.
+
+## Le flux tiré : inverser le déclencheur de production
+
+Dans un système traditionnel à flux poussé, la production est déclenchée par des prévisions : on fabrique selon ce qu'on *pense* que le marché demandera, puis on tente d'écouler les stocks. Le flux tiré inverse cette logique.
+
+La production ne démarre que lorsque le poste aval consomme une unité et envoie un signal, le [*kanban*](/fr/lean-et-flux-de-valeur/fondations-lean/kanban-du-signal-de-production-a-la-todo-list-devoyee), demandant un réapprovisionnement. La demande réelle du client, propagée de proche en proche à travers la chaîne de valeur, devient le déclencheur unique.
+
+Ce mécanisme réduit naturellement les stocks, améliore la réactivité aux variations de la demande et expose les dysfonctionnements : quand le signal ne circule plus, le problème devient visible immédiatement.
+
+## Le one-piece flow : réduire la taille des lots à l'unité
+
+Le *one-piece flow* (ou flux pièce à pièce) consiste à traiter les éléments un par un plutôt qu'en lots. Au lieu d'attendre d'avoir accumulé dix pièces pour les transférer à l'étape suivante, chaque pièce progresse individuellement à travers le processus dès qu'elle est prête.
+
+L'impact sur le *lead time* (temps de traversée) est considérable : si chaque étape prend une minute et que vous avez cinq étapes, une pièce unique traverse le système en cinq minutes. En lot de dix, la première pièce doit attendre que les neuf autres soient terminées à chaque étape, multipliant le temps de traversée.
+
+Au-delà de la vitesse, le *one-piece flow* rend les défauts visibles instantanément : un problème de qualité est détecté sur la pièce en cours, pas découvert sur un lot entier déjà produit.
+
+## Application en développement logiciel
+
+En développement logiciel, le flux tiré se manifeste lorsque le déploiement d'une fonctionnalité est déclenché par un besoin réel plutôt que par un planning prédéfini. Les *feature flags* permettent de découpler le déploiement technique de l'activation métier : le code est en production, mais la fonctionnalité n'est « tirée » que lorsque le client ou le contexte le demande.
+
+Les limites WIP (*work in progress*) sur un tableau Kanban incarnent également ce principe : une nouvelle tâche n'entre dans le système que lorsqu'une place se libère.
+
+Le *one-piece flow* en IT se traduit par le *trunk-based development* et l'intégration continue : chaque petit commit est intégré, testé et potentiellement déployé indépendamment, plutôt que d'accumuler des semaines de travail dans une branche avant une fusion massive. Cette granularité fine réduit le risque, accélère les retours et simplifie la résolution des conflits.
+
+## Synthèse : combiner les deux leviers
+
+L'optimum toyotiste, et son équivalent en développement logiciel, combine ces deux principes : des unités de travail petites dont la production est tirée par la demande réelle.
+
+Les anti-patterns émergent quand l'un manque à l'autre. Un *one-piece flow* en mode poussé crée rapidement des engorgements : vous produisez pièce par pièce, mais sans signal de la demande, les encours s'accumulent aux goulots. Un flux tiré en gros lots préserve le mécanisme de signal mais introduit une latence incompressible : vous attendez que le lot soit complet avant de le tirer.
+
+En développement, l'équivalent serait une équipe qui respecte les limites WIP mais travaille sur des fonctionnalités géantes, ou inversement, qui fait des petits commits mais les empile dans une branche longue durée déconnectée de la production.

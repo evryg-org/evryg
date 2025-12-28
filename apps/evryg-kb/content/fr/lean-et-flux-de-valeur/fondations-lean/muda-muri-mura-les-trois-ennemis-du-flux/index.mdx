@@ -1,0 +1,43 @@
+---
+pageType: article
+sidebarTitle: Muda, Muri, Mura
+tags: [lean, waste, flow, continuous-improvement, team-practices]
+---
+
+# Muda, Muri, Mura : les trois ennemis du flux
+
+Le système de production Toyota identifie trois sources de dysfonctionnement, souvent désignées par leurs noms japonais : *muda* (gaspillage), *muri* (surcharge) et *mura* (irrégularité).
+
+Ces trois concepts forment un système interdépendant : l'irrégularité engendre la surcharge, qui à son tour produit du gaspillage. Comprendre cette triade permet d'attaquer les problèmes à leur racine plutôt que de traiter uniquement leurs symptômes visibles.
+
+## Muda : le gaspillage visible
+
+Le *muda* désigne toute activité qui consomme des ressources sans créer de valeur pour le client. Taiichi Ohno en identifiait sept formes : surproduction, attente, transport, sur-traitement, stocks, mouvements inutiles et défauts.
+
+En développement logiciel, ces gaspillages prennent des formes spécifiques. La surproduction se manifeste par des fonctionnalités développées mais jamais utilisées. L'attente apparaît dans les files de revue de code ou les approbations bloquantes. Le sur-traitement se cache dans l'over-engineering, ces abstractions élaborées pour des cas qui ne se produiront jamais.
+
+Les défauts, eux, se traduisent en bugs découverts tardivement, dont le coût de correction croît exponentiellement avec le délai de détection.
+
+## Muri : la surcharge invisible
+
+Le *muri* désigne la surcharge imposée aux personnes ou aux systèmes au-delà de leur capacité naturelle. Contrairement au *muda*, le *muri* n'est pas immédiatement visible : il se manifeste par l'épuisement progressif, la dette technique accumulée, les raccourcis pris sous pression.
+
+En développement, le *muri* apparaît quand une équipe accepte systématiquement plus de travail qu'elle ne peut absorber. Les deadlines irréalistes, les interruptions constantes, le multitâche forcé sont autant de formes de surcharge.
+
+Le *muri* dégrade la qualité de manière insidieuse : les tests sont négligés, la documentation oubliée, les revues bâclées. La dette ainsi créée ralentit le flux futur, créant un cercle vicieux où la surcharge engendre davantage de surcharge.
+
+## Mura : l'irrégularité structurelle
+
+Le *mura* désigne l'irrégularité, la variabilité non maîtrisée dans le flux de travail. C'est souvent la cause première des deux autres maux : un flux irrégulier crée des pics de charge (*muri*) suivis de périodes creuses, et génère du gaspillage (*muda*) sous forme de stocks tampons pour absorber les variations.
+
+En développement logiciel, le *mura* se manifeste par les cycles en dents de scie : sprints surchargés suivis de périodes de flottement, releases massives alternant avec des semaines sans déploiement, demandes urgentes interrompant le travail planifié.
+
+Le [flux tiré](/fr/lean-et-flux-de-valeur/fondations-lean/flux-tire-vs-one-piece-flow-deux-leviers-complementaires) et les limites WIP sont des contre-mesures directes au *mura* : en régulant l'entrée du travail selon la capacité réelle, on lisse le flux et on prévient les pics de surcharge.
+
+## Traiter les causes, pas les symptômes
+
+La plupart des initiatives d'amélioration se concentrent sur le *muda*, le gaspillage visible. On optimise les processus, on élimine les étapes inutiles, on automatise les tâches répétitives. Ces efforts sont nécessaires mais insuffisants s'ils ignorent les causes profondes.
+
+Le *mura* (irrégularité) engendre le *muri* (surcharge), qui produit le *muda* (gaspillage). Une équipe soumise à des demandes erratiques se retrouve alternativement débordée et sous-utilisée. Sous pression, elle prend des raccourcis qui génèrent de la dette technique. Cette dette ralentit le travail futur, créant davantage d'irrégularité.
+
+Stabiliser le flux en amont, par des limites WIP, des cadences régulières et une priorisation disciplinée, s'attaque à la racine du problème plutôt qu'à ses manifestations.

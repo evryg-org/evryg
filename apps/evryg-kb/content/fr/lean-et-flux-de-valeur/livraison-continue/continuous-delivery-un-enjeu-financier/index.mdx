@@ -1,0 +1,53 @@
+---
+pageType: article
+sidebarTitle: Un enjeu financier
+tags: [continuous-delivery, lean, lead-time, business-value, cash-flow, cost-of-delay]
+---
+
+# Continuous Delivery : un enjeu financier
+
+*Continuous Delivery* est trop souvent reléguée au rang de « sujet technique pour l'équipe dev ». Cette classification est une erreur stratégique. Réduire le lead time (le délai entre l'idée et sa mise en production) est avant tout une question de trésorerie, de BFR et de capacité d'investissement. C'est un enjeu de direction générale, pas un détail d'implémentation. Un lead time long n'est pas une contrainte technique : c'est une décision de gestion, souvent prise sans en mesurer le coût.
+
+## Lead time et trésorerie : l'équation ignorée
+
+Une fonctionnalité livrée plus vite est vendue plus vite, facturée plus vite, payée plus vite. Les fonds arrivent sur le compte bancaire plus tôt. Cette accélération du cycle cash-to-cash a un impact direct sur le besoin en fonds de roulement (BFR).
+
+Prenons un exemple. Une entreprise SaaS développe une fonctionnalité premium facturable 10 000 € par mois à ses clients enterprise. Avec un cycle de livraison de 3 mois, elle commence à facturer au mois 4. Avec un cycle de 2 semaines, elle facture dès le mois 1. Sur un an, la différence représente 30 000 € de revenus supplémentaires, non pas créés, mais simplement encaissés plus tôt.
+
+Cette trésorerie disponible plus tôt, c'est moins de dette à contracter, moins d'intérêts à payer, plus de capacité à investir dans la croissance. Le lead time n'est pas un indicateur technique ; c'est un levier financier.
+
+## Le coût d'opportunité du travail non livré
+
+Chaque ligne de code écrite mais non déployée représente un investissement non rentabilisé. Les salaires ont été versés, les charges payées, mais la valeur reste dormante dans une branche Git ou une file d'attente de release.
+
+Une équipe de 5 développeurs coûte environ 50 000 € par mois. Si leur travail du mois de janvier n'est livré qu'en mars, l'entreprise a 50 000 € de valeur en stock, immobile, qui ne génère aucun retour. Multipliez par 10 équipes et 6 mois de cycle moyen : c'est 3 millions d'euros de travail en cours qui dort dans des branches Git.
+
+Ce travail non livré n'est pas un actif : c'est une option. Une option dont la valeur décroît avec le temps, car le marché n'attend pas.
+
+## Cost of Delay : des revenus perdus, pas décalés
+
+Le *Cost of Delay* (CoD) va plus loin que le simple décalage de trésorerie. Dans un marché compétitif, arriver trois mois plus tard peut signifier des revenus définitivement perdus, pas simplement retardés.
+
+Un concurrent qui livre avant vous capture les clients. Une fenêtre de marché qui se ferme ne se rouvre pas. Une réglementation qui entre en vigueur transforme votre fonctionnalité « nice to have » en obligation légale, du moins pour ceux qui l'ont déjà.
+
+Le CoD se calcule en revenus perdus par unité de temps. Si une fonctionnalité génère 100 000 € par an et que vous avez 6 mois de retard sur le marché, vous n'avez pas « décalé » 50 000 € : vous les avez perdus. Ils sont allés chez le concurrent, ou ils n'existent simplement plus car la fenêtre d'opportunité s'est refermée.
+
+Pendant que vous attendez 6 mois pour livrer, un concurrent encaisse déjà 6 mois de revenus, accumule du feedback client et verrouille le marché. Le retard n'est pas neutre : il creuse l'écart.
+
+## Le risque d'obsolescence
+
+Plus le cycle de livraison est long, plus le risque de construire quelque chose d'inutile augmente. Le marché évolue, les besoins clients changent, les priorités stratégiques pivotent.
+
+Une fonctionnalité spécifiée en janvier pour une livraison en juin a 6 mois pour devenir obsolète. Six mois pendant lesquels un concurrent peut sortir une meilleure solution, un client peut changer d'avis, une technologie peut émerger et rendre l'approche caduque.
+
+*Continuous Delivery* réduit ce risque en raccourcissant la boucle de feedback. Des pratiques comme le [Trunk-Based Development](/fr/lean-et-flux-de-valeur/livraison-continue/trunk-based-development-lideal-asymptotique) permettent de livrer en 2 semaines voire moins, de valider les hypothèses rapidement, de pivoter si nécessaire, d'éviter de construire des cathédrales dans le désert. Le code non testé en production est une hypothèse non validée, et les hypothèses non validées ont une valeur proche de zéro.
+
+## Sortir du silotage : un sujet de direction générale
+
+Tant que *Continuous Delivery* reste « le problème de l'équipe technique », il ne recevra ni le budget, ni l'attention, ni le sponsorship nécessaires. Les équipes dev se battent pour des pipelines CI/CD, des environnements de test, de l'automatisation, perçus comme des coûts par une direction qui n'en voit pas l'impact business.
+
+Cette déconnexion est un échec de communication stratégique. Le DAF qui comprend que le lead time impacte le BFR devient un allié de l'investissement en CD. Le CEO qui voit le lien entre vitesse de livraison et avantage concurrentiel en fait une priorité stratégique.
+
+*Continuous Delivery* n'est pas une pratique d'ingénierie : c'est une capacité organisationnelle qui transforme la vélocité technique en avantage financier. Les entreprises qui l'ont compris, et qui l'ont porté au niveau de leur comité de direction, surpassent systématiquement celles qui le traitent comme un sujet de geeks.
+
+La question n'est donc pas de savoir si vous pouvez vous permettre d'investir dans *Continuous Delivery*, mais si vous pouvez vous permettre de continuer à ne pas le faire.

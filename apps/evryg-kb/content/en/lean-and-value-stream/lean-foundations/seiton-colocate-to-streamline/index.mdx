@@ -1,0 +1,46 @@
+---
+pageType: article
+sidebarTitle: Seiton
+tags: [lean, 5s, organization, developer-experience, architecture, colocation]
+canonical-slug: seiton-co-localiser-pour-fluidifier
+---
+
+# Seiton: Colocate to Streamline
+
+*Seiton*, the second pillar of 5S, literally means "to arrange" or "to put in order." In Toyota factories, this principle translates to a simple rule: every tool must be within arm's reach of the operator who needs it, exactly where they expect to find it.
+
+In software development, Seiton translates to a principle of colocation: elements that change together, are consulted together, or depend on each other should reside in the same place. This physical proximity in the file system reduces cognitive distance and streamlines the developer's daily workflow.
+
+## Colocate code and tests
+
+The most immediate application of Seiton in development is placing tests next to the code they verify. A `Button.tsx` component accompanied by its `Button.test.tsx` in the same directory forms a coherent unit: the developer modifying the component immediately sees its tests, and vice versa.
+
+This feature-based organization, where each functionality groups its code, tests, and types, contrasts with technical layer organization. A `__tests__/` folder at the project root, mirroring the source tree, forces the developer to constantly navigate between two parallel hierarchies. The friction this creates discourages test writing and complicates maintenance.
+
+The classic anti-pattern is separating tests by type: `unit/`, `integration/`, `e2e/`. This organization serves execution logic (run all unit tests) but ignores modification logic (when I change this module, which tests need updating?). Seiton favors the latter.
+
+## Colocate infrastructure and application
+
+The same principle applies to infrastructure as code. Placing Terraform or Pulumi files in the same repository as the application they deploy allows versioning code and its runtime environment together. A change to the application requiring an infrastructure update happens in a single commit, a single review, a single deployment.
+
+A separate "infra" repo, managed by a distinct team, creates organizational distance that translates to friction: request tickets, synchronization delays, progressive divergence between what the application expects and what the infrastructure provides. GitOps pushes this logic further by versioning Kubernetes configuration with the application, making each deployment reproducible and auditable.
+
+The inverse anti-pattern is documenting infrastructure in a wiki or external tool. Such documentation inevitably falls out of sync with actual code, becoming a source of confusion rather than clarity.
+
+## Colocate documentation and configuration
+
+Documentation follows the same principle: a README per module, ADRs (Architecture Decision Records) in the repository, comments close to the code they explain. Documentation that lives with the code is more likely to stay current, because the developer modifying a feature immediately sees its associated documentation.
+
+Types and interfaces also benefit from colocation with the code that uses them. A centralized `types/` folder forces developers to navigate elsewhere to understand the data structures they're working with. Placing types near their usage reduces this navigation and makes dependencies explicit.
+
+Environment-specific configuration (development, staging, production) also belongs in the repository. Environment variables documented in Confluence or an incomplete `.env.example` file create a barrier to entry for new developers and a source of errors during deployments.
+
+## Seiton and separation of concerns
+
+A frequent objection pits Seiton against the principle of Separation of Concerns. If everything is colocated, don't we risk mixing responsibilities and creating spaghetti code?
+
+This objection confuses two distinct dimensions. Seiton concerns physical proximity in the file system: where to place files. Separation of Concerns addresses the logical structure of code: how to organize modules, classes, and functions.
+
+A React component can perfectly well have its style file, test file, and types in the same directory while maintaining clear separation of responsibilities. The CSS contains only styling, the test contains only assertions, the component contains only presentation logic. Physical colocation does not imply logical coupling.
+
+Seiton optimizes for daily workflow: when I work on this feature, everything I need is at hand. Separation of Concerns optimizes for understanding and maintenance: each module has a single reason to change. These two principles are complementary, not contradictory.

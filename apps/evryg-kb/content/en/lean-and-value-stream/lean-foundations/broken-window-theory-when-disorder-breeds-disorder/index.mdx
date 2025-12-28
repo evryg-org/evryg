@@ -1,0 +1,46 @@
+---
+pageType: article
+sidebarTitle: Broken window theory
+tags: [lean, quality, kaizen, jidoka, technical-debt, culture, continuous-improvement]
+canonical-slug: broken-window-theory-quand-le-desordre-appelle-le-desordre
+---
+
+# Broken Window Theory: When Disorder Breeds Disorder
+
+In 1982, criminologists James Q. Wilson and George L. Kelling formulated a simple hypothesis: a broken window left unrepaired signals that no one is watching, inviting further degradation[^1]. What starts with a broken window ends with an abandoned building. The theory, controversial in its original domain, finds remarkably relevant application in software development and IT.
+
+A system that tolerates a "temporarily" failing test, a warning ignored for months, or a piece of code that "no one dares touch" sends an implicit message to the entire team: quality is not a priority here. Once internalized, this message becomes a self-fulfilling prophecy.
+
+## The Contagion Mechanism
+
+The gradual degradation of a codebase follows a predictable pattern. A developer introduces a "temporary" shortcut to meet a deadline. The shortcut remains. The next developer, observing that such compromises are accepted, adds another. Technical debt accumulates not linearly but exponentially: each broken window legitimizes the next.
+
+The phenomenon extends beyond code. Outdated documentation discourages anyone from maintaining it. An untriaged bug backlog signals that reports won't be addressed. Ignored monitoring alerts teach the team that these alerts don't matter. The environment itself programs behaviors.
+
+For decision-makers, the issue is not technical but economic: the cost of fixing a "broken window" grows with time and with the number of degradations that have grafted onto it.
+
+## The Lean Response: Kaizen and Jidoka
+
+Lean Manufacturing offers two complementary responses to the broken window syndrome. *Kaizen*, or continuous improvement, prescribes treating small problems immediately rather than letting them accumulate. This philosophy directly opposes the "we'll deal with it later" logic that feeds degradation.
+
+*Jidoka*, or "automation with a human touch," goes further: it gives everyone the power and duty to stop as soon as an anomaly is detected. Toyota's *andon cord* embodies this principle: pulling the cord to signal a problem is valued, not punished. In IT, this translates to CI/CD pipelines that block on the first red test, and a culture where raising a quality issue is never seen as a waste of time.
+
+Both approaches share a conviction: the apparent cost of stopping to repair is always less than the real cost of letting disorder take hold.
+
+## Broken Windows in Modern IT
+
+In a technology organization, broken windows take specific forms that every decision-maker should learn to recognize. Flaky tests that get re-run until they pass. TODOs left in code for years. Development environments that "work on my machine." Manual deployments "because automation is broken." Code reviews approved without actual reading.
+
+Each of these signals, taken in isolation, seems harmless. Their accumulation reveals an organization that has stopped caring about its own hygiene. This lack of care is contagious: a new developer learns within weeks that the stated standards are not the actual standards.
+
+The most reliable indicator of a broken windows culture isn't technical—it's the phrase "that's just how things are here" spoken without irony.
+
+## Fixing the First Window: A Management Decision
+
+Reversing the trend doesn't require a grand transformation program. It starts with a simple decision: fix one window, visibly, and communicate that this repair matters. Remove the build warnings. Fix the flaky test. Update the onboarding documentation. A concrete action is worth more than an abstract directive.
+
+Management's role is to create conditions where these repairs are possible: protected time, explicit recognition, and above all, leading by example. A leadership team that tolerates its own broken windows (opaque decision processes, meetings without follow-up, unkept commitments) cannot expect better from its technical teams.
+
+The broken window theory reminds us of a truth that Lean has formalized: quality is not a state, it's a daily discipline. This discipline begins with refusing to normalize disorder.
+
+[^1]: Wilson, J. Q., & Kelling, G. L. (1982). "Broken Windows: The police and neighborhood safety". *The Atlantic Monthly*, 249(3), 29-38.

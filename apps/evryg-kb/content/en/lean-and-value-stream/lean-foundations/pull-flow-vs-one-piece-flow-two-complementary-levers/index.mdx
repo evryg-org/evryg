@@ -1,0 +1,46 @@
+---
+pageType: article
+sidebarTitle: Pull flow vs One-piece flow
+tags: [lean, flow, pull-system, one-piece-flow, continuous-delivery, batch-size]
+canonical-slug: flux-tire-vs-one-piece-flow-deux-leviers-complementaires
+---
+
+# Pull Flow vs One-Piece Flow: Two Complementary Levers
+
+Pull flow and one-piece flow are two fundamental Lean concepts often confused or used interchangeably.
+
+This confusion obscures an essential distinction: pull flow concerns the *triggering* of work (who gives the signal to start), while one-piece flow concerns *granularity* (how much to process at each step).
+
+Understanding this difference enables optimal combination of these two levers, in manufacturing as well as in software development.
+
+## Pull Flow: Inverting the Production Trigger
+
+In a traditional push system, production is triggered by forecasts: you manufacture based on what you *think* the market will demand, then try to sell off inventory. Pull flow inverts this logic.
+
+Production only starts when a downstream station consumes a unit and sends a signal, the [*kanban*](/en/lean-and-value-stream/lean-foundations/kanban-from-production-signal-to-corrupted-todo-list), requesting replenishment. Real customer demand, propagated step by step through the value chain, becomes the sole trigger.
+
+This mechanism naturally reduces inventory, improves responsiveness to demand variations, and exposes dysfunctions: when the signal stops flowing, the problem becomes immediately visible.
+
+## One-Piece Flow: Reducing Batch Size to Unity
+
+One-piece flow consists of processing items one at a time rather than in batches. Instead of waiting to accumulate ten pieces before transferring them to the next stage, each piece progresses individually through the process as soon as it's ready.
+
+The impact on lead time is considerable: if each step takes one minute and you have five steps, a single piece traverses the system in five minutes. In a batch of ten, the first piece must wait for the other nine to complete at each stage, multiplying the lead time.
+
+Beyond speed, one-piece flow makes defects visible instantly: a quality issue is detected on the current piece, not discovered across an entire batch already produced.
+
+## Application in Software Development
+
+In software development, pull flow manifests when deploying a feature is triggered by real need rather than a predefined schedule. Feature flags allow decoupling technical deployment from business activation: the code is in production, but the feature is only "pulled" when the customer or context demands it.
+
+WIP (work in progress) limits on a Kanban board also embody this principle: a new task only enters the system when a slot opens up.
+
+One-piece flow in IT translates to trunk-based development and continuous integration: each small commit is integrated, tested, and potentially deployed independently, rather than accumulating weeks of work in a branch before a massive merge. This fine granularity reduces risk, accelerates feedback, and simplifies conflict resolution.
+
+## Synthesis: Combining Both Levers
+
+The Toyota optimum, and its software development equivalent, combines both principles: small work units whose production is pulled by real demand.
+
+Anti-patterns emerge when one lacks the other. One-piece flow in push mode quickly creates bottlenecks: you produce piece by piece, but without a demand signal, work in progress accumulates at constraints. Pull flow with large batches preserves the signaling mechanism but introduces irreducible latency: you wait for the batch to complete before pulling it.
+
+In development, the equivalent would be a team that respects WIP limits but works on giant features, or conversely, makes small commits but stacks them in a long-lived branch disconnected from production.

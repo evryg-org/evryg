@@ -1,0 +1,45 @@
+---
+pageType: article
+sidebarTitle: Seiton
+tags: [lean, 5s, organization, developer-experience, architecture, colocation]
+---
+
+# Seiton : co-localiser pour fluidifier
+
+*Seiton*, le deuxième pilier des 5S, signifie littéralement "ranger" ou "mettre en ordre". Dans l'usine Toyota, ce principe se traduit par une règle simple : chaque outil doit être à portée de main de l'opérateur qui en a besoin, exactement là où il s'attend à le trouver.
+
+En développement logiciel, Seiton se transpose en un principe de co-localisation : les éléments qui changent ensemble, qui sont consultés ensemble ou qui dépendent les uns des autres doivent résider au même endroit. Cette proximité physique dans le système de fichiers réduit la distance cognitive et fluidifie le travail quotidien du développeur.
+
+## Co-localiser code et tests
+
+La pratique la plus immédiate de Seiton en développement consiste à placer les tests à côté du code qu'ils vérifient. Un composant `Button.tsx` accompagné de son `Button.test.tsx` dans le même répertoire forme une unité cohérente : le développeur qui modifie le composant voit immédiatement ses tests, et vice versa.
+
+Cette organisation par feature, où chaque fonctionnalité regroupe son code, ses tests et ses types, s'oppose à l'organisation par couche technique. Un dossier `__tests__/` à la racine du projet, miroir de l'arborescence source, oblige le développeur à naviguer constamment entre deux hiérarchies parallèles. La friction ainsi créée décourage l'écriture de tests et complique leur maintenance.
+
+L'anti-pattern classique consiste à séparer les tests par type : `unit/`, `integration/`, `e2e/`. Cette organisation répond à une logique d'exécution (lancer tous les tests unitaires) mais ignore la logique de modification (quand je change ce module, quels tests dois-je mettre à jour ?). Seiton privilégie la seconde.
+
+## Co-localiser infrastructure et application
+
+Le même principe s'applique à l'infrastructure as code. Placer les fichiers Terraform ou Pulumi dans le même repository que l'application qu'ils déploient permet de versionner ensemble le code et son environnement d'exécution. Une modification de l'application nécessitant un changement d'infrastructure se fait dans un seul commit, une seule revue, un seul déploiement.
+
+Le repo "infra" séparé, géré par une équipe distincte, crée une distance organisationnelle qui se traduit en friction : tickets de demande, délais de synchronisation, divergence progressive entre ce que l'application attend et ce que l'infrastructure fournit. GitOps pousse cette logique plus loin en versionnant la configuration Kubernetes avec l'application, rendant chaque déploiement reproductible et auditable.
+
+L'anti-pattern inverse consiste à documenter l'infrastructure dans un wiki ou un outil externe. Cette documentation se désynchronise inévitablement du code réel, créant une source de confusion plutôt que de clarté.
+
+## Co-localiser documentation et configuration
+
+La documentation suit le même principe : un README par module, des ADR (Architecture Decision Records) dans le repository, des commentaires proches du code qu'ils expliquent. La documentation qui vit avec le code a plus de chances d'être maintenue à jour, car le développeur qui modifie une fonctionnalité voit immédiatement la documentation associée.
+
+Les types et interfaces gagnent également à être co-localisés avec le code qui les utilise. Un dossier centralisé `types/` oblige le développeur à naviguer ailleurs pour comprendre la structure des données qu'il manipule. Placer les types près de leur usage réduit cette navigation et rend les dépendances explicites.
+
+La configuration par environnement (développement, staging, production) appartient elle aussi au repository. Des variables d'environnement documentées dans Confluence ou un fichier `.env.example` incomplet créent une barrière à l'entrée pour les nouveaux développeurs et une source d'erreurs lors des déploiements.
+
+## Seiton et separation of concerns
+
+Une objection fréquente oppose Seiton au principe de séparation des responsabilités (Separation of Concerns). Si tout est co-localisé, ne risque-t-on pas de mélanger les responsabilités et de créer du code spaghetti ?
+
+Cette objection confond deux dimensions distinctes. Seiton concerne la proximité physique dans le système de fichiers : où placer les fichiers. La séparation des responsabilités concerne la structure logique du code : comment organiser les modules, les classes, les fonctions.
+
+Un composant React peut parfaitement avoir son fichier de style, son fichier de test et ses types dans le même répertoire tout en maintenant une séparation claire des responsabilités. Le CSS ne contient que du style, le test ne contient que des assertions, le composant ne contient que de la logique de présentation. La co-localisation physique n'implique pas le couplage logique.
+
+Seiton optimise pour le flux de travail quotidien : quand je travaille sur cette fonctionnalité, tout ce dont j'ai besoin est à portée de main. La séparation des responsabilités optimise pour la compréhension et la maintenance : chaque module a une raison unique de changer. Ces deux principes sont complémentaires, non contradictoires.

@@ -1,0 +1,47 @@
+---
+pageType: article
+sidebarTitle: Cargo cult
+tags: [cognitive-bias, anti-pattern, decision-making, architecture, agile, microservices]
+---
+
+# Cargo cult : quand imiter ne suffit pas
+
+Pendant la Seconde Guerre mondiale, les habitants de certaines îles de Mélanésie ont observé un phénomène extraordinaire : des avions militaires déversaient des cargaisons de nourriture, vêtements et équipements. Après le départ des forces armées, certains insulaires ont construit des pistes d'atterrissage en bambou, des tours de contrôle en paille, et des répliques d'avions en bois. Ils reproduisaient méticuleusement les gestes des contrôleurs aériens, espérant que les avions reviendraient. Les avions ne sont jamais revenus. Ces pratiques, documentées par les anthropologues, sont connues sous le nom de [culte du cargo](https://fr.wikipedia.org/wiki/Culte_du_cargo) ([cargo cult](https://en.wikipedia.org/wiki/Cargo_cult) en anglais).
+
+Le physicien Richard Feynman a transposé ce concept à la science dans son célèbre discours de 1974 sur la « cargo cult science » : des pratiques qui ont l'apparence de la rigueur scientifique sans en posséder la substance. L'industrie du logiciel souffre du même syndrome, à une échelle que peu de décideurs mesurent.
+
+## Netflix a des microservices. Vous n'êtes pas Netflix.
+
+Le raisonnement est séduisant : Netflix, Google, Amazon utilisent des microservices ; nous voulons leur succès ; donc nous devons adopter des microservices. Cette logique omet un détail : ces entreprises ont adopté cette architecture *après* avoir atteint une échelle et une complexité organisationnelle qui la rendaient nécessaire. Netflix a migré vers les microservices pour permettre à des centaines d'équipes de déployer indépendamment. Une startup de vingt développeurs qui adopte la même architecture reproduit la piste d'atterrissage en bambou.
+
+Le même schéma se répète avec Kubernetes. L'outil résout des problèmes d'orchestration à grande échelle que la plupart des organisations n'ont pas. Mais son adoption est devenue un marqueur de modernité, un signal envoyé aux investisseurs et aux recruteurs. Des équipes passent des mois à maîtriser une complexité qui ne leur apporte aucune valeur, parce que « tout le monde utilise Kubernetes ». La maquette est parfaite. L'avion ne vient toujours pas.
+
+## La cérémonie sans le sens
+
+Le cargo cult ne se limite pas aux choix technologiques. Il contamine les méthodes et les processus avec la même insidiosité.
+
+Une équipe adopte Scrum : daily standups, sprints de deux semaines, rétrospectives. Les rituels sont respectés à la lettre. Mais les standups sont des rapports de statut déguisés, les sprints sont interrompus par des urgences constantes, les rétrospectives ne produisent aucun changement. L'équipe pratique une *cargo cult agility* : elle reproduit les gestes sans en comprendre la finalité. L'agilité visait à raccourcir les boucles de feedback et à maximiser l'adaptation ; la version cargo cult maximise la conformité à un framework.
+
+SAFe pousse ce paradoxe à son paroxysme : un framework qui promet l'agilité à l'échelle en multipliant les rôles, les cérémonies et les artefacts. Les organisations l'adoptent parce qu'il ressemble à ce qu'elles connaissent (des processus, des livrables, des jalons) tout en portant l'étiquette « agile ». La forme est préservée, le fond est évacué.
+
+## GraphQL, gRPC, et la solution en quête de problème
+
+Le cargo cult technologique suit un pattern récurrent : une technologie émerge pour résoudre un problème spécifique dans un contexte spécifique ; elle gagne en visibilité ; elle est adoptée comme solution universelle par des équipes qui n'ont pas le problème qu'elle résout.
+
+GraphQL a été créé par Facebook pour permettre à des milliers de développeurs front-end de requêter un graphe de données complexe sans coordination constante avec les équipes back-end. Pour une équipe de dix personnes avec trois endpoints REST, GraphQL ajoute une couche de complexité sans bénéfice proportionnel. Mais GraphQL est « moderne », et REST est « legacy ». La décision se prend sur le signal, pas sur l'analyse.
+
+gRPC résout des problèmes de performance et d'interopérabilité dans des systèmes distribués à haute charge. Son adoption par des équipes dont le trafic tiendrait sur un Raspberry Pi relève du même mécanisme : la technologie des géants confère un prestige par association.
+
+## Reconnaître le cargo cult dans votre organisation
+
+Le cargo cult est difficile à identifier parce qu'il se présente toujours sous les atours de la rationalité. Quelques signaux d'alerte pour les décideurs :
+
+**L'argument d'autorité technologique.** « Google/Netflix/Spotify fait comme ça » n'est pas une justification, c'est un aveu d'absence d'analyse. La question pertinente est : quel problème cette approche résout-elle, et avons-nous ce problème ?
+
+**L'inversion moyen-fin.** Quand l'adoption d'une technologie ou d'une méthode devient l'objectif plutôt que le moyen, le cargo cult s'installe. « Nous devons être cloud-native » est une déclaration de foi, pas une stratégie.
+
+**La complexité comme marqueur de sérieux.** Une architecture simple qui fonctionne est souvent perçue comme naïve. Une architecture complexe qui dysfonctionne est perçue comme ambitieuse. Ce biais pousse les organisations vers des solutions surdimensionnées.
+
+**Le mimétisme sans adaptation.** Copier les pratiques d'une autre organisation sans comprendre son contexte, c'est construire une tour de contrôle en paille. Les pratiques qui fonctionnent ailleurs ont émergé de contraintes et d'une culture spécifiques.
+
+La vraie question n'est jamais « quelle technologie utilisent les meilleurs ? » mais « quel problème essayons-nous de résoudre, et quelle est la solution la plus simple qui fonctionne ? ». Cette question est moins séduisante. Elle ne génère pas de buzz dans les conférences. Mais c'est la seule qui distingue l'ingénierie du rituel.

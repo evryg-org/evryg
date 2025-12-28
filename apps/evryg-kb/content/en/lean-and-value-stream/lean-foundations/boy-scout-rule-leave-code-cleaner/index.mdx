@@ -1,0 +1,42 @@
+---
+pageType: article
+sidebarTitle: Boy Scout Rule
+tags: [lean, quality, kaizen, technical-debt, clean-code, continuous-improvement]
+canonical-slug: boy-scout-rule-laisser-le-code-plus-propre
+---
+
+# Boy Scout Rule: Leave Code Cleaner Than You Found It
+
+"Always leave the campground cleaner than you found it." This scout principle, transposed to software development by Robert C. Martin, has become one of the most cited precepts in *clean code* culture. The *Boy Scout Rule* prescribes marginally improving every file you touch, regardless of the task at hand.
+
+The rule doesn't ask you to refactor an entire module or pay off all technical debt at once. It only prescribes leaving code slightly better than before: rename an obscure variable, extract a magic constant, remove an unused import, clarify an ambiguous comment. These micro-improvements, accumulated over hundreds of commits, produce a continuous cleaning effect that large refactoring projects struggle to match.
+
+## The Virtuous Mechanism
+
+Where the [broken window theory](/en/lean-and-value-stream/lean-foundations/broken-window-theory-when-disorder-breeds-disorder) describes a downward spiral (disorder breeds disorder), the Boy Scout Rule triggers the opposite dynamic. Slightly improved code sends a signal to the next contributor: "here, we take care of what we touch." This signal invites maintaining that level of care, or even raising it. Quality becomes contagious.
+
+In practice, every developer becomes an agent of preventive maintenance. The cost of this maintenance is negligible: a few minutes per commit, absorbed into the normal workflow. But the cumulative effect is considerable. A team of ten developers each producing five commits per day generates 250 micro-improvements per week, without ever scheduling a "cleanup" sprint.
+
+## Conditions for Application
+
+Adopting the Boy Scout Rule doesn't happen naturally. It requires an organizational framework that makes it possible.
+
+Code reviews must value small opportunistic improvements rather than rejecting them as "out of scope." A reviewer who asks to separate cleanup from functionality kills the rule in its infancy: the developer, forced to create a dedicated pull request, will abandon the effort.
+
+Teams must accept that some commits mix a feature with minor cleanup. This tolerance assumes trust in developers' judgment: cleanup must remain proportionate and non-invasive. A variable rename is welcome; a major restructuring deserves its own discussion.
+
+Tools must facilitate the approach. A linter that flags local issues, an automatic formatter that homogenizes style, a fast test suite that validates changes: these are safety nets that allow improvement without fear of breaking things.
+
+## What the Rule Is Not
+
+The Boy Scout Rule is not a license for *scope creep*. It doesn't justify refactoring a module's architecture under the guise of a bug fix. It doesn't exempt you from planning important structural changes. It operates at file scale, not system scale.
+
+Nor is it a substitute for technical debt management. Some degradations require a coordinated effort that no accumulation of micro-improvements will resolve. The scout rule maintains the terrain; it doesn't rebuild it.
+
+## A Distributed Responsibility
+
+The strength of the Boy Scout Rule lies in its distribution. It doesn't rely on a team dedicated to quality, nor on sanctuarized refactoring sprints. It makes every contributor a guardian of the code, responsible not only for their feature but for the environment in which it exists.
+
+This distribution has a managerial consequence: code quality becomes an indicator of culture more than technical competence. A team that applies the scout rule demonstrates that it has internalized care as a collective value. A team that ignores it, even one composed of experts, reveals a culture where everyone limits themselves to their strict perimeter.
+
+The Boy Scout Rule reminds us that software quality is not a state to achieve, but a practice to maintain. Every commit is an opportunity to exercise it.
