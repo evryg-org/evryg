@@ -45,7 +45,7 @@ A team suffers from a *big ball of mud* monolith: the code is incomprehensible, 
 
 But distributing a poorly designed system doesn't make it better designed; it transforms an unmanageable monolith into an unmanageable distributed system, with the added bonus of network complexity, eventual consistency, and distributed debugging.
 
-The problem was architectural; the proposed solution was infrastructural. We changed axes without addressing the root cause.
+The problem was architectural; the proposed solution was infrastructural. We changed axes without addressing the root cause. The cost of this confusion is measured in engineering months: six months spent splitting into services, coupling problems still present, and new problems created (distributed debugging, transaction management, latency).
 
 ## Multirepo Decouples Nothing
 
@@ -71,3 +71,5 @@ A modular monolith preserves the simplicity of deployment and debugging of a mon
 Then, if real needs demand it, such as differentiated scaling, autonomous teams, heterogeneous technologies, then we can extract certain modules into independent services.
 
 Modularity is the prerequisite; splitting into microservices is an option. Confusing the axes is like redoing all the plumbing to solve an electrical problem: lots of effort, but on the wrong system.
+
+This clarification of axes also helps frame investments. "We are investing in modularization (architecture), not in infrastructure (deployment). The targeted return on investment is maintainability, not scaling." Such framing helps justify budgets and align expectations.

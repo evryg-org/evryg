@@ -44,7 +44,7 @@ Une équipe souffre d'un monolithe *big ball of mud* : le code est incompréhens
 
 Mais distribuer un système mal conçu ne le rend pas mieux conçu ; cela transforme un monolithe ingérable en un système distribué ingérable, avec en prime la complexité réseau, la cohérence éventuelle, et le debugging distribué.
 
-Le problème était architectural ; la solution proposée était infrastructurelle. On a changé d'axe sans adresser la cause racine.
+Le problème était architectural ; la solution proposée était infrastructurelle. On a changé d'axe sans adresser la cause racine. Le coût de cette confusion se compte en mois d'ingénierie : six mois à redécouper en services, des problèmes de couplage toujours présents, et de nouveaux problèmes créés (debugging distribué, gestion des transactions, latence).
 
 ## Multirepo ne découple rien
 
@@ -70,3 +70,5 @@ Un monolithe modulaire conserve la simplicité de déploiement et de debugging d
 Ensuite, si des besoins réels l'exigent, tels que qu'un scaling différencié, des équipes autonomes, des technologies hétérogènes, alors on peut extraire certains modules en services indépendants.
 
 La modularité est le prérequis ; le découpage en microservices est une option. Confondre les axes, c'est refaire toute la plomberie pour résoudre un problème d'électricité : beaucoup d'efforts, mais sur le mauvais système.
+
+Cette clarification des axes permet aussi de cadrer les investissements. « Nous investissons dans la modularisation (architecture), pas dans l'infrastructure (déploiement). Le retour sur investissement visé est la maintenabilité, pas le scaling. » Une telle formulation aide à justifier les budgets et à aligner les attentes.
