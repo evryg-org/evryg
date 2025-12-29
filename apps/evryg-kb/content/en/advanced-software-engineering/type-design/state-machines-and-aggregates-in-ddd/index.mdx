@@ -23,7 +23,9 @@ The state machine formalizes what the aggregate can do and when it can do it. Ea
 
 These rules, often scattered across `if` conditions throughout the code, become an explicit graph of states and transitions. The domain expert can then visually validate the model: "yes, this is indeed how our process works."
 
-This improves the *ubiquitous language* since states and transitions carry precise business names.
+For compliance audits (SOC2, GDPR, PCI-DSS), this explicitness is valuable. When an auditor asks "show me the lifecycle of a payment," a state machine allows generating a diagram directly from code, not from documentation that risks being outdated.
+
+This improves the *ubiquitous language* since states and transitions carry precise business names. A new developer can understand business processes by reading the state machine definition, without having to mentally reconstruct the flow from conditions scattered throughout the code.
 
 ## Strong Typing of States
 
