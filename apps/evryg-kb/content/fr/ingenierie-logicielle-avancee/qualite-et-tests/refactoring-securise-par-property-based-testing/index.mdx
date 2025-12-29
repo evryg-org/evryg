@@ -15,7 +15,7 @@ L'approche traditionnelle consiste à écrire des tests unitaires couvrant les c
 
 Cette propriété, à savoir l'équivalence entre l'ancienne et la nouvelle implémentation, est d'une simplicité désarmante à énoncer.
 
-On ne décrit pas ce que la fonction devrait faire, on affirme simplement que la nouvelle version fait exactement la même chose que l'ancienne. Le code legacy devient son propre oracle, sa propre spécification exécutable.
+On ne décrit pas ce que la fonction devrait faire, on affirme simplement que la nouvelle version fait exactement la même chose que l'ancienne. Le code legacy devient son propre oracle, sa propre spécification exécutable. C'est une extraction de connaissance : le comportement de l'ancien code *est* la spécification, même quand plus personne ne se souvient pourquoi il fonctionne ainsi.
 
 La librairie de PBT génère des entrées arbitraires conformes au domaine de la fonction, les soumet aux deux implémentations, et vérifie l'égalité des résultats. Si une divergence apparaît, le shrinking identifie l'entrée minimale qui distingue les deux comportements : ce sera un cas de test précis révélant exactement où la nouvelle implémentation dévie.
 
@@ -54,3 +54,5 @@ On peut restructurer le code avec audace (extraire des fonctions, introduire des
 Chaque exécution du test explore un vaste espace d'entrées, bien au-delà de ce qu'un humain pourrait imaginer.
 
 Quand le refactoring est terminé, quand $f'$ a prouvé son équivalence avec $f$ sur des milliers de cas, on peut supprimer $f$ avec une relative confiance. Le code legacy a servi une dernière fois : comme spécification de son propre remplacement.
+
+Cette approche prolonge la durée de vie des actifs logiciels. Ce codebase de dix ans n'a pas besoin d'être jeté : il peut être amélioré pièce par pièce, en confiance. Les réécritures complètes sont coûteuses et risquées ; le refactoring incrémental sécurisé par PBT est économique et sûr.

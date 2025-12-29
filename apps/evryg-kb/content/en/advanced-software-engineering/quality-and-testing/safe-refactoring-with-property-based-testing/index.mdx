@@ -16,7 +16,7 @@ The traditional approach is to write unit tests covering known cases, but how do
 
 This property, namely equivalence between the old and new implementation, is disarmingly simple to state.
 
-We don't describe what the function should do; we simply assert that the new version does exactly the same thing as the old one. The legacy code becomes its own oracle, its own executable specification.
+We don't describe what the function should do; we simply assert that the new version does exactly the same thing as the old one. The legacy code becomes its own oracle, its own executable specification. This is knowledge extraction: the old code's behavior *is* the specification, even when nobody remembers why it works that way.
 
 The PBT library generates arbitrary inputs conforming to the function's domain, submits them to both implementations, and verifies equality of results. If a divergence appears, shrinking identifies the minimal input that distinguishes the two behaviors: this becomes a precise test case revealing exactly where the new implementation deviates.
 
@@ -55,3 +55,5 @@ We can restructure code boldly (extracting functions, introducing abstractions, 
 Each test run explores a vast input space, far beyond what a human could imagine.
 
 When refactoring is complete, when $f'$ has proven its equivalence with $f$ across thousands of cases, we can delete $f$ with relative confidence. The legacy code has served one last time: as the specification of its own replacement.
+
+This approach extends the lifespan of software assets. That ten-year-old codebase doesn't need to be thrown away: it can be improved piece by piece, with confidence. Complete rewrites are expensive and risky; incremental refactoring secured by PBT is economical and safe.
