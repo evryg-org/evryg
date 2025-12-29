@@ -22,7 +22,7 @@ An application's boundaries are multiple, including:
 
 At each crossing, data changes representation: from memory objects to text, from text to typed structures, from one schema to another.
 
-The ideal is for these transformations to be isomorphic: what goes out can be reconstructed identically at the input. When this ideal is achieved, we have the guarantee that no business information is corrupted or lost during transit.
+The ideal is for these transformations to be isomorphic: what goes out can be reconstructed identically at the input. When this ideal is achieved, we have the guarantee that no business information is corrupted or lost during transit. Data corruption at boundaries destroys customer trust: a truncated amount, a shifted date, an altered identifier can transform a routine transaction into a costly dispute.
 
 ## Partial Isomorphisms and Injections
 
@@ -48,7 +48,7 @@ $$\text{decode}(\text{encode}(x)) = x$$
 
 for any value $x$ in the domain.
 
-Note that such a round-trip property is useful in [property-based testing](/en/advanced-software-engineering/quality-and-testing/property-based-testing-power-and-limits).
+Note that such a round-trip property is useful in [property-based testing](/en/advanced-software-engineering/quality-and-testing/property-based-testing-power-and-limits). These tests are cheap insurance: detecting data loss in CI costs a few minutes of fixing, detecting it in production costs hours of investigation, data to reconcile, sometimes customer compensation.
 
 ## Architectural Discipline
 
@@ -57,5 +57,7 @@ This isomorphic perspective encourages healthy architectural discipline.
 It pushes us to define canonical types at the domain's core, independent of any external representation, then maintain explicit translation layers toward each peripheral format. This is essential in ports & adapters (hexagonal) or clean architecture, for example.
 
 Each translation layer becomes testable in isolation: we verify the round-trip, we verify error case handling. Schema evolutions (new fields, modified types, API versions) are negotiated in these translation layers rather than contaminating the domain.
+
+For API versioning, reversible transformations allow evolving formats without breaking existing clients: you can support multiple versions simultaneously, migrate progressively, and maintain lasting business relationships with integrators.
 
 Isomorphism, even when it's only an approximated ideal, provides an objective quality criterion: the closer our transformations come to it, the more reliable our data exchanges are.
