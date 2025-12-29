@@ -33,9 +33,9 @@ Pattern matching fully exploits this structure.
 
 When deconstructing an ADT, the compiler requires exhaustiveness: each variant must be handled. Forgetting a case generates a compilation error, not a bug in production.
 
-This static guarantee transforms risky refactorings into mechanical operations: add a variant to the sum type, then let the compiler guide you to all the places in the code that must be adapted.
+This static guarantee transforms risky refactorings into mechanical operations: add a variant to the sum type, then let the compiler guide you to all the places in the code that must be adapted. Add a `Refunded` status to your payment type: every `switch` that forgets it becomes a compilation error, fixed in minutes, rather than a bug discovered in production weeks later.
 
-The type becomes a source of truth that automatically propagates changes throughout the codebase. Logic errors become type errors.
+The type becomes a source of truth that automatically propagates changes throughout the codebase. Logic errors become type errors. This confidence in refactoring translates directly to velocity: the team can evolve the business model without fearing silent breakage of existing features.
 
 ## Encoding Business Invariants
 
