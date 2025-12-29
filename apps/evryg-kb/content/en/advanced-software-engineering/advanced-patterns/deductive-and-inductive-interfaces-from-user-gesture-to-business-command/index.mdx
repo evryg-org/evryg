@@ -58,6 +58,8 @@ The same vocabulary, the same granularity of intention, traverses all layers. Th
 
 Business use cases are no longer ideas documented here and there in the form of diagrams or vague descriptions, but concrete and traceable artifacts directly in the code.
 
+This explicit capture of intention is also a goldmine for product analytics. When every user action is a named command (`ApproveOrder`, `RejectClaim`), logs are structured by construction. "How many orders were approved this month?" becomes a trivial query, not a data science project.
+
 ## Consequences on Design
 
 The consequences on design are considerable:
@@ -70,3 +72,5 @@ Evolution becomes safer: adding a new business action means adding a new command
 We thus avoid the syndrome of the omniscient form that tries to do everything and ends up doing everything poorly.
 
 The inductive interface is not just a UI pattern: it's a design philosophy that recognizes that business systems are made of intentional actions, not arbitrary data mutations.
+
+It's also an audit trail by construction. Regulators, security teams, compliance officers: all are satisfied by immutable event logs that capture exactly what happened and why.
