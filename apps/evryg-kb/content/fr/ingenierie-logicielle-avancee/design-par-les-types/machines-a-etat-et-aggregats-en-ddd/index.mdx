@@ -22,7 +22,9 @@ La machine à état formalise ce que l'agrégat peut faire et quand il peut le f
 
 Ces règles, souvent dispersées dans des conditions `if` à travers le code, deviennent un graphe explicite d'états et de transitions. Le domain expert peut alors valider visuellement le modèle : « oui, c'est bien ainsi que fonctionne notre processus ».
 
-On améliore ainsi le langage omniprésent (*ubiquitous language*) puisque les états et transitions portent des noms métier précis.
+Pour les audits de conformité (SOC2, RGPD, PCI-DSS), cette explicitation est précieuse. Quand un auditeur demande « montrez-moi le cycle de vie d'un paiement », une machine à état permet de générer un diagramme directement depuis le code, pas depuis une documentation qui risque d'être obsolète.
+
+On améliore ainsi le langage omniprésent (*ubiquitous language*) puisque les états et transitions portent des noms métier précis. Un nouveau développeur peut comprendre les processus métier en lisant la définition de la machine à état, sans avoir à reconstituer mentalement le flux à partir de conditions dispersées dans le code.
 
 ## Typage fort des états
 

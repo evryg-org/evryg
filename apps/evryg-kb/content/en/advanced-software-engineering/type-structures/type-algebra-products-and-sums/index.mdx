@@ -22,6 +22,8 @@ If $A$ has 3 inhabitants and $B$ has 5, then $A | B$ has 8, which is $3 + 5$. We
 
 This distinction is not merely an abstract mathematical exercise: it directly guides our modeling choices by forcing us to make explicit whether two pieces of information necessarily coexist or mutually exclude each other.
 
+Every invalid combination allowed by a type is a potential bug. An "order status" type that permits 100 combinations when only 5 make business sense contains 95 paths to incorrect behavior: that many opportunities to bill a customer for an order never shipped, or to dispatch a package without having processed payment.
+
 ## Eliminating Invalid States
 
 This algebra explains why sum types are so powerful for eliminating invalid states.
@@ -31,7 +33,7 @@ Consider an entity that can be either in "draft" state with modifiable content, 
 - A naive product type `{ status: Status, content: string, publishedAt?: Date }` allows $2 \times \infty \times (\infty + 1)$ combinations, including aberrations like a draft with a publication date.
 - A sum type `Draft { content } | Published { content, publishedAt }` drastically reduces the state space by only allowing semantically valid combinations.
 
-We move from a polluted Cartesian product to a precise sum.
+We move from a polluted Cartesian product to a precise sum. This reduction has a direct impact on testing costs: fewer possible states means fewer cases to verify, fewer `if (status === X && field !== null)` branches scattered throughout the code, and less time spent diagnosing bugs related to "impossible" states that happen anyway.
 
 ## In Practice with TypeScript
 

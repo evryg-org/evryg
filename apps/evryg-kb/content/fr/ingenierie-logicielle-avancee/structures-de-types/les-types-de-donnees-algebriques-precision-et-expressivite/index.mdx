@@ -32,9 +32,9 @@ Le pattern matching exploite pleinement cette structure.
 
 Quand on déconstruit un ADT, le compilateur exige l'exhaustivité : chaque variante doit être traitée. Oublier un cas génère une erreur de compilation, pas un bug en production.
 
-Cette garantie statique transforme les refactorings risqués en opérations mécaniques : ajouter une variante au type somme, puis laisser le compilateur guider vers tous les endroits du code qui doivent être adaptés.
+Cette garantie statique transforme les refactorings risqués en opérations mécaniques : ajouter une variante au type somme, puis laisser le compilateur guider vers tous les endroits du code qui doivent être adaptés. Ajoutez un statut `Refunded` à votre type de paiement : chaque `switch` qui l'oublie devient une erreur de compilation, corrigée en quelques minutes, plutôt qu'un bug découvert en production des semaines plus tard.
 
-Le type devient une source de vérité qui propage automatiquement les changements à travers la codebase. Les erreurs de logique deviennent des erreurs de type.
+Le type devient une source de vérité qui propage automatiquement les changements à travers la codebase. Les erreurs de logique deviennent des erreurs de type. Cette confiance dans le refactoring se traduit directement en vélocité : l'équipe peut faire évoluer le modèle métier sans craindre de casser silencieusement des fonctionnalités existantes.
 
 ## Encoder les invariants métier
 

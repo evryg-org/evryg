@@ -26,11 +26,15 @@ Chaque commit pointe vers ses parents et forme un graphe orienté de l'histoire 
 
 Comprendre Git, c'est comprendre les opérations sur ce DAG : trouver l'ancêtre commun, parcourir l'histoire, déterminer l'accessibilité d'un commit depuis un autre. La puissance et parfois la complexité de Git découlent directement de cette structure sous-jacente.
 
+Un développeur qui visualise mentalement ce graphe résout les conflits de merge plus rapidement, évite les rebases catastrophiques, et passe moins de temps à « réparer Git » : autant d'heures récupérées pour livrer des fonctionnalités.
+
 ## Systèmes de build et dépendances
 
 Les systèmes de build et les gestionnaires de dépendances reposent entièrement sur des DAGs.
 
 Un module dépend d'autres modules, qui dépendent eux-mêmes d'autres modules : un graphe orienté de dépendances. L'acyclicité est cruciale : une dépendance circulaire rendrait la compilation impossible, car il faudrait compiler A avant B et B avant A simultanément.
+
+Une dépendance circulaire introduite discrètement peut bloquer une release entière le jour où elle est détectée. Pire : les problèmes de type « ça marche sur ma machine » sont souvent des différences dans l'ordre de résolution des dépendances, difficiles à diagnostiquer sans une compréhension claire du graphe.
 
 Le tri topologique du DAG produit un ordre de compilation valide. Make, Bazel, Gradle, npm, Cargo : tous construisent ce graphe et le parcourent pour déterminer quoi recalculer quand une source change.
 
@@ -44,10 +48,10 @@ Chaque nœud représente une étape (compilation, test, déploiement, transforma
 
 Cette structure permet :
 
-- La **parallélisation automatique** : deux tâches sans relation de dépendance peuvent s'exécuter simultanément
-- La **reprise sur échec** : si une tâche échoue, on sait exactement quelles tâches en aval sont affectées et lesquelles ont déjà réussi
+- La **parallélisation automatique** : deux tâches sans relation de dépendance peuvent s'exécuter simultanément, réduisant le temps de feedback de manière parfois spectaculaire
+- La **reprise sur échec** : si une tâche échoue, on sait exactement quelles tâches en aval sont affectées et lesquelles ont déjà réussi, évitant de tout relancer inutilement
 
-Le DAG rend le flux d'exécution raisonnable et visualisable.
+Le DAG rend le flux d'exécution raisonnable et visualisable. Un pipeline CI/CD bien structuré en DAG peut passer de 45 minutes à 15 minutes de temps de build : chaque fonctionnalité arrive en production plus vite, chaque bug est corrigé plus rapidement.
 
 ## Les tableurs : un DAG caché
 

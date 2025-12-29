@@ -25,7 +25,7 @@ Les fonctions partielles sont omniprésentes dans la programmation quotidienne, 
 
 Ces fonctions violent le contrat implicite de leur signature : le type prétend couvrir tous les cas, mais l'implémentation en exclut certains.
 
-Le développeur doit savoir quels cas sont problématiques et les gérer : une connaissance qui n'est pas encodée dans le système de types. Cette connaissance ajoute à la charte mentale, et rend le programme plus fragile.
+Le développeur doit savoir quels cas sont problématiques et les gérer : une connaissance qui n'est pas encodée dans le système de types. Cette connaissance ajoute à la charge mentale, et rend le programme plus fragile.
 
 ## Rendre une fonction totale
 
@@ -61,6 +61,8 @@ En pratique, la totalité absolue est un idéal rarement atteint dans les langag
 
 Ces cas échappent aux types conventionnels.
 
-Cependant, tendre vers la totalité améliore considérablement la robustesse du code. Chaque fonction partielle convertie en fonction totale est un piège de moins pour le développeur futur.
+Cependant, tendre vers la totalité améliore considérablement la robustesse du code. Chaque fonction partielle convertie en fonction totale est un piège de moins pour le développeur futur, et une alerte à 3h du matin évitée.
+
+Les exceptions inattendues en production ont un coût humain : astreintes, burnout, turnover. Les meilleurs ingénieurs partent quand ils passent plus de temps à éteindre des incendies qu'à construire. Des fonctions totales signifient moins de surprises, une astreinte plus sereine, et une équipe qui reste.
 
 Les types deviennent des contrats fiables plutôt que des approximations optimistes. Le compilateur, armé de types honnêtes, peut enfin remplir son rôle de vérificateur: non pas de la simple syntaxe, mais bien des propriétés sémantiques du programme exprimées sous forme de types statiques.

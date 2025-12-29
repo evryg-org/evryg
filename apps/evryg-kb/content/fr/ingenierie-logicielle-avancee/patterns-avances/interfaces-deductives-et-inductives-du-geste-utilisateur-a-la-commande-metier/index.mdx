@@ -57,6 +57,8 @@ Le même vocabulaire, la même granularité d'intention, traverse toutes les cou
 
 Les use cases métier ne sont plus des idées documentées ici ou là sous forme de schémas ou vagues descriptions, mais des artéfacts concrets et traçables directement dans le code.
 
+Cette capture explicite de l'intention est aussi une mine d'or pour l'analyse produit. Quand chaque action utilisateur est une commande nommée (`ApproveOrder`, `RejectClaim`), les logs sont structurés par construction. « Combien de commandes ont été approuvées ce mois-ci ? » devient une requête triviale, pas un projet de data science.
+
 ## Conséquences sur le design
 
 Les conséquences sur le design sont considérables :
@@ -69,3 +71,5 @@ L'évolution devient plus sûre : ajouter une nouvelle action métier, c'est ajo
 On évite ainsi le syndrome du formulaire omniscient qui tente de tout faire et finit par mal faire tout ce qu'il fait.
 
 L'interface inductive n'est pas qu'un pattern UI : c'est une philosophie de conception qui reconnaît que les systèmes métier sont faits d'actions intentionnelles, pas de mutations arbitraires de données.
+
+C'est aussi une piste d'audit par construction. Régulateurs, équipes sécurité, auditeurs de conformité : tous sont satisfaits par des logs d'événements immuables qui capturent exactement ce qui s'est passé et pourquoi.

@@ -19,13 +19,13 @@ This approach often discovers bugs in edge cases a developer would never have th
 - Negative numbers
 - Unusual combinations
 
-The generator explores the input space far more exhaustively than our imagination.
+The generator explores the input space far more exhaustively than our imagination. An edge case discovered in CI costs nothing; discovered in production, it costs: incident response, customer compensation, reputation, post-mortem meetings.
 
 ## Shrinking: The Key to Debuggability
 
 The true power of PBT lies in *shrinking*: when a failing case is discovered, the framework automatically attempts to reduce it to the smallest reproducible example.
 
-A 500-element array that fails a sort might become a 3-element array with a precise configuration. This minimization transforms an obscure failure into a readable, debuggable test case.
+A 500-element array that fails a sort might become a 3-element array with a precise configuration. This minimization transforms an obscure failure into a readable, debuggable test case: hours of debugging saved per bug.
 
 It's also a formidable specification tool: formulating a property forces thinking about the code's fundamental invariants. "Sorting a list preserves its length", "encoding then decoding returns the original", "the operation is commutative": these assertions reveal the essence of expected behavior better than a collection of disparate examples.
 

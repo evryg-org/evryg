@@ -23,9 +23,11 @@ Du point de vue du Domain-Driven Design, cette approche s'aligne parfaitement av
 
 On élimine ainsi toute une classe de bugs liés à la propagation de données invalides à travers le système.
 
+En contexte réglementaire, cette approche simplifie aussi les audits. Quand un auditeur demande « votre système peut-il se retrouver dans l'état X ? », si le système de types rend X inexprimable, la réponse est une preuve formelle, pas une promesse basée sur des tests ou des revues de code.
+
 ## Réduction du gaspillage au sens Lean
 
-Cette technique constitue également un levier puissant pour réduire le muda (gaspillage) au sens Lean. Chaque validation manuelle qu'on n'a plus besoin d'écrire, chaque test de cas impossible qu'on n'a plus besoin de maintenir, chaque bug en production qu'on n'aura jamais à investiguer représente du temps et de l'énergie économisés.
+Cette technique constitue également un levier puissant pour réduire le muda (gaspillage) au sens Lean. Chaque état impossible que vous rendez inexprimable, c'est : un bug qui n'existera jamais, un test que vous n'avez pas besoin d'écrire, un ticket support qui ne sera jamais ouvert. Chaque validation manuelle qu'on n'a plus besoin d'écrire, chaque bug en production qu'on n'aura jamais à investiguer représente du temps et de l'énergie économisés.
 
 Le système de types devient une forme de documentation exécutable et vérifiée automatiquement, réduisant la charge cognitive des développeurs qui n'ont plus à garder en tête tous les états théoriquement possibles mais, en pratique, interdits par le métier.
 

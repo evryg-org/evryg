@@ -21,7 +21,7 @@ Les frontières d'une application sont multiples, notamment :
 
 À chaque traversée, les données changent de représentation : d'objets mémoire vers du texte, de texte vers des structures typées, d'un schéma vers un autre.
 
-L'idéal est que ces transformations soient isomorphiques : ce qui sort peut être reconstruit à l'identique à l'entrée. Quand cet idéal est atteint, on a la garantie qu'aucune information métier n'est corrompue ou perdue lors du transit.
+L'idéal est que ces transformations soient isomorphiques : ce qui sort peut être reconstruit à l'identique à l'entrée. Quand cet idéal est atteint, on a la garantie qu'aucune information métier n'est corrompue ou perdue lors du transit. Une corruption de données aux frontières détruit la confiance client : un montant tronqué, une date décalée, un identifiant altéré peuvent transformer une transaction anodine en litige coûteux.
 
 ## Isomorphismes partiels et injections
 
@@ -47,7 +47,7 @@ $$\text{decode}(\text{encode}(x)) = x$$
 
 et ce pour toute valeur $x$ du domaine.
 
-A noter qu'une telle propriété de round-trip est utile en [property-based testing](/fr/ingenierie-logicielle-avancee/qualite-et-tests/property-based-testing-puissance-et-limites).
+A noter qu'une telle propriété de round-trip est utile en [property-based testing](/fr/ingenierie-logicielle-avancee/qualite-et-tests/property-based-testing-puissance-et-limites). Ces tests sont une assurance peu coûteuse : détecter une perte de données en CI coûte quelques minutes de correction, la détecter en production coûte des heures d'investigation, des données à réconcilier, parfois des compensations clients.
 
 ## Discipline architecturale
 
@@ -56,5 +56,7 @@ Cette perspective isomorphique encourage une discipline architecturale saine.
 Elle pousse à définir des types canoniques au cœur du domaine, indépendants de toute représentation externe, puis à maintenir des couches de traduction explicites vers chaque format périphérique. C'est essentiel dans les architectures ports & adapter (hexagonal) ou clean architecture par exemple.
 
 Chaque couche de traduction devient testable isolément : on vérifie le round-trip, on vérifie la gestion des cas d'erreur. Les évolutions de schéma (nouveaux champs, types modifiés, versions d'API) se négocient dans ces couches de traduction plutôt que de contaminer le domaine.
+
+Pour le versioning d'API, des transformations réversibles permettent de faire évoluer les formats sans casser les clients existants : on peut supporter plusieurs versions simultanément, migrer progressivement, et maintenir des relations commerciales durables avec les intégrateurs.
 
 L'isomorphisme, même quand il n'est qu'un idéal approché, fournit un critère de qualité objectif : plus nos transformations s'en rapprochent, plus nos échanges de données sont fiables.

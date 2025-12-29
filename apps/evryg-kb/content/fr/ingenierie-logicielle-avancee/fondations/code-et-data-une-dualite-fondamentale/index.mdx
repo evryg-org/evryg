@@ -21,7 +21,7 @@ Une donnée dupliquée en deux endroits divergera inévitablement : quelqu'un me
 
 Le code, étant de la donnée, obéit à la même loi. Du code dupliqué finira par diverger : un développeur corrigera un bug dans une copie sans connaître l'existence de l'autre, ou fera évoluer un comportement ici mais pas là.
 
-La duplication est une dette qui porte intérêt.
+La duplication est une dette qui porte intérêt. Une règle de calcul de prix dupliquée en quatre endroits et modifiée en trois seulement : c'est un client qui reçoit une facture incohérente, un litige commercial, une perte de confiance. Ces divergences se propagent silencieusement jusqu'au moment où elles deviennent des incidents visibles.
 
 ## Coïncidence vs comportement partagé
 
@@ -41,6 +41,8 @@ Deux modules distincts qui calculent une TVA à 20% ne devraient pas partager ce
 Inversement, deux calculs apparemment différents qui doivent toujours produire le même résultat (un prix affiché et un prix facturé, par exemple) devraient partager leur implémentation même si leurs contextes d'appel diffèrent.
 
 La duplication délibérée et la mutualisation délibérée sont toutes deux des choix de design ; seule la duplication accidentelle est une faute.
+
+En contexte réglementaire, cette distinction devient critique. Un auditeur qui demande « où est la source de vérité pour le calcul des frais de dossier ? » attend une réponse précise, pas « dans plusieurs fichiers qu'on maintient synchronisés manuellement ». La duplication de connaissances métier transforme chaque audit en archéologie du code.
 
 ## DRY bien compris
 

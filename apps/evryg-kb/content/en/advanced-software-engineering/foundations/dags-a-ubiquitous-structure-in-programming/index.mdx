@@ -27,11 +27,15 @@ Each commit points to its parents and forms a directed graph of the project's hi
 
 Understanding Git means understanding operations on this DAG: finding the common ancestor, traversing history, determining the reachability of one commit from another. Git's power and sometimes complexity stem directly from this underlying structure.
 
+A developer who mentally visualizes this graph resolves merge conflicts faster, avoids catastrophic rebases, and spends less time "fixing Git": hours reclaimed for delivering features.
+
 ## Build Systems and Dependencies
 
 Build systems and dependency managers rely entirely on DAGs.
 
 A module depends on other modules, which themselves depend on other modules: a directed graph of dependencies. Acyclicity is crucial: a circular dependency would make compilation impossible, as you would need to compile A before B and B before A simultaneously.
+
+A circular dependency introduced quietly can block an entire release the day it's detected. Worse: "it works on my machine" problems are often differences in dependency resolution order, difficult to diagnose without a clear understanding of the graph.
 
 Topological sorting of the DAG produces a valid compilation order. Make, Bazel, Gradle, npm, Cargo: all build this graph and traverse it to determine what to recalculate when a source changes.
 
@@ -45,10 +49,10 @@ Each node represents a step (compilation, test, deployment, transformation), eac
 
 This structure enables:
 
-- **Automatic parallelization**: two tasks without a dependency relationship can execute simultaneously
-- **Failure recovery**: if a task fails, we know exactly which downstream tasks are affected and which have already succeeded
+- **Automatic parallelization**: two tasks without a dependency relationship can execute simultaneously, sometimes dramatically reducing feedback time
+- **Failure recovery**: if a task fails, we know exactly which downstream tasks are affected and which have already succeeded, avoiding unnecessary restarts
 
-The DAG makes the execution flow reasonable and visualizable.
+The DAG makes the execution flow reasonable and visualizable. A well-structured CI/CD pipeline as a DAG can go from 45 minutes to 15 minutes of build time: every feature reaches production faster, every bug gets fixed more quickly.
 
 ## Spreadsheets: A Hidden DAG
 

@@ -21,6 +21,8 @@ Si $A$ a 3 habitants et $B$ en a 5, alors $A | B$ en a 8, soit $3 + 5$. On addit
 
 Cette distinction n'est pas qu'un exercice mathématique abstrait : elle guide directement nos choix de modélisation en nous forçant à expliciter si deux informations coexistent nécessairement ou s'excluent mutuellement.
 
+Chaque combinaison invalide autorisée par un type est un bug potentiel. Un type « statut de commande » qui permet 100 combinaisons alors que 5 seulement ont un sens métier contient 95 chemins vers des comportements incorrects : autant d'occasions de facturer un client pour une commande jamais expédiée, ou d'envoyer un colis sans avoir débité le paiement.
+
 ## Éliminer les états invalides
 
 Cette algèbre explique pourquoi les sum types sont si puissants pour éliminer les états invalides.
@@ -30,7 +32,7 @@ Considérons une entité qui peut être soit en état « brouillon » avec un co
 - Un product type naïf `{ status: Status, content: string, publishedAt?: Date }` autorise $2 \times \infty \times (\infty + 1)$ combinaisons, incluant des aberrations comme un brouillon avec une date de publication.
 - Un sum type `Draft { content } | Published { content, publishedAt }` réduit drastiquement l'espace des états en n'autorisant que les combinaisons sémantiquement valides.
 
-On passe d'un produit cartésien pollué à une somme précise.
+On passe d'un produit cartésien pollué à une somme précise. Cette réduction a une conséquence directe sur les coûts de test : moins d'états possibles signifie moins de cas à vérifier, moins de branches `if (status === X && field !== null)` dispersées dans le code, et moins de temps passé à diagnostiquer des bugs liés à des états « impossibles » qui se produisent quand même.
 
 ## En pratique avec TypeScript
 
