@@ -24,9 +24,11 @@ From a Domain-Driven Design perspective, this approach aligns perfectly with the
 
 This eliminates an entire class of bugs related to the propagation of invalid data throughout the system.
 
+In regulatory contexts, this approach also simplifies audits. When an auditor asks "can your system ever end up in state X?", if the type system makes X inexpressible, the answer is a formal proof, not a promise based on tests or code reviews.
+
 ## Waste Reduction in the Lean Sense
 
-This technique also constitutes a powerful lever for reducing muda (waste) in the Lean sense. Each manual validation we no longer need to write, each impossible case test we no longer need to maintain, each production bug we'll never have to investigate represents saved time and energy.
+This technique also constitutes a powerful lever for reducing muda (waste) in the Lean sense. Each impossible state you make inexpressible is: a bug that will never exist, a test you don't need to write, a support ticket that will never be opened. Each manual validation we no longer need to write, each production bug we'll never have to investigate represents saved time and energy.
 
 The type system becomes a form of automatically verified executable documentation, reducing the cognitive load on developers who no longer have to keep in mind all theoretically possible states that are, in practice, forbidden by the business.
 
