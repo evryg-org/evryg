@@ -8,6 +8,7 @@ import '../globals.css'
 import 'katex/dist/katex.min.css'
 
 import { LocaleSwitch } from '../../components/LocaleSwitch'
+import { Scripts } from '../../components/Scripts'
 import { DOCS_REPOSITORY_BASE } from '../../config'
 import { ThemedEvrygLogo } from '../../design_system/ThemedEvrygLogo'
 import { VerticalSeparator } from '../../design_system/VerticalSeparator'
@@ -135,6 +136,7 @@ export default async function LangLayout({
             ]
           })
         }} />
+        <Scripts />
       </Head>
       <body>
         <Layout
