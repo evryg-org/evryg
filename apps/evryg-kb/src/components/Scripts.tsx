@@ -1,5 +1,7 @@
 import Script from 'next/script'
 
+import { CookiebotScript } from './CookiebotScript'
+
 /**
  * Tracking scripts component for Cookiebot and Google Tag Manager.
  *
@@ -23,13 +25,7 @@ export function Scripts() {
   return (
     <>
       {/* Cookiebot consent management - loads first */}
-      <Script
-        id="Cookiebot"
-        src="https://consent.cookiebot.com/uc.js"
-        data-cbid={cookiebotId}
-        data-blockingmode="manual"
-        strategy="afterInteractive"
-      />
+      <CookiebotScript cookiebotId={cookiebotId} />
 
       {/* Google Tag Manager - blocked until statistics consent granted */}
       <Script
